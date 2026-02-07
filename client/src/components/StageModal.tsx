@@ -22,21 +22,21 @@ export function StageModal({ isOpen, onClose, stage, detail }: StageModalProps) 
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-4 md:p-6">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-500 bg-opacity-10 flex items-center justify-center text-blue-500">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue-500 bg-opacity-10 flex items-center justify-center text-blue-500">
               {stage.icon}
             </div>
             <div>
-              <DialogTitle className="text-2xl">{stage.title}</DialogTitle>
-              <p className="text-sm text-slate-600 mt-1">{stage.description}</p>
+              <DialogTitle className="text-lg md:text-2xl">{stage.title}</DialogTitle>
+              <p className="text-xs md:text-sm text-slate-600 mt-1">{stage.description}</p>
             </div>
           </div>
         </DialogHeader>
 
-        <Tabs defaultValue="overview" className="mt-6">
-          <TabsList className="grid w-full grid-cols-4">
+        <Tabs defaultValue="overview" className="mt-4 md:mt-6">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="checklist">Checklist</TabsTrigger>
             <TabsTrigger value="scripts">Scripts</TabsTrigger>
@@ -45,12 +45,12 @@ export function StageModal({ isOpen, onClose, stage, detail }: StageModalProps) 
 
           {/* Overview Tab */}
           <TabsContent value="overview" className="space-y-4 mt-4">
-            <Card className="p-6">
+            <Card className="p-4 md:p-6">
               <p className="text-slate-700 leading-relaxed">{detail.overview}</p>
             </Card>
 
             {detail.tips.length > 0 && (
-              <Card className="p-6 bg-amber-50 border-amber-200">
+              <Card className="p-4 md:p-6 bg-amber-50 border-amber-200">
                 <div className="flex items-start gap-3">
                   <Lightbulb className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -70,7 +70,7 @@ export function StageModal({ isOpen, onClose, stage, detail }: StageModalProps) 
 
           {/* Checklist Tab */}
           <TabsContent value="checklist" className="mt-4">
-            <Card className="p-6">
+            <Card className="p-4 md:p-6">
               <div className="flex items-center gap-2 mb-4">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                 <h4 className="font-semibold text-slate-900">Action Items</h4>
@@ -91,18 +91,18 @@ export function StageModal({ isOpen, onClose, stage, detail }: StageModalProps) 
           {/* Scripts Tab */}
           <TabsContent value="scripts" className="space-y-4 mt-4">
             {detail.scripts.length === 0 ? (
-              <Card className="p-6">
+              <Card className="p-4 md:p-6">
                 <p className="text-slate-500 text-center">No scripts available for this stage.</p>
               </Card>
             ) : (
               detail.scripts.map((script, index) => (
-                <Card key={index} className="p-6">
+                <Card key={index} className="p-4 md:p-6">
                   <div className="flex items-center gap-2 mb-3">
                     <FileText className="w-5 h-5 text-blue-600" />
                     <h4 className="font-semibold text-slate-900">{script.title}</h4>
                   </div>
-                  <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <pre className="text-sm text-slate-700 whitespace-pre-wrap font-sans leading-relaxed">
+                  <div className="bg-slate-50 p-3 md:p-4 rounded-lg border border-slate-200">
+                    <pre className="text-xs md:text-sm text-slate-700 whitespace-pre-wrap font-sans leading-relaxed">
                       {script.content}
                     </pre>
                   </div>
@@ -114,7 +114,7 @@ export function StageModal({ isOpen, onClose, stage, detail }: StageModalProps) 
           {/* Resources Tab */}
           <TabsContent value="resources" className="space-y-3 mt-4">
             {detail.resources.length === 0 ? (
-              <Card className="p-6">
+              <Card className="p-4 md:p-6">
                 <p className="text-slate-500 text-center">No resources available for this stage.</p>
               </Card>
             ) : (

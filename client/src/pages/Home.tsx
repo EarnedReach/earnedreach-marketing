@@ -228,11 +228,11 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container py-6">
-          <div className="flex items-center justify-between">
+        <div className="container py-4 md:py-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">EarnedReach Client Journey</h1>
-              <p className="text-slate-600 mt-1">
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-900">EarnedReach Client Journey</h1>
+              <p className="text-sm md:text-base text-slate-600 mt-1">
                 From discovery to 90-day growth arc · Click any stage for details
               </p>
             </div>
@@ -271,8 +271,8 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="container py-12">
-        <div className="space-y-16">
+      <main className="container py-6 md:py-12">
+        <div className="space-y-10 md:space-y-16">
           {sections.map((section, sectionIndex) => (
             <section
               key={section.id}
@@ -281,23 +281,21 @@ export default function Home() {
               onMouseLeave={() => setActiveSection(null)}
             >
               {/* Section Header */}
-              <div className="mb-8">
+              <div className="mb-6 md:mb-8">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className={`w-1 h-8 ${section.color} rounded-full`} />
-                  <h2 className="text-2xl font-bold text-slate-900">{section.title}</h2>
+                  <div className={`w-1 h-6 md:h-8 ${section.color} rounded-full`} />
+                  <h2 className="text-xl md:text-2xl font-bold text-slate-900">{section.title}</h2>
                 </div>
-                <p className="text-slate-600 ml-7">{section.subtitle}</p>
+                <p className="text-sm md:text-base text-slate-600 ml-7">{section.subtitle}</p>
               </div>
 
               {/* Timeline Container */}
               <div className="relative">
-                {/* Connection Line */}
-                <div className="absolute top-12 left-0 right-0 h-0.5 bg-slate-200 -z-10" />
+                {/* Connection Line - Hidden on mobile, shown on desktop */}
+                <div className="hidden lg:block absolute top-12 left-0 right-0 h-0.5 bg-slate-200 -z-10" />
 
-                {/* Stage Cards */}
-                <div className="grid gap-6" style={{
-                  gridTemplateColumns: `repeat(${section.stages.length}, minmax(0, 1fr))`
-                }}>
+                {/* Stage Cards - Stack on mobile, grid on desktop */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-flow-col lg:auto-cols-fr gap-6">
                   {section.stages.map((stage, index) => (
                     <Card
                       key={stage.id}
@@ -342,21 +340,21 @@ export default function Home() {
                       </div>
 
                       {/* Content */}
-                      <h3 className="font-semibold text-slate-900 mb-2 text-sm">
+                      <h3 className="font-semibold text-slate-900 mb-2 text-base md:text-sm">
                         {stage.title}
                       </h3>
-                      <p className="text-xs text-slate-600 leading-relaxed mb-3">
+                      <p className="text-sm md:text-xs text-slate-600 leading-relaxed mb-3">
                         {stage.description}
                       </p>
 
                       {/* Click hint */}
-                      <div className="text-xs text-blue-600 font-medium">
+                      <div className="text-sm md:text-xs text-blue-600 font-medium">
                         Click for details →
                       </div>
 
-                      {/* Connection Dot */}
+                      {/* Connection Dot - Hidden on mobile */}
                       <div className={`
-                        absolute -bottom-3 left-1/2 -translate-x-1/2 
+                        hidden lg:block absolute -bottom-3 left-1/2 -translate-x-1/2 
                         w-6 h-6 rounded-full ${section.color} 
                         border-4 border-white shadow-sm
                       `} />
@@ -369,9 +367,9 @@ export default function Home() {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-16 p-8 bg-white rounded-lg border-2 border-slate-200 shadow-sm">
-          <h3 className="text-xl font-bold text-slate-900 mb-4">About This Journey</h3>
-          <div className="grid md:grid-cols-3 gap-6 text-sm">
+        <div className="mt-10 md:mt-16 p-6 md:p-8 bg-white rounded-lg border-2 border-slate-200 shadow-sm">
+          <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-4">About This Journey</h3>
+          <div className="grid md:grid-cols-3 gap-6 text-sm md:text-sm">
             <div>
               <h4 className="font-semibold text-slate-900 mb-2">Discovery & Sales</h4>
               <p className="text-slate-600">Structured process from Typeform to signed partnership with clear value communication</p>
