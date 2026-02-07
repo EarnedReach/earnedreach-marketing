@@ -5,9 +5,8 @@ export default function Philosophy() {
       <header className="border-b border-white/10 bg-slate-950/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
-            <a href="/" className="flex items-center gap-2 sm:gap-3">
-              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/BTbKUsUYwotUEEHw.png" alt="EarnedReach Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
-              <span className="text-lg sm:text-xl font-bold text-white">EarnedReach</span>
+            <a href="/" className="flex items-center">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png" alt="EarnedReach" className="w-10 h-10 sm:w-12 sm:h-12 hover:opacity-80 transition-opacity" />
             </a>
             <nav className="hidden md:flex items-center gap-8">
               <a href="/#how-it-works" className="text-slate-300 hover:text-white transition-colors">

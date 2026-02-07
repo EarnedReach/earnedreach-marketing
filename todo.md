@@ -1,24 +1,19 @@
-# EarnedReach Website Updates
+# Logo Transparency & Branding Updates
 
-## Technical Fixes
-- [x] Fix nested `<a>` tag error in Marketing.tsx
+## Logo Processing
+- [x] Remove black background from logo (make transparent)
+- [x] Upload new transparent logo to CDN
+- [x] Get new CDN URL: https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png
 
-## Branding
-- [x] Replace placeholder blue circle logo with actual EarnedReach logo
-- [x] Upload logo to static assets directory
-- [x] Update all logo references in Marketing.tsx, Philosophy.tsx, and Journey.tsx
-
-## Content Updates
-- [x] Add founder story section to homepage
-  - Videographer/editor background
-  - Experience working with 5/6-figure entrepreneurs
-  - Discovery of common pattern (content ideation bottleneck, lack of time)
-  - How this led to creating EarnedReach
-- [x] Mention cameraman service as included offering
-- [x] Update "What's Included" section with cameraman service
+## Header Updates
+- [x] Update Marketing.tsx header to use logo-only (remove text)
+- [x] Update Philosophy.tsx header to use logo-only (remove text)
+- [x] Update Journey.tsx header to use logo-only (remove text)
+- [x] Update Marketing.tsx footer logo
 
 ## Testing
-- [x] Test all pages for console errors
-- [x] Verify logo displays correctly across all pages
-- [x] Check founder story section on mobile
+- [x] Test logo on dark backgrounds (marketing site)
+- [x] Test logo on light backgrounds (journey board)
+- [x] Verify logo clickability to homepage
+- [x] Check mobile responsiveness
 - [ ] Create checkpoint

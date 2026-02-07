@@ -39,9 +39,8 @@ export default function Marketing() {
         <div className="container py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-2">
-              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/BTbKUsUYwotUEEHw.png" alt="EarnedReach Logo" className="w-8 h-8" />
-              <span className="text-xl font-bold text-white">EarnedReach</span>
+            <a href="/" className="flex items-center">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png" alt="EarnedReach" className="w-10 h-10 hover:opacity-80 transition-opacity" />
             </a>
 
             {/* Nav Links */}
@@ -536,9 +535,8 @@ export default function Marketing() {
       <footer className="border-t border-white/10 bg-slate-900/50 py-12">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <a href="/" className="flex items-center gap-2">
-              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/BTbKUsUYwotUEEHw.png" alt="EarnedReach Logo" className="w-6 h-6" />
-              <span className="text-lg font-bold text-white">EarnedReach</span>
+            <a href="/" className="flex items-center">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png" alt="EarnedReach" className="w-8 h-8 hover:opacity-80 transition-opacity" />
             </a>
             <div className="flex items-center gap-8">
               <Link href="/journey" className="text-slate-400 hover:text-white transition-colors">

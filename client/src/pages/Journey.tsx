@@ -230,12 +230,12 @@ export default function Home() {
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container py-4 md:py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <a href="/" className="flex-shrink-0">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/BTbKUsUYwotUEEHw.png" alt="EarnedReach Logo" className="w-10 h-10 md:w-12 md:h-12" />
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png" alt="EarnedReach" className="w-12 h-12 md:w-14 md:h-14 hover:opacity-80 transition-opacity" />
               </a>
               <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-slate-900">EarnedReach Client Journey</h1>
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Client Journey</h1>
                 <p className="text-sm md:text-base text-slate-600 mt-1">
                   From discovery to 90-day growth arc · Click any stage for details
                 </p>
