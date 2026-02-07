@@ -1,18 +1,24 @@
-# EarnedReach Website Enhancement Tasks
+# EarnedReach Website Updates
 
-## Homepage Updates
-- [x] Remove pricing section from 90-Day Growth Arc
-- [x] Add FAQ section with 4 common questions
-- [x] Add more value-building sections before final CTA
-- [x] Extend content to build trust and authority
+## Technical Fixes
+- [x] Fix nested `<a>` tag error in Marketing.tsx
 
-## New Pages
-- [x] Create Philosophy page at /philosophy route
-- [x] Condense philosophy content from user's provided text
-- [x] Ensure Philosophy nav link works
+## Branding
+- [x] Replace placeholder blue circle logo with actual EarnedReach logo
+- [x] Upload logo to static assets directory
+- [x] Update all logo references in Marketing.tsx, Philosophy.tsx, and Journey.tsx
+
+## Content Updates
+- [x] Add founder story section to homepage
+  - Videographer/editor background
+  - Experience working with 5/6-figure entrepreneurs
+  - Discovery of common pattern (content ideation bottleneck, lack of time)
+  - How this led to creating EarnedReach
+- [x] Mention cameraman service as included offering
+- [x] Update "What's Included" section with cameraman service
 
 ## Testing
-- [x] Test all navigation links
-- [x] Verify mobile responsiveness
-- [x] Check FAQ accordion functionality
+- [x] Test all pages for console errors
+- [x] Verify logo displays correctly across all pages
+- [x] Check founder story section on mobile
 - [ ] Create checkpoint

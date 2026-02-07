@@ -39,10 +39,10 @@ export default function Marketing() {
         <div className="container py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400" />
+            <a href="/" className="flex items-center gap-2">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/BTbKUsUYwotUEEHw.png" alt="EarnedReach Logo" className="w-8 h-8" />
               <span className="text-xl font-bold text-white">EarnedReach</span>
-            </div>
+            </a>
 
             {/* Nav Links */}
             <div className="hidden md:flex items-center gap-8">
@@ -52,10 +52,8 @@ export default function Marketing() {
               <a href="#offer" className="text-slate-300 hover:text-white transition-colors">
                 Our Offer
               </a>
-              <Link href="/philosophy">
-                <a className="text-slate-300 hover:text-white transition-colors">
-                  Philosophy
-                </a>
+              <Link href="/philosophy" className="text-slate-300 hover:text-white transition-colors">
+                Philosophy
               </Link>
             </div>
 
@@ -204,6 +202,7 @@ export default function Marketing() {
                 {[
                   'Founder-led strategy & messaging',
                   'Professional video editing (fully managed)',
+                  'Professional cameraman (when needed)',
                   'Traffic ownership & attribution tracking',
                   'Performance optimization & iteration',
                   'Revenue share alignment (5-10%)',
@@ -300,6 +299,37 @@ export default function Marketing() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Story */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-blue-950/30 to-slate-900">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <Badge className="mb-6 bg-blue-500/20 text-blue-300 border-blue-500/30 px-4 py-1.5">
+              Founder-Led
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
+              Built by a Videographer Who Saw the Pattern
+            </h2>
+            <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
+              <p>
+                I started as a videographer and editor, working directly with 5 and 6-figure entrepreneurs. 
+                I loved the craft—capturing their vision, editing their stories, helping them look professional.
+              </p>
+              <p>
+                But I kept seeing the same bottleneck: <span className="text-white font-semibold">brilliant founders drowning in content ideation, 
+                with zero time to focus on what actually grew their business</span>.
+              </p>
+              <p>
+                They'd hire editors, but that only solved half the problem. They still needed strategy. 
+                They still needed someone to own the traffic. They still needed a system that converted views into revenue.
+              </p>
+              <p className="text-xl text-blue-400 font-semibold">
+                So I built EarnedReach—not as an agency, but as the full-stack growth partner I wish they'd had from day one.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -506,20 +536,16 @@ export default function Marketing() {
       <footer className="border-t border-white/10 bg-slate-900/50 py-12">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400" />
+            <a href="/" className="flex items-center gap-2">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/BTbKUsUYwotUEEHw.png" alt="EarnedReach Logo" className="w-6 h-6" />
               <span className="text-lg font-bold text-white">EarnedReach</span>
-            </div>
+            </a>
             <div className="flex items-center gap-8">
-              <Link href="/journey">
-                <a className="text-slate-400 hover:text-white transition-colors">
-                  Client Journey
-                </a>
+              <Link href="/journey" className="text-slate-400 hover:text-white transition-colors">
+                Client Journey
               </Link>
-              <Link href="/philosophy">
-                <a className="text-slate-400 hover:text-white transition-colors">
-                  Philosophy
-                </a>
+              <Link href="/philosophy" className="text-slate-400 hover:text-white transition-colors">
+                Philosophy
               </Link>
             </div>
             <div className="text-slate-500 text-sm">

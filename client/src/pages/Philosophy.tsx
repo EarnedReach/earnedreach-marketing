@@ -6,7 +6,7 @@ export default function Philosophy() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             <a href="/" className="flex items-center gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600" />
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/BTbKUsUYwotUEEHw.png" alt="EarnedReach Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
               <span className="text-lg sm:text-xl font-bold text-white">EarnedReach</span>
             </a>
             <nav className="hidden md:flex items-center gap-8">
