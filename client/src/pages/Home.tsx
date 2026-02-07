@@ -13,6 +13,8 @@ import {
   BarChart3,
   Target
 } from "lucide-react";
+import { StageModal } from "@/components/StageModal";
+import { stageDetails } from "@/data/stageDetails";
 
 /**
  * Design Philosophy: Swiss Modernism meets Digital Clarity
@@ -20,6 +22,7 @@ import {
  * - Typographic hierarchy (DM Sans + Inter)
  * - Functional color (Blue for trust, Amber for milestones)
  * - Horizontal timeline flow showing forward momentum
+ * - Interactive modals for detailed operational content
  */
 
 interface StageCard {
@@ -40,6 +43,13 @@ interface Section {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [selectedStage, setSelectedStage] = useState<StageCard | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleStageClick = (stage: StageCard) => {
+    setSelectedStage(stage);
+    setIsModalOpen(true);
+  };
 
   const sections: Section[] = [
     {
@@ -188,7 +198,7 @@ export default function Home() {
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container py-6">
           <h1 className="text-3xl font-bold text-slate-900">EarnedReach Client Journey</h1>
-          <p className="text-slate-600 mt-1">From discovery to 90-day growth arc</p>
+          <p className="text-slate-600 mt-1">From discovery to 90-day growth arc · Click any stage for details</p>
         </div>
       </header>
 
@@ -223,9 +233,10 @@ export default function Home() {
                   {section.stages.map((stage, index) => (
                     <Card
                       key={stage.id}
+                      onClick={() => handleStageClick(stage)}
                       className={`
                         relative p-6 bg-white border-2 transition-all duration-300
-                        hover:shadow-lg hover:-translate-y-1
+                        hover:shadow-lg hover:-translate-y-1 cursor-pointer
                         ${activeSection === section.id ? 'border-slate-300' : 'border-slate-200'}
                         ${stage.status === 'active' ? 'ring-2 ring-blue-500 ring-offset-2' : ''}
                       `}
@@ -266,9 +277,14 @@ export default function Home() {
                       <h3 className="font-semibold text-slate-900 mb-2 text-sm">
                         {stage.title}
                       </h3>
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <p className="text-xs text-slate-600 leading-relaxed mb-3">
                         {stage.description}
                       </p>
+
+                      {/* Click hint */}
+                      <div className="text-xs text-blue-600 font-medium">
+                        Click for details →
+                      </div>
 
                       {/* Connection Dot */}
                       <div className={`
@@ -303,6 +319,14 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* Stage Modal */}
+      <StageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        stage={selectedStage}
+        detail={selectedStage ? stageDetails[selectedStage.id] : null}
+      />
     </div>
   );
 }
