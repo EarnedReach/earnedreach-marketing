@@ -59,7 +59,7 @@ export default function Marketing() {
             {/* CTA */}
             <Button 
               className="bg-blue-600 hover:bg-blue-700 text-white"
-              onClick={() => window.location.href = '#book-call'}
+              onClick={() => window.open('https://form.typeform.com/to/qjB4ZpE9', '_blank')}
             >
               Book Discovery Call
             </Button>
@@ -103,7 +103,7 @@ export default function Marketing() {
               <Button 
                 size="lg"
                 className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6 w-full sm:w-auto"
-                onClick={() => window.location.href = '#book-call'}
+                onClick={() => window.open('https://form.typeform.com/to/qjB4ZpE9', '_blank')}
               >
                 Book Discovery Call
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -222,7 +222,7 @@ export default function Marketing() {
             <Button 
               size="lg"
               className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6"
-              onClick={() => window.location.href = '#book-call'}
+              onClick={() => window.open('https://form.typeform.com/to/qjB4ZpE9', '_blank')}
             >
               Book Discovery Call
               <ArrowRight className="ml-2 w-5 h-5" />

@@ -1,19 +1,21 @@
-# Logo Transparency & Branding Updates
+# Typeform Link Updates
 
-## Logo Processing
-- [x] Remove black background from logo (make transparent)
-- [x] Upload new transparent logo to CDN
-- [x] Get new CDN URL: https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png
+## Files to Update
+- [x] Marketing.tsx - Replace all #book-call with Typeform URL (3 buttons updated)
+- [x] Philosophy.tsx - Replace all #book-call with Typeform URL (2 buttons updated)
 
-## Header Updates
-- [x] Update Marketing.tsx header to use logo-only (remove text)
-- [x] Update Philosophy.tsx header to use logo-only (remove text)
-- [x] Update Journey.tsx header to use logo-only (remove text)
-- [x] Update Marketing.tsx footer logo
+## Typeform URL
+https://form.typeform.com/to/x5eB9KPV
+
+## New Typeform URL
+https://form.typeform.com/to/qjB4ZpE9 (public and working)
+
+## Update Required
+- [x] Replace old URL (x5eB9KPV) with new URL (qjB4ZpE9) in Marketing.tsx (3 buttons updated)
+- [x] Replace old URL (x5eB9KPV) with new URL (qjB4ZpE9) in Philosophy.tsx (2 buttons updated)
 
 ## Testing
-- [x] Test logo on dark backgrounds (marketing site)
-- [x] Test logo on light backgrounds (journey board)
-- [x] Verify logo clickability to homepage
-- [x] Check mobile responsiveness
+- [ ] Test all "Book Discovery Call" buttons on marketing homepage
+- [ ] Test "Book Discovery Call" button on philosophy page
+- [ ] Verify links open Typeform in new tab
 - [ ] Create checkpoint
