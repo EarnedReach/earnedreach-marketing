@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { 
   CheckCircle2, 
   Circle, 
@@ -11,10 +12,13 @@ import {
   Calendar,
   Video,
   BarChart3,
-  Target
+  Target,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import { StageModal } from "@/components/StageModal";
 import { stageDetails } from "@/data/stageDetails";
+import { clientSafeDetails } from "@/data/clientSafeContent";
 
 /**
  * Design Philosophy: Swiss Modernism meets Digital Clarity
@@ -23,6 +27,7 @@ import { stageDetails } from "@/data/stageDetails";
  * - Functional color (Blue for trust, Amber for milestones)
  * - Horizontal timeline flow showing forward momentum
  * - Interactive modals for detailed operational content
+ * - Client View toggle for safe sharing
  */
 
 interface StageCard {
@@ -45,10 +50,15 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [selectedStage, setSelectedStage] = useState<StageCard | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isClientView, setIsClientView] = useState(false);
 
   const handleStageClick = (stage: StageCard) => {
     setSelectedStage(stage);
     setIsModalOpen(true);
+  };
+
+  const toggleView = () => {
+    setIsClientView(!isClientView);
   };
 
   const sections: Section[] = [
@@ -192,13 +202,58 @@ export default function Home() {
     }
   ];
 
+  // Merge client-safe content with full details based on view mode
+  const getStageDetail = (stageId: string) => {
+    if (isClientView && clientSafeDetails[stageId]) {
+      return {
+        ...stageDetails[stageId],
+        ...clientSafeDetails[stageId]
+      };
+    }
+    return stageDetails[stageId];
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container py-6">
-          <h1 className="text-3xl font-bold text-slate-900">EarnedReach Client Journey</h1>
-          <p className="text-slate-600 mt-1">From discovery to 90-day growth arc · Click any stage for details</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-slate-900">EarnedReach Client Journey</h1>
+              <p className="text-slate-600 mt-1">
+                From discovery to 90-day growth arc · Click any stage for details
+              </p>
+            </div>
+            
+            {/* View Toggle */}
+            <Button
+              onClick={toggleView}
+              variant={isClientView ? "default" : "outline"}
+              className="flex items-center gap-2"
+            >
+              {isClientView ? (
+                <>
+                  <Eye className="w-4 h-4" />
+                  Client View
+                </>
+              ) : (
+                <>
+                  <EyeOff className="w-4 h-4" />
+                  Internal View
+                </>
+              )}
+            </Button>
+          </div>
+          
+          {/* View Mode Indicator */}
+          {isClientView && (
+            <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800">
+                <strong>Client View Active:</strong> Internal scripts, pricing, and sales tactics are hidden. Safe to share with clients.
+              </p>
+            </div>
+          )}
         </div>
       </header>
 
@@ -325,7 +380,7 @@ export default function Home() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         stage={selectedStage}
-        detail={selectedStage ? stageDetails[selectedStage.id] : null}
+        detail={selectedStage ? getStageDetail(selectedStage.id) : null}
       />
     </div>
   );
