@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -51,6 +51,15 @@ export default function Home() {
   const [selectedStage, setSelectedStage] = useState<StageCard | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClientView, setIsClientView] = useState(false);
+
+  // Check URL parameter on mount to auto-enable Client View
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const viewParam = params.get('view');
+    if (viewParam === 'client') {
+      setIsClientView(true);
+    }
+  }, []);
 
   const handleStageClick = (stage: StageCard) => {
     setSelectedStage(stage);
