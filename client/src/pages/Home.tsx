@@ -51,6 +51,7 @@ export default function Home() {
   const [selectedStage, setSelectedStage] = useState<StageCard | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClientView, setIsClientView] = useState(false);
+  const [isClientUrlParam, setIsClientUrlParam] = useState(false);
 
   // Check URL parameter on mount to auto-enable Client View
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function Home() {
     const viewParam = params.get('view');
     if (viewParam === 'client') {
       setIsClientView(true);
+      setIsClientUrlParam(true); // Track that user came via client URL
     }
   }, []);
 
@@ -235,24 +237,26 @@ export default function Home() {
               </p>
             </div>
             
-            {/* View Toggle */}
-            <Button
-              onClick={toggleView}
-              variant={isClientView ? "default" : "outline"}
-              className="flex items-center gap-2"
-            >
-              {isClientView ? (
-                <>
-                  <Eye className="w-4 h-4" />
-                  Client View
-                </>
-              ) : (
-                <>
-                  <EyeOff className="w-4 h-4" />
-                  Internal View
-                </>
-              )}
-            </Button>
+            {/* View Toggle - Only show if not accessed via client URL */}
+            {!isClientUrlParam && (
+              <Button
+                onClick={toggleView}
+                variant={isClientView ? "default" : "outline"}
+                className="flex items-center gap-2"
+              >
+                {isClientView ? (
+                  <>
+                    <Eye className="w-4 h-4" />
+                    Client View
+                  </>
+                ) : (
+                  <>
+                    <EyeOff className="w-4 h-4" />
+                    Internal View
+                  </>
+                )}
+              </Button>
+            )}
           </div>
           
           {/* View Mode Indicator */}
