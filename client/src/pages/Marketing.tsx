@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -8,8 +14,10 @@ import {
   Target,
   TrendingUp,
   Users,
-  Calendar,
-  BarChart3
+  BarChart3,
+  Shield,
+  Clock,
+  Sparkles
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -38,17 +46,17 @@ export default function Marketing() {
 
             {/* Nav Links */}
             <div className="hidden md:flex items-center gap-8">
-              <Link href="/journey">
-                <a className="text-slate-300 hover:text-white transition-colors">
-                  How It Works
-                </a>
-              </Link>
+              <a href="#how-it-works" className="text-slate-300 hover:text-white transition-colors">
+                How It Works
+              </a>
               <a href="#offer" className="text-slate-300 hover:text-white transition-colors">
                 Our Offer
               </a>
-              <a href="#philosophy" className="text-slate-300 hover:text-white transition-colors">
-                Philosophy
-              </a>
+              <Link href="/philosophy">
+                <a className="text-slate-300 hover:text-white transition-colors">
+                  Philosophy
+                </a>
+              </Link>
             </div>
 
             {/* CTA */}
@@ -169,7 +177,7 @@ export default function Marketing() {
         </div>
       </section>
 
-      {/* The Solution - 90 Day Arc */}
+      {/* The Solution - 90 Day Arc (No Pricing) */}
       <section id="offer" className="py-16 md:py-24">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-16">
@@ -184,45 +192,30 @@ export default function Marketing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
-            <Card className="p-8 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-blue-500/30">
-              <Zap className="w-10 h-10 text-blue-400 mb-4" />
-              <h3 className="text-2xl font-semibold text-white mb-3">
-                What's Included
-              </h3>
-              <ul className="space-y-3">
+          <div className="max-w-4xl mx-auto mb-12">
+            <Card className="p-8 md:p-12 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-blue-500/30">
+              <div className="flex items-center gap-3 mb-6">
+                <Zap className="w-10 h-10 text-blue-400" />
+                <h3 className="text-2xl md:text-3xl font-semibold text-white">
+                  What's Included
+                </h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
                 {[
                   'Founder-led strategy & messaging',
                   'Professional video editing (fully managed)',
                   'Traffic ownership & attribution tracking',
                   'Performance optimization & iteration',
-                  'Revenue share alignment (5-10%)'
+                  'Revenue share alignment (5-10%)',
+                  'Weekly performance reports',
+                  'Direct Slack/communication access',
+                  '48-72h turnaround on content'
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-300">
+                  <div key={i} className="flex items-start gap-3 text-slate-300">
                     <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
-            </Card>
-
-            <Card className="p-8 bg-gradient-to-br from-emerald-900/30 to-teal-900/30 border-emerald-500/30">
-              <Calendar className="w-10 h-10 text-emerald-400 mb-4" />
-              <h3 className="text-2xl font-semibold text-white mb-3">
-                Investment
-              </h3>
-              <div className="mb-6">
-                <div className="text-4xl font-bold text-white mb-2">
-                  £1,500<span className="text-xl text-slate-400">/month</span>
-                </div>
-                <div className="text-slate-400">
-                  + 5-10% revenue share
-                </div>
-              </div>
-              <div className="space-y-3 text-slate-300">
-                <p>✓ 90-day minimum commitment (preferred)</p>
-                <p>✓ Month-to-month: £2,000/mo</p>
-                <p>✓ After 90 days: Optimization mode available</p>
               </div>
             </Card>
           </div>
@@ -240,8 +233,79 @@ export default function Marketing() {
         </div>
       </section>
 
+      {/* How It Works */}
+      <section id="how-it-works" className="py-16 md:py-24 bg-slate-900/50">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              How It Works
+            </h2>
+            <p className="text-xl text-slate-400">
+              A proven system from discovery to scale.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto grid gap-6">
+            <Card className="p-6 md:p-8 bg-slate-800/50 border-slate-700 hover:border-blue-500/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-blue-400 font-bold text-lg">1</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Discovery Call</h3>
+                  <p className="text-slate-400">
+                    We review your content, identify gaps, and map out a custom 90-day growth strategy tailored to your brand.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 md:p-8 bg-slate-800/50 border-slate-700 hover:border-emerald-500/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-emerald-400 font-bold text-lg">2</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">7-Day Onboarding</h3>
+                  <p className="text-slate-400">
+                    Kickoff call, workflow setup, and your first professionally edited video delivered within the first week.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 md:p-8 bg-slate-800/50 border-slate-700 hover:border-purple-500/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-purple-400 font-bold text-lg">3</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">90-Day Execution</h3>
+                  <p className="text-slate-400">
+                    Continuous content production, performance tracking, and data-driven optimization to maximize reach and revenue.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/journey?view=client">
+              <Button 
+                size="lg"
+                variant="outline"
+                className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white text-lg px-8 py-6"
+              >
+                Explore the Full Journey
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Why EarnedReach */}
-      <section id="philosophy" className="py-16 md:py-24 bg-slate-900/50">
+      <section className="py-16 md:py-24">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -254,7 +318,7 @@ export default function Marketing() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="p-8 bg-slate-800/50 border-slate-700 text-center">
+            <Card className="p-8 bg-slate-800/50 border-slate-700 text-center hover:border-blue-500/30 transition-all">
               <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
                 <Target className="w-8 h-8 text-blue-400" />
               </div>
@@ -266,7 +330,7 @@ export default function Marketing() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-slate-800/50 border-slate-700 text-center">
+            <Card className="p-8 bg-slate-800/50 border-slate-700 text-center hover:border-emerald-500/30 transition-all">
               <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
                 <Zap className="w-8 h-8 text-emerald-400" />
               </div>
@@ -278,7 +342,7 @@ export default function Marketing() {
               </p>
             </Card>
 
-            <Card className="p-8 bg-slate-800/50 border-slate-700 text-center">
+            <Card className="p-8 bg-slate-800/50 border-slate-700 text-center hover:border-cyan-500/30 transition-all">
               <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="w-8 h-8 text-cyan-400" />
               </div>
@@ -293,8 +357,128 @@ export default function Marketing() {
         </div>
       </section>
 
+      {/* What Makes Us Different */}
+      <section className="py-16 md:py-24 bg-slate-900/50">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              What Makes Us Different
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <Card className="p-8 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <Shield className="w-8 h-8 text-blue-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Systems Over Heroics
+                  </h3>
+                  <p className="text-slate-400">
+                    We build repeatable, scalable systems—not one-off viral hits. Compounding growth beats temporary spikes.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-8 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <BarChart3 className="w-8 h-8 text-emerald-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Data-Driven Decisions
+                  </h3>
+                  <p className="text-slate-400">
+                    Every strategy adjustment is backed by performance data. We optimize for measurable outcomes, not guesswork.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-8 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <Clock className="w-8 h-8 text-purple-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Founder Time is Sacred
+                  </h3>
+                  <p className="text-slate-400">
+                    You focus on building your business. We handle strategy, execution, and optimization—no micromanagement needed.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-8 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <Sparkles className="w-8 h-8 text-cyan-400 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Outcomes Over Output
+                  </h3>
+                  <p className="text-slate-400">
+                    We don't sell videos. We sell clarity, leverage, and measurable progress toward revenue goals.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="bg-slate-800/50 border border-slate-700 rounded-lg px-6">
+                <AccordionTrigger className="text-white hover:text-blue-400 text-left">
+                  How is this different from hiring an editor?
+                </AccordionTrigger>
+                <AccordionContent className="text-slate-400">
+                  Hiring an editor gives you execution. EarnedReach gives you strategy, execution, and revenue alignment. We don't just edit your videos—we design the entire content system, track performance, optimize for growth, and align incentives through revenue share. You get a growth partner, not just a service provider.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="bg-slate-800/50 border border-slate-700 rounded-lg px-6">
+                <AccordionTrigger className="text-white hover:text-blue-400 text-left">
+                  What if I don't have enough content to work with?
+                </AccordionTrigger>
+                <AccordionContent className="text-slate-400">
+                  That's exactly what the strategy phase is for. During the discovery call and onboarding, we'll assess your current content volume and design a realistic production cadence that fits your schedule. We optimize what you have and build a sustainable system—whether that's 2 videos a week or 10.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="bg-slate-800/50 border border-slate-700 rounded-lg px-6">
+                <AccordionTrigger className="text-white hover:text-blue-400 text-left">
+                  How does the revenue share work?
+                </AccordionTrigger>
+                <AccordionContent className="text-slate-400">
+                  Revenue share (5-10%) ensures our incentives are aligned with your growth. We only succeed when you succeed. The exact percentage is determined during the discovery call based on your business model, current revenue, and growth goals. It's designed to be fair and motivating for both parties.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="bg-slate-800/50 border border-slate-700 rounded-lg px-6">
+                <AccordionTrigger className="text-white hover:text-blue-400 text-left">
+                  What happens after the 90 days?
+                </AccordionTrigger>
+                <AccordionContent className="text-slate-400">
+                  After the initial 90-day arc, you have options: continue in optimization mode (reduced rate, ongoing refinement), scale mode (increase content volume and investment), or pause the partnership. Most clients choose to continue because the systems are working and compounding. There's no lock-in—just results.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
-      <section id="book-call" className="py-20 md:py-32">
+      <section id="book-call" className="py-20 md:py-32 bg-gradient-to-br from-blue-900/20 to-cyan-900/20">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -332,9 +516,11 @@ export default function Marketing() {
                   Client Journey
                 </a>
               </Link>
-              <a href="#offer" className="text-slate-400 hover:text-white transition-colors">
-                Pricing
-              </a>
+              <Link href="/philosophy">
+                <a className="text-slate-400 hover:text-white transition-colors">
+                  Philosophy
+                </a>
+              </Link>
             </div>
             <div className="text-slate-500 text-sm">
               © 2026 EarnedReach. All rights reserved.
