@@ -259,8 +259,8 @@ export default function Home() {
             )}
           </div>
           
-          {/* View Mode Indicator */}
-          {isClientView && (
+          {/* View Mode Indicator - Only show for internal users who toggled to Client View */}
+          {isClientView && !isClientUrlParam && (
             <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-800">
                 <strong>Client View Active:</strong> Internal scripts, pricing, and sales tactics are hidden. Safe to share with clients.
