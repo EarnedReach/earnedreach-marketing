@@ -440,29 +440,49 @@ export default function Marketing() {
       {/* Founder Story */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-blue-950/30 to-slate-900">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <Badge className="mb-6 bg-blue-500/20 text-blue-300 border-blue-500/30 px-4 py-1.5">
-              Founder-Led
-            </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
-              Built by a Videographer Who Saw the Pattern
-            </h2>
-            <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
-              <p>
-                I started as a videographer and editor, working directly with 5 and 6-figure entrepreneurs. 
-                I loved the craft—capturing their vision, editing their stories, helping them look professional.
-              </p>
-              <p>
-                But I kept seeing the same bottleneck: <span className="text-white font-semibold">brilliant founders drowning in content ideation, 
-                with zero time to focus on what actually grew their business</span>.
-              </p>
-              <p>
-                They'd hire editors, but that only solved half the problem. They still needed strategy. 
-                They still needed someone to own the traffic. They still needed a system that converted views into revenue.
-              </p>
-              <p className="text-xl text-blue-400 font-semibold">
-                So I built EarnedReach—not as an agency, but as the full-stack growth partner I wish they'd had from day one.
-              </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30 px-4 py-1.5">
+                Meet the Founder
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                Built by a Videographer Who Saw the Pattern
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+              {/* Founder Image Card */}
+              <div className="relative">
+                <Card className="overflow-hidden bg-slate-800/50 border-slate-700 p-2">
+                  <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                    <img 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/sXlpEojPkVwEDexb.jpg" 
+                      alt="Founder at work" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold text-white">Your Founder</h3>
+                    <p className="text-slate-400 text-sm">Building systems that convert content into revenue</p>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Founder Story */}
+              <div className="space-y-6 text-base md:text-lg text-slate-300 leading-relaxed">
+                <p>
+                  I started as a videographer and editor, working directly with 5 and 6-figure entrepreneurs. I loved the craft—capturing their vision, editing their stories, helping them look professional.
+                </p>
+                <p>
+                  But I kept seeing the same bottleneck: <span className="text-white font-semibold">brilliant founders drowning in content ideation, with zero time to focus on what actually grew their business</span>.
+                </p>
+                <p>
+                  They'd hire editors, but that only solved half the problem. They still needed strategy. They still needed someone to own the traffic. They still needed a system that converted views into revenue.
+                </p>
+                <p className="text-lg md:text-xl text-blue-400 font-semibold italic">
+                  So I built EarnedReach—not as an agency, but as the full-stack growth partner I wish they'd had from day one.
+                </p>
+              </div>
             </div>
           </div>
         </div>

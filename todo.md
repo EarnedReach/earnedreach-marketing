@@ -1,12 +1,15 @@
 # EarnedReach Project Todo
 
-## Copy Optimization (In Progress)
-- [ ] Shorten hero section copy (Option 1)
-- [ ] Shorten portal section copy (Option 1)
-- [ ] Test on mobile view
+## Founder Section Redesign (In Progress)
+- [ ] Upload founder workspace image to CDN
+- [ ] Redesign Founder Story section with card layout (Crevo-inspired)
+- [ ] Add image on left, story on right
+- [ ] Test responsive layout on mobile
 - [ ] Create checkpoint
 
 ## Completed ✅
+- [x] Copy optimization - hero section
+- [x] Copy optimization - portal section
 - [x] Portal integration - hero subheadline
 - [x] Portal integration - dedicated features section
 - [x] Portal integration - What's Included section
