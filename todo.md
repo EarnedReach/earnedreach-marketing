@@ -1,13 +1,12 @@
 # EarnedReach Project Todo
 
-## Founder Section Redesign (In Progress)
-- [ ] Upload founder workspace image to CDN
-- [ ] Redesign Founder Story section with card layout (Crevo-inspired)
-- [ ] Add image on left, story on right
-- [ ] Test responsive layout on mobile
+## Founder Image Update (In Progress)
+- [ ] Upload new team workspace image to CDN
+- [ ] Replace founder section image
 - [ ] Create checkpoint
 
 ## Completed ✅
+- [x] Founder section redesign with card layout
 - [x] Copy optimization - hero section
 - [x] Copy optimization - portal section
 - [x] Portal integration - hero subheadline

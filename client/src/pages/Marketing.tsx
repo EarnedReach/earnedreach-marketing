@@ -456,8 +456,8 @@ export default function Marketing() {
                 <Card className="overflow-hidden bg-slate-800/50 border-slate-700 p-2">
                   <div className="aspect-[4/3] overflow-hidden rounded-lg">
                     <img 
-                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/sXlpEojPkVwEDexb.jpg" 
-                      alt="Founder at work" 
+                      src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/QotCEEcTTANzitIX.jpg" 
+                      alt="Founder and team at work" 
                       className="w-full h-full object-cover"
                     />
                   </div>
