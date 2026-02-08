@@ -1,11 +1,12 @@
 # EarnedReach Project Todo
 
-## Founder Image Update (In Progress)
-- [ ] Upload new team workspace image to CDN
-- [ ] Replace founder section image
+## Mobile Headline Optimization (In Progress)
+- [ ] Add mobile-specific line breaks to hero headline
+- [ ] Test on mobile viewport
 - [ ] Create checkpoint
 
 ## Completed ✅
+- [x] Updated founder section image (team workspace)
 - [x] Founder section redesign with card layout
 - [x] Copy optimization - hero section
 - [x] Copy optimization - portal section

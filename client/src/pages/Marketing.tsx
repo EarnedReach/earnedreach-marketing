@@ -81,10 +81,13 @@ export default function Marketing() {
 
             {/* Main Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              You're Creating Content.
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                But Are You Building a Brand?
+              <span className="block">You're Creating</span>
+              <span className="block">Content.</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mt-2">
+                But Are You Building
+              </span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                a Brand?
               </span>
             </h1>
 
