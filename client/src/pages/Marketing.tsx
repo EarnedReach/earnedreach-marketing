@@ -93,6 +93,11 @@ export default function Marketing() {
               10 videos a week. Zero revenue to show for it. Great content, no strategy, no sales—sound familiar?
             </p>
 
+            {/* Portal Value Prop */}
+            <p className="text-lg md:text-xl text-blue-400 mb-8 leading-relaxed font-medium">
+              See exactly which content drives revenue - from views to discovery calls to closed deals - with real-time tracking built into every engagement.
+            </p>
+
             {/* Solution Statement */}
             <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto">
               You don't need more content. You need a system that converts one-time viewers into repeat customers and real revenue.
@@ -199,13 +204,13 @@ export default function Marketing() {
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 {[
-                  'Founder-led strategy & messaging',
-                  'Professional video editing (fully managed)',
+                  'Personalized content strategy playbook delivered in 24 hours',
+                  'Full content execution - editing included',
+                  'Dedicated analytics portal with real-time ROI tracking',
+                  'Weekly performance reports delivered to your inbox',
+                  '90-day growth arc framework (Foundation → Acceleration → Scale)',
+                  'Revenue-aligned partnership (rev share model)',
                   'Professional cameraman (when needed)',
-                  'Traffic ownership & attribution tracking',
-                  'Performance optimization & iteration',
-                  'Revenue share alignment (5-10%)',
-                  'Weekly performance reports',
                   'Direct Slack/communication access',
                   '48-72h turnaround on content'
                 ].map((item, i) => (
@@ -298,6 +303,138 @@ export default function Marketing() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Portal Features Section */}
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30">
+              Your Command Center
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Real-Time ROI Tracking Built In
+            </h2>
+            <p className="text-xl text-slate-400">
+              Most content agencies leave you guessing whether your investment is working. We don't. Every EarnedReach client gets access to a proprietary analytics portal that connects your content performance directly to business outcomes.
+            </p>
+            <p className="text-lg text-slate-400 mt-4">
+              No more platform-hopping. No more manual spreadsheets. No more wondering if your content is actually driving revenue.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 mb-12">
+            <Card className="p-6 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <BarChart3 className="w-5 h-5 text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Automated Performance Metrics
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Your YouTube, LinkedIn, and Instagram data syncs daily. See followers, engagement, reach, and views in one dashboard without logging into multiple platforms.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Traffic Attribution
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Know exactly which videos, posts, and pieces drive visitors to your website. Our Google Analytics integration shows the direct path from content to site traffic.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-5 h-5 text-purple-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Content-to-Conversion Tracking
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    See the line from a LinkedIn post to a discovery call booking. UTM parameters connect every piece of content to real business actions.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                  <TrendingUp className="w-5 h-5 text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Revenue Correlation
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Log discovery calls and client conversions, then correlate them with the content that generated them. Confidently say "My content generated $X in revenue this quarter."
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 text-orange-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    90-Day Growth Arc Visibility
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Track your progress through Foundation (Days 1-30), Acceleration (Days 31-60), and Scale (Days 61-90) phases with phase-specific insights.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-slate-800/50 border-slate-700">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-5 h-5 text-pink-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Weekly Performance Reports
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Automated insights delivered to your inbox every week. Stay informed without logging in.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          <div className="max-w-3xl mx-auto text-center">
+            <Card className="p-8 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-blue-500/30">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Why This Matters
+              </h3>
+              <p className="text-lg text-slate-300 leading-relaxed">
+                This isn't just a dashboard - it's <span className="text-blue-400 font-semibold">proof</span>. Proof that your content investment is working. Proof that justifies your time and budget. Proof that helps you optimize what's driving results and cut what isn't.
+              </p>
+              <p className="text-xl text-blue-400 font-semibold mt-6">
+                You'll never wonder "Is this working?" again. You'll know.
+              </p>
+            </Card>
           </div>
         </div>
       </section>
