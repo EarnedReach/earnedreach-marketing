@@ -1,14 +1,15 @@
 # EarnedReach Project Todo
 
-## Portal Integration (In Progress)
-- [ ] Review current Marketing.tsx structure
-- [ ] Update homepage hero subheadline with portal value prop
-- [ ] Add dedicated portal features/benefits section
-- [ ] Update "What's Included" pricing section with portal deliverables
-- [ ] Test all changes in preview
-- [ ] Create checkpoint after implementation
+## Copy Optimization (In Progress)
+- [ ] Shorten hero section copy (Option 1)
+- [ ] Shorten portal section copy (Option 1)
+- [ ] Test on mobile view
+- [ ] Create checkpoint
 
 ## Completed ✅
+- [x] Portal integration - hero subheadline
+- [x] Portal integration - dedicated features section
+- [x] Portal integration - What's Included section
 - [x] Built interactive client journey board
 - [x] Created modal system with operational content
 - [x] Added Client View toggle functionality

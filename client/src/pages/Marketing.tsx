@@ -90,17 +90,12 @@ export default function Marketing() {
 
             {/* Subheadline - Pain Agitation */}
             <p className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed">
-              10 videos a week. Zero revenue to show for it. Great content, no strategy, no sales—sound familiar?
+              10 videos a week. Zero revenue to show for it.
             </p>
 
             {/* Portal Value Prop */}
-            <p className="text-lg md:text-xl text-blue-400 mb-8 leading-relaxed font-medium">
-              See exactly which content drives revenue - from views to discovery calls to closed deals - with real-time tracking built into every engagement.
-            </p>
-
-            {/* Solution Statement */}
-            <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto">
-              You don't need more content. You need a system that converts one-time viewers into repeat customers and real revenue.
+            <p className="text-lg md:text-xl text-blue-400 mb-10 leading-relaxed font-medium">
+              Track exactly which content drives revenue—from views to closed deals—with real-time analytics built in.
             </p>
 
             {/* Dual CTAs */}
@@ -318,10 +313,13 @@ export default function Marketing() {
               Real-Time ROI Tracking Built In
             </h2>
             <p className="text-xl text-slate-400">
-              Most content agencies leave you guessing whether your investment is working. We don't. Every EarnedReach client gets access to a proprietary analytics portal that connects your content performance directly to business outcomes.
+              Most agencies leave you guessing. We don't.
             </p>
             <p className="text-lg text-slate-400 mt-4">
-              No more platform-hopping. No more manual spreadsheets. No more wondering if your content is actually driving revenue.
+              Every client gets a proprietary analytics portal that connects content performance directly to revenue.
+            </p>
+            <p className="text-lg text-slate-400 mt-4">
+              No platform-hopping. No spreadsheets. Just proof.
             </p>
           </div>
 
