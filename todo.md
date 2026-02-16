@@ -1,11 +1,14 @@
 # EarnedReach Project Todo
 
-## Mobile Headline Optimization (In Progress)
-- [ ] Add mobile-specific line breaks to hero headline
-- [ ] Test on mobile viewport
+## How It Works Restructure (In Progress)
+- [ ] Replace operational flow with 4-pillar strategic framework
+- [ ] Implement Messaging > Virality philosophy
+- [ ] Update section copy and structure
+- [ ] Test visual hierarchy
 - [ ] Create checkpoint
 
 ## Completed ✅
+- [x] Mobile headline optimization
 - [x] Updated founder section image (team workspace)
 - [x] Founder section redesign with card layout
 - [x] Copy optimization - hero section
