@@ -1,12 +1,27 @@
 # EarnedReach Project Todo
 
-## Correct 4-Pillar Framework Location (In Progress)
-- [ ] Restore original How It Works on marketing page
-- [ ] Implement 4-pillar framework on Journey page
-- [ ] Test both pages
-- [ ] Create checkpoint
+## Current Tasks
+- [ ] Create native lead capture form at /apply to replace Typeform
+  - [ ] Build form with required fields (name, email, business name, revenue)
+  - [ ] Add optional fields (social handles, content challenge)
+  - [ ] Implement qualification logic (£50K threshold)
+  - [ ] Embed Calendly for qualified leads
+  - [ ] Show waitlist message for unqualified leads
+  - [ ] Capture UTM parameters from URL
+  - [ ] Submit to /api/apply endpoint
+  - [ ] Match earnedreach.org branding
+  - [ ] Ensure mobile responsiveness
+
+### Backend (Portal Chat)
+- [ ] Build /api/apply endpoint to receive form submissions
+- [ ] Integrate with Pipedrive API to create deals
+- [ ] Handle UTM parameter storage
 
 ## Completed ✅
+- [x] Documented Zapier automation workflows
+- [x] Identified working flow: Calendly → Pipedrive → Portal
+- [x] 4-pillar framework correctly placed on Journey page
+- [x] Restored original How It Works on marketing page
 - [x] Mobile headline optimization
 - [x] Updated founder section image (team workspace)
 - [x] Founder section redesign with card layout
