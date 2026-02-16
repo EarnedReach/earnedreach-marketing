@@ -277,6 +277,139 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="container py-6 md:py-12">
+        {/* Strategic 4-Pillar Framework */}
+        <section className="mb-12 md:mb-16">
+          <div className="max-w-4xl mx-auto text-center mb-10">
+            <Badge className="mb-4 bg-blue-500 text-white">
+              Strategic Growth Journey
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
+              Messaging &gt; Virality
+            </h2>
+            <p className="text-lg md:text-xl text-slate-600">
+              Nurturing through content, not chasing virality.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto grid gap-6 md:gap-8">
+            {/* Pillar One: The Messaging Audit */}
+            <Card className="p-6 md:p-8 bg-white border-2 border-blue-200 hover:border-blue-400 transition-all hover:shadow-lg">
+              <div className="flex items-start gap-4 md:gap-6">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-6 h-6 md:w-7 md:h-7 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">The Messaging Audit</h3>
+                  <p className="text-base md:text-lg text-blue-600 font-semibold mb-3">The Foundation</p>
+                  <p className="text-slate-700 mb-3">
+                    It's not about the size of the following; it's about the resonance of the message. We identify the core pillars that speak directly to your ICP.
+                  </p>
+                  <div className="flex items-start gap-2 text-emerald-600">
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                    <span className="font-medium">Content strategy playbook delivered in 24 hours that prioritizes authority over vanity.</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Pillar Two: The 1-to-3 Nurture Engine */}
+            <Card className="p-6 md:p-8 bg-white border-2 border-emerald-200 hover:border-emerald-400 transition-all hover:shadow-lg">
+              <div className="flex items-start gap-4 md:gap-6">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-6 h-6 md:w-7 md:h-7 text-emerald-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">The 1-to-3 Nurture Engine</h3>
+                  <p className="text-base md:text-lg text-emerald-600 font-semibold mb-3">The Execution</p>
+                  <p className="text-slate-700 mb-3">
+                    Efficiency and leverage. We take 1 high-value long-form video and repurpose it into 3 strategic short-form assets.
+                  </p>
+                  <div className="flex items-start gap-2 text-emerald-600">
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                    <span className="font-medium">Consistent presence without the burnout, specifically designed to nurture viewers through the funnel.</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Pillar Three: The Attribution Dashboard */}
+            <Card className="p-6 md:p-8 bg-white border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-lg">
+              <div className="flex items-start gap-4 md:gap-6">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+                  <TrendingUp className="w-6 h-6 md:w-7 md:h-7 text-purple-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">The Attribution Dashboard</h3>
+                  <p className="text-base md:text-lg text-purple-600 font-semibold mb-3">The Proof</p>
+                  <p className="text-slate-700 mb-3">
+                    Data-driven clarity. Integration of our proprietary analytics portal.
+                  </p>
+                  <div className="flex items-start gap-2 text-emerald-600">
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                    <span className="font-medium">Real-time tracking that shows exactly which content pieces are converting views into strategy calls. No more guessing; just proof of ROI.</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Pillar Four: The 90-Day Growth Arc */}
+            <Card className="p-6 md:p-8 bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-300">
+              <div className="flex items-start gap-4 md:gap-6">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-cyan-100 flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-6 h-6 md:w-7 md:h-7 text-cyan-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">The 90-Day Growth Arc</h3>
+                  <p className="text-base md:text-lg text-cyan-600 font-semibold mb-4">The Scale</p>
+                  <p className="text-slate-700 mb-6">
+                    Predictable, compounding results. A structured 3-phase journey:
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded bg-cyan-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-cyan-600 font-bold text-sm">1-30</span>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-slate-900">Authority</p>
+                        <p className="text-slate-600">Locking in messaging and building the engine.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded bg-cyan-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-cyan-600 font-bold text-sm">31-60</span>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-slate-900">Nurture</p>
+                        <p className="text-slate-600">Accelerating reach and tracking intent.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded bg-cyan-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-cyan-600 font-bold text-sm">61-90</span>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-slate-900">Revenue</p>
+                        <p className="text-slate-600">Optimizing for maximum strategy calls and closed deals.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </section>
+
+        {/* Detailed Journey Timeline */}
+        <div className="border-t-2 border-slate-200 pt-12 md:pt-16">
+          <div className="max-w-4xl mx-auto text-center mb-10">
+            <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mb-4">
+              Detailed Journey Timeline
+            </h2>
+            <p className="text-lg text-slate-600">
+              Click any stage below to see operational details and next steps.
+            </p>
+          </div>
+
         <div className="space-y-10 md:space-y-16">
           {sections.map((section, sectionIndex) => (
             <section
@@ -369,6 +502,8 @@ export default function Home() {
               </div>
             </section>
           ))}
+        </div>
+
         </div>
 
         {/* Footer Info */}

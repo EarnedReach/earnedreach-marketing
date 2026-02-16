@@ -1,10 +1,9 @@
 # EarnedReach Project Todo
 
-## How It Works Restructure (In Progress)
-- [ ] Replace operational flow with 4-pillar strategic framework
-- [ ] Implement Messaging > Virality philosophy
-- [ ] Update section copy and structure
-- [ ] Test visual hierarchy
+## Correct 4-Pillar Framework Location (In Progress)
+- [ ] Restore original How It Works on marketing page
+- [ ] Implement 4-pillar framework on Journey page
+- [ ] Test both pages
 - [ ] Create checkpoint
 
 ## Completed ✅

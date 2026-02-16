@@ -234,123 +234,57 @@ export default function Marketing() {
         </div>
       </section>
 
-      {/* How It Works - Strategic 4-Pillar Framework */}
+      {/* How It Works */}
       <section id="how-it-works" className="py-16 md:py-24 bg-slate-900/50">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30">
-              Strategic Growth Journey
-            </Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Messaging &gt; Virality
+              How It Works
             </h2>
             <p className="text-xl text-slate-400">
-              Nurturing through content, not chasing virality.
+              A proven system from discovery to scale.
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto grid gap-8">
-            {/* Pillar One: The Messaging Audit */}
-            <Card className="p-8 md:p-10 bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-all">
-              <div className="flex items-start gap-6">
-                <div className="w-14 h-14 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <Target className="w-7 h-7 text-blue-400" />
+          <div className="max-w-4xl mx-auto grid gap-6">
+            <Card className="p-6 md:p-8 bg-slate-800/50 border-slate-700 hover:border-blue-500/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-blue-400 font-bold text-lg">1</span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">The Messaging Audit</h3>
-                  <p className="text-lg text-blue-400 font-semibold mb-4">The Foundation</p>
-                  <p className="text-slate-300 mb-4">
-                    It's not about the size of the following; it's about the resonance of the message. We identify the core pillars that speak directly to your ICP.
+                  <h3 className="text-xl font-semibold text-white mb-2">Discovery Call</h3>
+                  <p className="text-slate-400">
+                    We review your content, identify gaps, and map out a custom 90-day growth strategy tailored to your brand.
                   </p>
-                  <div className="flex items-start gap-2 text-emerald-400">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                    <span className="font-medium">Content strategy playbook delivered in 24 hours that prioritizes authority over vanity.</span>
-                  </div>
                 </div>
               </div>
             </Card>
 
-            {/* Pillar Two: The 1-to-3 Nurture Engine */}
-            <Card className="p-8 md:p-10 bg-slate-800/50 border-slate-700 hover:border-emerald-500/50 transition-all">
-              <div className="flex items-start gap-6">
-                <div className="w-14 h-14 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-7 h-7 text-emerald-400" />
+            <Card className="p-6 md:p-8 bg-slate-800/50 border-slate-700 hover:border-emerald-500/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-emerald-400 font-bold text-lg">2</span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">The 1-to-3 Nurture Engine</h3>
-                  <p className="text-lg text-emerald-400 font-semibold mb-4">The Execution</p>
-                  <p className="text-slate-300 mb-4">
-                    Efficiency and leverage. We take 1 high-value long-form video and repurpose it into 3 strategic short-form assets.
+                  <h3 className="text-xl font-semibold text-white mb-2">7-Day Onboarding</h3>
+                  <p className="text-slate-400">
+                    Kickoff call, workflow setup, and your first professionally edited video delivered within the first week.
                   </p>
-                  <div className="flex items-start gap-2 text-emerald-400">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                    <span className="font-medium">Consistent presence without the burnout, specifically designed to nurture viewers through the funnel.</span>
-                  </div>
                 </div>
               </div>
             </Card>
 
-            {/* Pillar Three: The Attribution Dashboard */}
-            <Card className="p-8 md:p-10 bg-slate-800/50 border-slate-700 hover:border-purple-500/50 transition-all">
-              <div className="flex items-start gap-6">
-                <div className="w-14 h-14 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-7 h-7 text-purple-400" />
+            <Card className="p-6 md:p-8 bg-slate-800/50 border-slate-700 hover:border-purple-500/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-purple-400 font-bold text-lg">3</span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">The Attribution Dashboard</h3>
-                  <p className="text-lg text-purple-400 font-semibold mb-4">The Proof</p>
-                  <p className="text-slate-300 mb-4">
-                    Data-driven clarity. Integration of our proprietary analytics portal.
+                  <h3 className="text-xl font-semibold text-white mb-2">90-Day Execution</h3>
+                  <p className="text-slate-400">
+                    Continuous content production, performance tracking, and data-driven optimization to maximize reach and revenue.
                   </p>
-                  <div className="flex items-start gap-2 text-emerald-400">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                    <span className="font-medium">Real-time tracking that shows exactly which content pieces are converting views into strategy calls. No more guessing; just proof of ROI.</span>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            {/* Pillar Four: The 90-Day Growth Arc */}
-            <Card className="p-8 md:p-10 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 border-cyan-500/30">
-              <div className="flex items-start gap-6">
-                <div className="w-14 h-14 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                  <ArrowRight className="w-7 h-7 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">The 90-Day Growth Arc</h3>
-                  <p className="text-lg text-cyan-400 font-semibold mb-4">The Scale</p>
-                  <p className="text-slate-300 mb-6">
-                    Predictable, compounding results. A structured 3-phase journey:
-                  </p>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-cyan-400 font-bold text-sm">1-30</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white">Authority</p>
-                        <p className="text-slate-400">Locking in messaging and building the engine.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-cyan-400 font-bold text-sm">31-60</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white">Nurture</p>
-                        <p className="text-slate-400">Accelerating reach and tracking intent.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-cyan-400 font-bold text-sm">61-90</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white">Revenue</p>
-                        <p className="text-slate-400">Optimizing for maximum strategy calls and closed deals.</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </Card>
