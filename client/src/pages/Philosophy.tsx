@@ -19,7 +19,7 @@ export default function Philosophy() {
                 Philosophy
               </a>
             </nav>
-            <a href="https://form.typeform.com/to/qjB4ZpE9" target="_blank" rel="noopener noreferrer">
+            <a href="/apply">
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-medium transition-all text-sm sm:text-base">
                 Book Discovery Call
               </button>
@@ -122,7 +122,7 @@ export default function Philosophy() {
             <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Book a discovery call. We'll review your content, identify gaps, and show you exactly how the 90-day arc works for your brand.
             </p>
-            <a href="https://form.typeform.com/to/qjB4ZpE9" target="_blank" rel="noopener noreferrer">
+            <a href="/apply">
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:scale-105">
                 Book Discovery Call Now
               </button>
