@@ -67,48 +67,17 @@ export default function Apply() {
     const isQualified = qualifiedRevenues.includes(formData.revenue);
 
     if (isQualified) {
-      setIsSubmitting(true);
+      // Show Calendly embed for qualified leads
+      setShowCalendly(true);
       
-      try {
-        // Submit to backend API
-        const response = await fetch('/api/apply', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...formData,
-            utmParams,
-            qualified: true,
-          }),
-        });
-
-        if (!response.ok) throw new Error('Submission failed');
-
-        // Show Calendly embed
-        setShowCalendly(true);
-      } catch (error) {
-        console.error('Form submission error:', error);
-        alert('Something went wrong. Please try again or contact us directly.');
-      } finally {
-        setIsSubmitting(false);
-      }
+      // Optional: Log to console for debugging (remove in production)
+      console.log('Qualified lead:', { ...formData, utmParams, qualified: true });
     } else {
-      // Show rejection message
+      // Show rejection message for unqualified leads
       setShowRejection(true);
       
-      // Still submit to backend for waitlist
-      try {
-        await fetch('/api/apply', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...formData,
-            utmParams,
-            qualified: false,
-          }),
-        });
-      } catch (error) {
-        console.error('Waitlist submission error:', error);
-      }
+      // Optional: Log to console for debugging (remove in production)
+      console.log('Unqualified lead:', { ...formData, utmParams, qualified: false });
     }
   };
 
