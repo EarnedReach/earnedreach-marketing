@@ -296,7 +296,7 @@ export default function Apply() {
               {/* Calendly Inline Widget */}
               <div
                 className="calendly-inline-widget"
-                data-url="https://calendly.com/YOUR_CALENDLY_USERNAME/discovery-call?hide_gdpr_banner=1"
+                data-url="https://calendly.com/hello-earnedreach/earnedreach-discovery-call?hide_gdpr_banner=1"
                 style={{ minWidth: '320px', height: '700px' }}
               />
             </div>
