@@ -52,6 +52,7 @@ export default function Apply() {
     }
     if (!formData.businessName.trim()) newErrors.businessName = 'Business name is required';
     if (!formData.revenue) newErrors.revenue = 'Please select your annual revenue';
+    if (!formData.contentChallenge.trim()) newErrors.contentChallenge = 'Please tell us about your content challenge';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -229,7 +230,7 @@ export default function Apply() {
                 {/* Content Challenge */}
                 <div>
                   <Label htmlFor="contentChallenge" className="text-white">
-                    What's your biggest content challenge?
+                    What's your biggest content challenge? *
                   </Label>
                   <Textarea
                     id="contentChallenge"
@@ -238,8 +239,8 @@ export default function Apply() {
                     className="mt-2 bg-white/10 border-white/20 text-white placeholder:text-gray-400 min-h-[120px]"
                     placeholder="Tell us about your content goals and challenges..."
                   />
+                  {errors.contentChallenge && <p className="text-red-400 text-sm mt-1">{errors.contentChallenge}</p>}
                 </div>
-
                 {/* Submit Button */}
                 <Button
                   type="submit"
