@@ -22,6 +22,7 @@ import {
   Star
 } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
 
 /**
  * EarnedReach Marketing Homepage
@@ -300,97 +301,8 @@ export default function Marketing() {
         </div>
       </section>
 
-      {/* Portal Features Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30">Your Command Center</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Real-Time ROI Tracking Built In</h2>
-            <p className="text-xl text-slate-400">Most agencies leave you guessing. We don't.</p>
-            <p className="text-lg text-slate-400 mt-4">Every client gets a proprietary analytics portal that connects content performance directly to revenue.</p>
-            <p className="text-lg text-slate-400 mt-4">No platform-hopping. No spreadsheets. Just proof.</p>
-          </div>
-
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 mb-12">
-            <Card className="p-6 bg-slate-800/50 border-slate-700">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <BarChart3 className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Automated Performance Metrics</h3>
-                  <p className="text-slate-400 text-sm">Your YouTube, LinkedIn, and Instagram data syncs daily. See followers, engagement, reach, and views in one dashboard without logging into multiple platforms.</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 bg-slate-800/50 border-slate-700">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                  <Target className="w-5 h-5 text-emerald-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Traffic Attribution</h3>
-                  <p className="text-slate-400 text-sm">Know exactly which videos, posts, and pieces drive visitors to your website. Our Google Analytics integration shows the direct path from content to site traffic.</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 bg-slate-800/50 border-slate-700">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-5 h-5 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Content-to-Conversion Tracking</h3>
-                  <p className="text-slate-400 text-sm">See the line from a LinkedIn post to a discovery call booking. UTM parameters connect every piece of content to real business actions.</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 bg-slate-800/50 border-slate-700">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-5 h-5 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Revenue Correlation</h3>
-                  <p className="text-slate-400 text-sm">Log discovery calls and client conversions, then correlate them with the content that generated them. Confidently say "My content generated £X in revenue this quarter."</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 bg-slate-800/50 border-slate-700">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-orange-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">90-Day Growth Arc Visibility</h3>
-                  <p className="text-slate-400 text-sm">Track your progress through Foundation (Days 1-30), Acceleration (Days 31-60), and Scale (Days 61-90) phases with phase-specific insights.</p>
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 bg-slate-800/50 border-slate-700">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-5 h-5 text-pink-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Weekly Performance Reports</h3>
-                  <p className="text-slate-400 text-sm">Automated insights delivered to your inbox every week. Stay informed without logging in.</p>
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          <div className="max-w-3xl mx-auto text-center">
-            <Card className="p-8 bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-blue-500/30">
-              <h3 className="text-2xl font-bold text-white mb-4">Why This Matters</h3>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                This isn't just a dashboard - it's <span className="text-blue-400 font-semibold">proof</span>. Proof that your content investment is working. Proof that justifies your time and budget. Proof that helps you optimize what's driving results and cut what isn't.
-              </p>
-              <p className="text-xl text-blue-400 font-semibold mt-6">You'll never wonder "Is this working?" again. You'll know.</p>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* Portal Dashboard Showcase Section */}
+      <PortalShowcase />
 
       {/* Founder Story */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-blue-950/30 to-slate-900">
@@ -589,5 +501,143 @@ export default function Marketing() {
         </div>
       </footer>
     </div>
+  );
+}
+
+// ─── Portal Dashboard Showcase ───────────────────────────────────────────────
+// Tabbed showcase of the three EarnedReach portal dashboard views
+// Uses real mockup images uploaded to CDN, styled to match dark navy branding
+
+const DASHBOARD_TABS = [
+  {
+    id: "roi",
+    label: "ROI Tracking",
+    badge: "Revenue",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+    title: "Track Every Pound Back to Content",
+    description: "See total revenue, deals closed, pipeline value, and close rate in real-time. Know exactly which content is driving business outcomes.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/056383A6-3FAB-418D-9FD9-1662E9796032_4d6e96e6.png",
+    stats: [
+      { label: "Revenue Tracked", value: "£84,200" },
+      { label: "Deals Closed", value: "47" },
+      { label: "Close Rate", value: "34%" },
+    ],
+  },
+  {
+    id: "client",
+    label: "Client Dashboard",
+    badge: "Performance",
+    badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+    title: "Real-Time Performance Across All Platforms",
+    description: "Industry benchmarks, social media growth, engagement rates, and content analytics — all in one place. No more platform-hopping.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/9A1B4230-571A-41DC-B910-D0486E7ABB73_ef6705d3.png",
+    stats: [
+      { label: "Total Views", value: "50,000" },
+      { label: "Followers", value: "10,000" },
+      { label: "Engagement Rate", value: "5.2%" },
+    ],
+  },
+  {
+    id: "arc",
+    label: "90-Day Arc",
+    badge: "Growth",
+    badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    title: "Your 90-Day Growth Journey, Visualised",
+    description: "Foundation → Acceleration → Scale. Track your phase progress, weekly milestones, and see exactly where you are in the arc at any time.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/C129ECA1-DB51-4561-8485-6C0C2506144D_537be28b.png",
+    stats: [
+      { label: "Week 1", value: "First Video" },
+      { label: "Week 4", value: "Attribution Live" },
+      { label: "Week 12", value: "Proven ROI" },
+    ],
+  },
+];
+
+function PortalShowcase() {
+  const [activeTab, setActiveTab] = useState("roi");
+  const active = DASHBOARD_TABS.find((t) => t.id === activeTab)!;
+
+  return (
+    <section className="py-16 md:py-24 bg-gradient-to-br from-slate-900 via-blue-950/20 to-slate-900">
+      <div className="container">
+        {/* Header */}
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30">Your Command Centre</Badge>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Real-Time ROI Tracking Built In</h2>
+          <p className="text-xl text-slate-400">Most agencies leave you guessing. We don't.</p>
+          <p className="text-lg text-slate-400 mt-3">Every client gets a proprietary analytics portal that connects content performance directly to revenue. No platform-hopping. No spreadsheets. Just proof.</p>
+        </div>
+
+        {/* Tab Switcher */}
+        <div className="flex justify-center mb-8">
+          <div className="flex gap-2 p-1.5 bg-slate-800/60 border border-slate-700 rounded-xl">
+            {DASHBOARD_TABS.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  activeTab === tab.id
+                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
+                    : "text-slate-400 hover:text-white hover:bg-slate-700/50"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="max-w-6xl mx-auto grid md:grid-cols-5 gap-8 items-center">
+          {/* Left: Description */}
+          <div className="md:col-span-2 space-y-6">
+            <Badge className={`${active.badgeColor} border`}>{active.badge}</Badge>
+            <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">{active.title}</h3>
+            <p className="text-slate-400 leading-relaxed">{active.description}</p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-3 pt-2">
+              {active.stats.map((stat) => (
+                <div key={stat.label} className="bg-slate-800/60 border border-slate-700 rounded-lg p-3 text-center">
+                  <div className="text-blue-400 font-bold text-sm md:text-base">{stat.value}</div>
+                  <div className="text-slate-500 text-xs mt-0.5">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={() => window.location.href = '/apply'}
+              className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors group"
+            >
+              See it in action
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+
+          {/* Right: Dashboard Image */}
+          <div className="md:col-span-3 relative">
+            {/* Glow effect */}
+            <div className="absolute -inset-4 bg-blue-500/10 rounded-2xl blur-2xl pointer-events-none" />
+            <div className="relative rounded-xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-blue-900/30">
+              <img
+                key={active.id}
+                src={active.image}
+                alt={`${active.label} Dashboard`}
+                className="w-full h-auto object-cover transition-opacity duration-300"
+                style={{ display: 'block' }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom proof line */}
+        <div className="max-w-2xl mx-auto text-center mt-12">
+          <p className="text-slate-400 text-lg">
+            You'll never wonder <span className="text-white font-medium">"Is this working?"</span> again.{" "}
+            <span className="text-blue-400 font-semibold">You'll know.</span>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
