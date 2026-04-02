@@ -578,11 +578,7 @@ export default function Marketing() {
                 Book Discovery Call
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Link href="/journey?view=client">
-                <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white text-lg px-8 py-6 w-full sm:w-auto">
-                  See How It Works
-                </Button>
-              </Link>
+
             </div>
           </div>
         </div>
@@ -721,9 +717,9 @@ export default function Marketing() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="/journey?view=client">
-              <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-6">
-                Explore the Full Journey
+            <Link href="/apply">
+              <Button size="lg" className="bg-[#3b9eff] hover:bg-[#2a8eef] text-white px-8 py-6">
+                Apply to Work With Us
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -868,8 +864,7 @@ export default function Marketing() {
             </div>
             <div className="flex items-center gap-6 text-sm text-slate-500">
               <Link href="/philosophy" className="hover:text-white transition-colors">Philosophy</Link>
-              <Link href="/journey" className="hover:text-white transition-colors">Client Journey</Link>
-              <Link href="/apply" className="hover:text-white transition-colors">Apply</Link>
+<Link href="/apply" className="hover:text-white transition-colors">Apply</Link>
             </div>
           </div>
         </div>

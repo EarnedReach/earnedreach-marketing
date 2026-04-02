@@ -153,9 +153,6 @@ export default function Philosophy() {
               <a href="/philosophy" className="text-slate-400 hover:text-white transition-colors">
                 Philosophy
               </a>
-              <a href="/journey" className="text-slate-400 hover:text-white transition-colors">
-                Client Journey
-              </a>
             </nav>
           </div>
         </div>
