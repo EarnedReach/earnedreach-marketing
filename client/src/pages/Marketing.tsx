@@ -473,12 +473,13 @@ export default function Marketing() {
       <nav className="border-b border-white/10 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container py-4">
           <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center">
+            <a href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png"
                 alt="EarnedReach"
-                className="w-10 h-10 hover:opacity-80 transition-opacity"
+                className="w-11 h-11"
               />
+              <span className="text-white font-bold text-xl tracking-tight">EarnedReach</span>
             </a>
 
             {/* Desktop nav */}
@@ -861,8 +862,9 @@ export default function Marketing() {
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png" alt="EarnedReach" className="w-8 h-8" />
-              <span className="text-slate-400 text-sm">© 2026 EarnedReach. All rights reserved.</span>
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png" alt="EarnedReach" className="w-10 h-10" />
+              <span className="text-white font-semibold">EarnedReach</span>
+              <span className="text-slate-400 text-sm">© 2026 All rights reserved.</span>
             </div>
             <div className="flex items-center gap-6 text-sm text-slate-500">
               <Link href="/philosophy" className="hover:text-white transition-colors">Philosophy</Link>

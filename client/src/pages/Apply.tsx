@@ -108,12 +108,13 @@ export default function Apply() {
       {/* Header */}
       <header className="border-b border-white/10">
         <div className="container mx-auto px-4 py-6">
-          <a href="/" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
             <img 
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png" 
               alt="EarnedReach" 
-              className="h-8"
+              className="w-11 h-11"
             />
+            <span className="text-white font-bold text-xl tracking-tight">EarnedReach</span>
           </a>
         </div>
       </header>
