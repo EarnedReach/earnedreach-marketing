@@ -232,7 +232,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-4">
               <a href="/" className="flex-shrink-0">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png" alt="EarnedReach" className="w-12 h-12 md:w-14 md:h-14 hover:opacity-80 transition-opacity" />
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png" alt="EarnedReach" className="w-12 h-12 md:w-14 md:h-14 hover:opacity-80 transition-opacity" />
               </a>
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Client Journey</h1>

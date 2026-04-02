@@ -6,7 +6,7 @@ export default function Philosophy() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             <a href="/" className="flex items-center">
-              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png" alt="EarnedReach" className="w-10 h-10 sm:w-12 sm:h-12 hover:opacity-80 transition-opacity" />
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png" alt="EarnedReach" className="w-10 h-10 sm:w-12 sm:h-12 hover:opacity-80 transition-opacity" />
             </a>
             <nav className="hidden md:flex items-center gap-8">
               <a href="/#how-it-works" className="text-slate-300 hover:text-white transition-colors">

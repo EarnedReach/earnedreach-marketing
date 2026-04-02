@@ -110,7 +110,7 @@ export default function Apply() {
         <div className="container mx-auto px-4 py-6">
           <a href="/" className="flex items-center gap-3">
             <img 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/earnedreach-logo-transparent-gJlZYvX6K3RqJ9xM8LqB3qZ8zVqMYJ.png" 
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png" 
               alt="EarnedReach" 
               className="h-8"
             />

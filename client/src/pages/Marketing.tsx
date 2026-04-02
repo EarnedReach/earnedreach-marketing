@@ -475,7 +475,7 @@ export default function Marketing() {
           <div className="flex items-center justify-between">
             <a href="/" className="flex items-center">
               <img
-                src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png"
                 alt="EarnedReach"
                 className="w-10 h-10 hover:opacity-80 transition-opacity"
               />
@@ -861,7 +861,7 @@ export default function Marketing() {
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663299156531/KEuerFVQvsrsJzda.png" alt="EarnedReach" className="w-8 h-8" />
+              <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663299156531/afakcTX83KHyqkFc2EnKin/earnedreach-logo_3d80f824.png" alt="EarnedReach" className="w-8 h-8" />
               <span className="text-slate-400 text-sm">© 2026 EarnedReach. All rights reserved.</span>
             </div>
             <div className="flex items-center gap-6 text-sm text-slate-500">

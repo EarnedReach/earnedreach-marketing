@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_O67Buyflvjo9lg2LPTDVtqYmTQVU",
+  "orgId": "team_7k3pi2x567aHolwoOo0ZbhjM",
+  "projectName": "earnedreach-marketing",
+  "settings": {
+    "createdAt": 1775158843080,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": "pnpm install",
+    "buildCommand": "pnpm run build:client",
+    "outputDirectory": "dist/public",
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}
