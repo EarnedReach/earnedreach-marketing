@@ -99,11 +99,6 @@ export default function Marketing() {
               Track exactly which content drives revenue—from views to closed deals—with real-time analytics built in.
             </p>
 
-            {/* Pricing transparency */}
-            <p className="text-sm text-slate-400 mb-8">
-              Starting from <span className="text-white font-semibold">£1,500/month</span> · Revenue share model · 90-day minimum arc
-            </p>
-
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6 w-full sm:w-auto" onClick={() => window.location.href = '/apply'}>
                 Book Discovery Call
@@ -224,17 +219,12 @@ export default function Marketing() {
                   </div>
                 ))}
               </div>
-              {/* Pricing transparency inside offer card */}
-              <div className="border-t border-blue-500/20 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                  <p className="text-slate-400 text-sm">Starting from</p>
-                  <p className="text-white text-2xl font-bold">£1,500 <span className="text-slate-400 text-base font-normal">/ month</span></p>
-                  <p className="text-slate-500 text-xs mt-1">+ revenue share · 90-day minimum arc</p>
-                </div>
+              <div className="border-t border-blue-500/20 pt-6 text-center">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8" onClick={() => window.location.href = '/apply'}>
                   Apply Now
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
+                <p className="text-slate-500 text-xs mt-3">Pricing discussed on your discovery call</p>
               </div>
             </Card>
           </div>
