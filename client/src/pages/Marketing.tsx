@@ -13,264 +13,240 @@ import {
   X,
 } from "lucide-react";
 import { Link } from "wouter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 /**
- * EarnedReach Marketing Homepage — Premium Edition
- * Design: Nitid-Inspired Cinematic Aesthetic
- * Focus: Glassmorphism, Sophisticated Motion, Premium Typography
- * Positioning: High-end creative studio for founders & coaches
+ * EarnedReach Marketing Homepage — Nitid Edition
+ * Design: Exact Nitid Media Stylistic Benchmark
+ * Focus: Deep Cinematic Blue, Glassmorphism, Fluid Motion
  */
 
-// ─── Hero Section: Cinematic Opening with Gradient Orbs ─────────────────────
+// ─── Intersection Observer Hook for Scroll Animations ───────────────────────
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, []);
+  return ref;
+}
+
+// ─── Hero Section: Deep Cinematic Impact ────────────────────────────────────
 function HeroSection() {
   return (
-    <div className="relative w-full min-h-screen bg-black overflow-hidden flex items-center justify-center">
-      {/* Animated Gradient Orbs (Nitid-style) */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Top-left orb */}
+    <div className="relative w-full min-h-screen bg-[#040611] overflow-hidden flex items-center justify-center">
+      {/* Nitid-style Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Main Cinematic Glow */}
         <div 
-          className="absolute -top-40 -left-40 w-96 h-96 rounded-full opacity-30"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-40"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(30, 44, 80, 0.8) 0%, rgba(4, 6, 17, 1) 70%)',
+            filter: 'blur(80px)',
+          }}
+        />
+        {/* Top-right subtle blue light */}
+        <div 
+          className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] opacity-30"
           style={{
             background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-            animation: 'float 20s ease-in-out infinite'
+            filter: 'blur(100px)',
           }}
         />
-        {/* Bottom-right orb */}
+        {/* Animated accent light */}
         <div 
-          className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full opacity-20"
+          className="absolute top-[10%] left-[5%] w-96 h-96 rounded-full opacity-20"
           style={{
-            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.3) 0%, transparent 70%)',
+            background: 'radial-gradient(circle at center, rgba(166, 188, 245, 0.3) 0%, transparent 70%)',
             filter: 'blur(60px)',
-            animation: 'float 25s ease-in-out infinite reverse'
-          }}
-        />
-        {/* Center orb */}
-        <div 
-          className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-80 h-80 rounded-full opacity-15"
-          style={{
-            background: 'radial-gradient(circle at center, rgba(99, 102, 241, 0.2) 0%, transparent 70%)',
-            filter: 'blur(80px)',
+            animation: 'pulse 15s ease-in-out infinite'
           }}
         />
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
-        <div className="mb-8 inline-block">
-          <Badge className="bg-white/10 text-white border border-white/20 hover:bg-white/20 px-4 py-2 rounded-full font-light">
-            Storytelling for Founders
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="mb-10 reveal-on-scroll active">
+          <Badge className="bg-[#1C2A56] text-[#B3CBEF] border border-[#3b82f633] hover:bg-[#1C2A56]/80 px-5 py-2 rounded-full font-light tracking-wider uppercase text-[10px]">
+            Masters of Storytelling
           </Badge>
         </div>
         
-        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-light text-white leading-tight mb-8 tracking-tight">
-          Your message,<br />
-          <span className="font-extralight text-gray-300">amplified</span>
+        <h1 className="text-6xl sm:text-8xl lg:text-9xl font-light text-white leading-[0.9] mb-10 tracking-tighter">
+          Where attention<br />
+          <span className="text-[#9ACBF5] nitid-glow">meets intention.</span>
         </h1>
         
-        <p className="text-lg sm:text-xl text-gray-400 font-light mb-12 leading-relaxed max-w-2xl mx-auto">
-          Most founders have a powerful story. Few know how to tell it. We specialize in finding your narrative and putting it in front of the people who need to hear it.
+        <p className="text-xl sm:text-2xl text-[#94A3B8] font-light mb-14 leading-relaxed max-w-3xl mx-auto">
+          Every brand has a story. Every founder has a vision.<br className="hidden sm:block" />
+          We bring both to life and put them in front of the right audience.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center reveal-on-scroll active" style={{ transitionDelay: '0.2s' }}>
           <Link href="#discovery">
-            <button className="px-8 py-4 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl">
-              Book a Discovery Call
+            <button className="px-10 py-5 bg-[#F6FAFF] text-[#040611] font-semibold rounded-full hover:bg-white transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105">
+              Get Started
             </button>
           </Link>
           <Link href="#the-work">
-            <button className="px-8 py-4 bg-white/10 text-white font-medium rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm">
-              See Our Work
+            <button className="px-10 py-5 bg-transparent text-white font-medium rounded-full border border-white/20 hover:bg-white/5 transition-all duration-500 backdrop-blur-md">
+              View Projects
             </button>
           </Link>
         </div>
       </div>
 
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(-30px) translateX(20px); }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.1; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.2); }
         }
       `}</style>
     </div>
   );
 }
 
-// ─── Navigation: Glassmorphism Header ───────────────────────────────────────
+// ─── Navigation: Ultra-Clean Glassmorphism ──────────────────────────────────
 function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled 
-          ? 'bg-black/80 backdrop-blur-md border-b border-white/10' 
-          : 'bg-transparent'
+          ? 'py-4 bg-[#040611]/80 backdrop-blur-2xl border-b border-white/5' 
+          : 'py-8 bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-12">
+        <div className="flex items-center justify-between">
           <Link href="/">
-            <div className="text-white font-light text-xl cursor-pointer tracking-tight">
+            <div className="text-white font-medium text-2xl cursor-pointer tracking-tighter flex items-center gap-2">
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                <div className="w-4 h-4 bg-black rounded-sm rotate-45" />
+              </div>
               EarnedReach
             </div>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-12">
-            <Link href="#how-it-works">
-              <span className="text-gray-300 hover:text-white transition text-sm cursor-pointer font-light">
-                How It Works
-              </span>
-            </Link>
-            <Link href="#the-work">
-              <span className="text-gray-300 hover:text-white transition text-sm cursor-pointer font-light">
-                The Work
-              </span>
-            </Link>
-            <Link href="/philosophy">
-              <span className="text-gray-300 hover:text-white transition text-sm cursor-pointer font-light">
-                Philosophy
-              </span>
-            </Link>
+          <div className="hidden md:flex items-center gap-10">
+            {['About Us', 'Services', 'Projects'].map((item) => (
+              <Link key={item} href={`#${item.toLowerCase().replace(' ', '-')}`}>
+                <span className="text-gray-400 hover:text-white transition-colors duration-300 text-sm cursor-pointer font-medium tracking-tight">
+                  {item}
+                </span>
+              </Link>
+            ))}
             <Link href="#discovery">
-              <button className="px-6 py-2 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-all duration-300 text-sm">
-                Book Call
+              <button className="px-7 py-2.5 bg-white/10 text-white font-medium rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-500 text-sm">
+                Get Started ↗
               </button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden pb-4 space-y-3 border-t border-white/10 pt-4">
-            <Link href="#how-it-works">
-              <div className="text-gray-300 hover:text-white transition text-sm py-2 cursor-pointer font-light">
-                How It Works
-              </div>
-            </Link>
-            <Link href="#the-work">
-              <div className="text-gray-300 hover:text-white transition text-sm py-2 cursor-pointer font-light">
-                The Work
-              </div>
-            </Link>
-            <Link href="/philosophy">
-              <div className="text-gray-300 hover:text-white transition text-sm py-2 cursor-pointer font-light">
-                Philosophy
-              </div>
-            </Link>
-            <Link href="#discovery">
-              <button className="w-full px-6 py-2 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-all duration-300 text-sm mt-4">
-                Book Discovery Call
-              </button>
-            </Link>
-          </div>
-        )}
       </div>
     </nav>
   );
 }
 
-// ─── Social Proof: Trusted By (Marquee) ─────────────────────────────────────
+// ─── Trusted By: Prestigious Marquee ────────────────────────────────────────
 function SocialProof() {
-  const clients = [
-    "Alex Hormozi",
-    "Steven Bartlett",
-    "Iman Gadzhi",
-    "Sam Ovens",
-    "Founder A",
-    "Founder B",
-  ];
-
+  const clients = ["ALEX HORMOZI", "STEVEN BARTLETT", "IMAN GADZHI", "SAM OVENS", "CHRIS DO", "GARY VEE"];
   return (
-    <div className="w-full bg-black py-16 border-y border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-gray-400 text-sm font-light mb-8 uppercase tracking-widest">
-          Trusted by leading founders
+    <div className="w-full bg-[#040611] py-20 border-y border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <p className="text-center text-[#94A3B8] text-[10px] font-medium mb-12 uppercase tracking-[0.3em]">
+          TRUSTED BY ELITE FOUNDERS
         </p>
-        
-        <div className="relative overflow-hidden">
-          <div className="flex gap-8 animate-marquee">
+        <div className="relative overflow-hidden flex mask-marquee">
+          <div className="flex gap-20 animate-marquee whitespace-nowrap">
             {[...clients, ...clients].map((client, idx) => (
-              <div key={idx} className="flex-shrink-0 px-4">
-                <p className="text-gray-300 font-light text-lg whitespace-nowrap">
-                  {client}
-                </p>
-              </div>
+              <span key={idx} className="text-white/40 font-light text-2xl sm:text-4xl tracking-tighter hover:text-white transition-colors duration-500 cursor-default">
+                {client}
+              </span>
             ))}
           </div>
         </div>
       </div>
-
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-50% - 16px)); }
+          100% { transform: translateX(-50%); }
         }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
+        .animate-marquee { animation: marquee 40s linear infinite; }
+        .mask-marquee {
+          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
       `}</style>
     </div>
   );
 }
 
-// ─── Who We Help Section ────────────────────────────────────────────────────
-function WhoWeHelp() {
-  const painPoints = [
+// ─── Services: Premium Grid ─────────────────────────────────────────────────
+function Services() {
+  const services = [
     {
-      title: "You have a message.",
-      description: "But your audience doesn't know it exists. You're buried in the noise."
+      title: "Systems & Strategy",
+      description: "Every business runs on systems, so why doesn't your content? We build foundations that scale with your vision.",
+      icon: "⚙️"
     },
     {
-      title: "You're spending time on content.",
-      description: "That doesn't move the needle. You need strategy, not just posting."
+      title: "Branding Identity",
+      description: "A consistent look and tone turns attention into authority and positions you as a leader in your niche.",
+      icon: "💎"
     },
     {
-      title: "You know your offer is premium.",
-      description: "But your content doesn't reflect that. It feels generic and forgettable."
-    },
+      title: "Creative Production",
+      description: "Cinematic, high-end content crafted by a network of elite editors, designers, and filmmakers.",
+      icon: "🎬"
+    }
   ];
 
   return (
-    <section id="who-we-help" className="w-full bg-black py-24 border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
-            We work with founders<br />
-            <span className="font-extralight text-gray-400">who know their worth</span>
+    <section id="services" className="w-full bg-[#040611] py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-24 reveal-on-scroll" ref={useReveal()}>
+          <h2 className="text-4xl sm:text-6xl font-light text-white mb-8 tracking-tight">
+            The standard of<br />
+            <span className="text-[#9ACBF5]">modern storytelling.</span>
           </h2>
-          <p className="text-lg text-gray-400 font-light max-w-2xl mx-auto">
-            If you're building something meaningful and your content doesn't reflect that, we can help.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {painPoints.map((point, idx) => (
+          {services.map((s, idx) => (
             <div 
               key={idx}
-              className="p-8 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:border-white/20"
+              className="glass-panel p-12 rounded-[2rem] reveal-on-scroll"
+              style={{ transitionDelay: `${idx * 0.2}s` }}
+              ref={useReveal()}
             >
-              <h3 className="text-xl font-light text-white mb-4">{point.title}</h3>
-              <p className="text-gray-400 font-light leading-relaxed">{point.description}</p>
+              <div className="text-4xl mb-8">{s.icon}</div>
+              <h3 className="text-2xl font-medium text-white mb-6 tracking-tight">{s.title}</h3>
+              <p className="text-[#94A3B8] font-light leading-relaxed text-lg">{s.description}</p>
             </div>
           ))}
         </div>
@@ -279,59 +255,30 @@ function WhoWeHelp() {
   );
 }
 
-// ─── The Work Section: Proof Wall ──────────────────────────────────────────
+// ─── The Work: Cinematic Showcase ──────────────────────────────────────────
 function TheWork() {
-  const projects = [
-    {
-      title: "Founder's Narrative Reframe",
-      category: "Personal Branding",
-      description: "Repositioned a coach's entire positioning through cinematic storytelling."
-    },
-    {
-      title: "Product Launch Campaign",
-      category: "Launch Strategy",
-      description: "Created a 3-part content series that generated 50K+ views in 2 weeks."
-    },
-    {
-      title: "Authority Building Series",
-      category: "Content Strategy",
-      description: "Built a founder's thought leadership through strategic, high-impact reels."
-    },
-  ];
-
   return (
-    <section id="the-work" className="w-full bg-black py-24 border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
-            The Work
+    <section id="projects" className="w-full bg-[#040611] py-32 px-6 border-t border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 reveal-on-scroll" ref={useReveal()}>
+          <h2 className="text-4xl sm:text-6xl font-light text-white tracking-tight">
+            Selected<br />Projects
           </h2>
-          <p className="text-lg text-gray-400 font-light">
-            Here's what happens when storytelling meets strategy.
+          <p className="text-[#94A3B8] font-light text-xl max-w-md mt-6 md:mt-0">
+            We don't just make videos. We create digital landmarks for brands that matter.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
-            <div 
-              key={idx}
-              className="group relative overflow-hidden rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-8 hover:border-white/20 transition-all duration-300"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              <div className="relative z-10">
-                <Badge className="bg-white/10 text-white border border-white/20 text-xs font-light mb-4">
-                  {project.category}
-                </Badge>
-                <h3 className="text-xl font-light text-white mb-3">{project.title}</h3>
-                <p className="text-gray-400 font-light leading-relaxed mb-6">{project.description}</p>
-                
-                <Link href="#discovery">
-                  <button className="text-white font-light text-sm flex items-center gap-2 hover:gap-3 transition-all duration-300">
-                    See Project <ArrowRight size={16} />
-                  </button>
-                </Link>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {[1, 2].map((i) => (
+            <div key={i} className="group relative aspect-video rounded-[2.5rem] overflow-hidden bg-[#1C2A56] reveal-on-scroll" ref={useReveal()}>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040611] via-transparent to-transparent z-10 opacity-60" />
+              <div className="absolute bottom-12 left-12 z-20">
+                <Badge className="bg-white/10 text-white border border-white/20 mb-4">Cinematic Series</Badge>
+                <h3 className="text-3xl font-medium text-white tracking-tight">SushiSwap Narrative</h3>
+                <p className="text-white/60 font-light mt-2">AI Powered Teaser</p>
               </div>
+              <div className="absolute inset-0 bg-white/5 group-hover:bg-white/0 transition-colors duration-700" />
             </div>
           ))}
         </div>
@@ -340,140 +287,51 @@ function TheWork() {
   );
 }
 
-// ─── How We Work Section ───────────────────────────────────────────────────
-function HowWeWork() {
-  const steps = [
-    {
-      number: "01",
-      title: "Discovery",
-      description: "We understand your message, your audience, and what makes you different."
-    },
-    {
-      number: "02",
-      title: "Strategy",
-      description: "We build a content strategy that positions you as the authority in your space."
-    },
-    {
-      number: "03",
-      title: "Creation",
-      description: "We create cinematic, high-converting content that resonates with your ideal clients."
-    },
-  ];
-
+// ─── CTA: Ready to Elevate ──────────────────────────────────────────────────
+function CTA() {
   return (
-    <section id="how-it-works" className="w-full bg-black py-24 border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
-            How We Work
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {steps.map((step, idx) => (
-            <div key={idx} className="relative">
-              <div className="mb-8">
-                <div className="text-6xl font-light text-white/20 mb-4">{step.number}</div>
-                <h3 className="text-2xl font-light text-white mb-3">{step.title}</h3>
-                <p className="text-gray-400 font-light leading-relaxed">{step.description}</p>
-              </div>
-              
-              {idx < steps.length - 1 && (
-                <div className="hidden md:block absolute top-8 -right-6 w-12 h-0.5 bg-gradient-to-r from-white/20 to-transparent" />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── CTA Section ───────────────────────────────────────────────────────────
-function CTASection() {
-  return (
-    <section id="discovery" className="w-full bg-black py-24 border-b border-white/10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-8 leading-tight">
+    <section id="discovery" className="w-full bg-[#040611] py-40 px-6">
+      <div className="max-w-4xl mx-auto text-center reveal-on-scroll" ref={useReveal()}>
+        <h2 className="text-5xl sm:text-8xl font-light text-white mb-12 tracking-tighter">
           Ready to elevate<br />
-          <span className="font-extralight text-gray-400">your message?</span>
+          <span className="text-[#9ACBF5]">your vision?</span>
         </h2>
-        
-        <p className="text-lg text-gray-400 font-light mb-12 max-w-2xl mx-auto">
-          Let's talk about your story. Book a 30-minute discovery call and we'll show you exactly how we can help.
-        </p>
-
-        <button className="px-10 py-5 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-all duration-300 text-lg shadow-lg hover:shadow-xl">
-          Book Your Discovery Call
-        </button>
+        <Link href="#discovery">
+          <button className="px-14 py-6 bg-[#F6FAFF] text-[#040611] font-bold rounded-full hover:bg-white transition-all duration-500 shadow-[0_0_50px_rgba(59,130,246,0.3)] hover:scale-105 text-xl">
+            Get Started
+          </button>
+        </Link>
       </div>
     </section>
-  );
-}
-
-// ─── Footer ────────────────────────────────────────────────────────────────
-function Footer() {
-  return (
-    <footer className="w-full bg-black border-t border-white/10 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div>
-            <h3 className="text-white font-light text-lg mb-4">EarnedReach</h3>
-            <p className="text-gray-400 font-light text-sm">
-              Premium storytelling for founders who know their worth.
-            </p>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-light mb-4">Product</h4>
-            <ul className="space-y-2">
-              <li><a href="#the-work" className="text-gray-400 hover:text-white font-light text-sm transition">Our Work</a></li>
-              <li><a href="#how-it-works" className="text-gray-400 hover:text-white font-light text-sm transition">How It Works</a></li>
-              <li><a href="/philosophy" className="text-gray-400 hover:text-white font-light text-sm transition">Philosophy</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-light mb-4">Company</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white font-light text-sm transition">About</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white font-light text-sm transition">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white font-light text-sm transition">Contact</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-light mb-4">Connect</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white font-light text-sm transition">Instagram</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white font-light text-sm transition">Twitter</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white font-light text-sm transition">LinkedIn</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-white/10 pt-8 text-center">
-          <p className="text-gray-400 font-light text-sm">
-            © 2026 EarnedReach. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
   );
 }
 
 // ─── Main Export ───────────────────────────────────────────────────────────
 export default function Marketing() {
   return (
-    <div className="w-full bg-black text-white">
+    <div className="w-full bg-[#040611] text-[#F6FAFF] selection:bg-[#3b82f6] selection:text-white">
       <Navigation />
       <HeroSection />
       <SocialProof />
-      <WhoWeHelp />
+      <Services />
       <TheWork />
-      <HowWeWork />
-      <CTASection />
-      <Footer />
+      <CTA />
+      <footer className="w-full bg-[#040611] py-20 px-6 border-t border-white/5 text-center">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-white font-medium text-2xl tracking-tighter mb-8">EarnedReach</div>
+          <p className="text-[#94A3B8] font-light text-sm max-w-sm mx-auto mb-12">
+            Elevating brands through compelling visual content and strategic storytelling.
+          </p>
+          <div className="flex justify-center gap-8 mb-12">
+            {['Instagram', 'YouTube', 'Twitter', 'LinkedIn'].map(s => (
+              <a key={s} href="#" className="text-gray-500 hover:text-white transition-colors duration-300 text-sm font-medium">{s}</a>
+            ))}
+          </div>
+          <div className="text-gray-600 text-xs font-light">
+            © 2026 EarnedReach. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
