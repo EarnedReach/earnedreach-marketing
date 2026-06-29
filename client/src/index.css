@@ -45,26 +45,14 @@
 :root {
   --font-display: 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
-  --background: #020308; /* Darker, almost black */
+  --font-mono: 'JetBrains Mono', monospace;
+  --background: #040611;
   --foreground: #F6FAFF;
   --card: #080A1A;
   --card-foreground: #F6FAFF;
-  --popover: #020308;
-  --popover-foreground: #F6FAFF;
   --primary: #3b82f6;
-  --primary-foreground: #F6FAFF;
-  --secondary: #1C2A56;
-  --secondary-foreground: #B3CBEF;
-  --muted: #111B3A;
-  --muted-foreground: #94A3B8;
-  --accent: #3b82f6;
-  --accent-foreground: #F6FAFF;
-  --destructive: #ef4444;
-  --destructive-foreground: #F6FAFF;
   --border: #1C2A56;
-  --input: #1C2A56;
-  --ring: #3b82f6;
-  --radius: 0rem; /* Sharp edges for luxury feel */
+  --radius: 0rem;
 }
 
 @layer base {
@@ -74,84 +62,55 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
-    background-color: #020308;
-    overflow-x: hidden;
+    background-color: #040611;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.05em; /* Tighter for luxury look */
+    letter-spacing: -0.04em;
   }
 }
 
-/* Cinematic Texture & Noise */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 9999;
+/* Director's Monitor HUD Elements */
+.hud-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-/* Premium Card Effects */
-.luxury-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+.hud-badge {
+  @apply px-2 py-0.5 border border-white/10 rounded-sm bg-white/5;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #3b82f6;
 }
 
-.luxury-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+.timecode {
+  font-family: var(--font-mono);
+  color: #fff;
+  letter-spacing: 0.05em;
 }
 
-/* Animated Border Gradient */
-.border-glow {
-  position: relative;
-}
-.border-glow::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.3), transparent);
-  z-index: -1;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.6s;
-}
-.border-glow:hover::after {
-  opacity: 1;
+/* Cinematic Effects */
+.nitid-glow {
+  text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
 }
 
-/* Advanced Motion */
+.glass-panel {
+  background: linear-gradient(175deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-on-scroll.active {
   opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Typography Enhancements */
-.text-luxury {
-  font-weight: 200;
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-}
-
-.nitid-glow {
-  color: #fff;
-  text-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  transform: translateY(0);
 }
 
 /* Custom Scrollbar */
@@ -159,11 +118,8 @@ body::before {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #020308;
+  background: #040611;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
 }
