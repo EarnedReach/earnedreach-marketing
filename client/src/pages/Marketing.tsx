@@ -172,40 +172,6 @@ function Navigation() {
   );
 }
 
-// ─── Trusted By: Prestigious Marquee ────────────────────────────────────────
-function SocialProof() {
-  const clients = ["ALEX HORMOZI", "STEVEN BARTLETT", "IMAN GADZHI", "SAM OVENS", "CHRIS DO", "GARY VEE"];
-  return (
-    <div className="w-full bg-[#040611] py-20 border-y border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <p className="text-center text-[#94A3B8] text-[10px] font-medium mb-12 uppercase tracking-[0.3em]">
-          TRUSTED BY ELITE FOUNDERS
-        </p>
-        <div className="relative overflow-hidden flex mask-marquee">
-          <div className="flex gap-20 animate-marquee whitespace-nowrap">
-            {[...clients, ...clients].map((client, idx) => (
-              <span key={idx} className="text-white/40 font-light text-2xl sm:text-4xl tracking-tighter hover:text-white transition-colors duration-500 cursor-default">
-                {client}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee { animation: marquee 40s linear infinite; }
-        .mask-marquee {
-          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-      `}</style>
-    </div>
-  );
-}
-
 // ─── Services: Premium Grid ─────────────────────────────────────────────────
 function Services() {
   const services = [
@@ -312,7 +278,6 @@ export default function Marketing() {
     <div className="w-full bg-[#040611] text-[#F6FAFF] selection:bg-[#3b82f6] selection:text-white">
       <Navigation />
       <HeroSection />
-      <SocialProof />
       <Services />
       <TheWork />
       <CTA />
