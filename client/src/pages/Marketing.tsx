@@ -604,25 +604,6 @@ function ProjectsSection() {
 export default function Marketing() {
   const [activeNav, setActiveNav] = useState("Home");
   const sectionsRef = useRef<{ [key: string]: HTMLElement | null }>({});
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  // Scroll-driven FX3 background
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll = document.body.scrollHeight - window.innerHeight;
-      setScrollProgress(maxScroll > 0 ? scrollY / maxScroll : 0);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Interpolate scroll-driven camera values
-  const camScale = 1 + scrollProgress * 2.8;          // 1x → 3.8x zoom
-  const camX = scrollProgress * -8;                   // drift left slightly
-  const camY = scrollProgress * -12;                  // drift up toward sensor
-  const camOpacity = scrollProgress < 0.85 ? 0.18 + scrollProgress * 0.22 : (1 - scrollProgress) * 2.67; // fade out near footer
-
   // Track active section for pill nav
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -695,68 +676,19 @@ export default function Marketing() {
         overflowX: "hidden",
       }}
     >
-      {/* ── SCROLL-DRIVEN FX3 BACKGROUND ─────────────────────────────── */}
+      {/* Ambient background */}
       <div
         style={{
           position: "fixed",
           inset: 0,
           pointerEvents: "none",
           zIndex: 0,
-          overflow: "hidden",
+          background: `
+            radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,90,255,0.18) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30,60,180,0.10) 0%, transparent 60%)
+          `,
         }}
-      >
-        {/* FX3 camera image — scroll-zoomed */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transform: `scale(${camScale}) translate(${camX}%, ${camY}%)`,
-            transition: "transform 0.05s linear",
-            willChange: "transform",
-          }}
-        >
-          <img
-            src="/fx3-body.jpg"
-            alt=""
-            style={{
-              width: "70vw",
-              maxWidth: "900px",
-              minWidth: "400px",
-              objectFit: "contain",
-              opacity: camOpacity,
-              filter: "grayscale(30%) brightness(0.55) contrast(1.1)",
-              transition: "opacity 0.3s ease",
-              userSelect: "none",
-              pointerEvents: "none",
-            }}
-            draggable={false}
-          />
-        </div>
-
-        {/* Dark overlay — thins as you scroll to reveal camera */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: `rgba(7,9,26,${0.82 - scrollProgress * 0.28})`,
-          }}
-        />
-
-        {/* Blue ambient glow — stays throughout */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: `
-              radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,90,255,0.15) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30,60,180,0.08) 0%, transparent 60%)
-            `,
-          }}
-        />
-      </div>
+      />
 
       <PillNav active={activeNav} />
 
