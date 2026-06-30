@@ -630,19 +630,21 @@ export default function Marketing() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll reveal
+  // Scroll reveal — staggered fade+slide
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            (e.target as HTMLElement).style.opacity = "1";
-            (e.target as HTMLElement).style.transform = "translateY(0)";
+            const el = e.target as HTMLElement;
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0) scale(1)";
+            io.unobserve(el);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -661,8 +663,8 @@ export default function Marketing() {
 
   const revealStyle: React.CSSProperties = {
     opacity: 0,
-    transform: "translateY(32px)",
-    transition: "opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)",
+    transform: "translateY(40px) scale(0.98)",
+    transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1)",
   };
 
   return (
@@ -1111,179 +1113,388 @@ export default function Marketing() {
             {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
       <ProjectsSection />
 
-      {/* ── CTA ──────────────────────────────────────────────────────────── */}
+      {/* ── HOW IT WORKS ──────────────────────────────────────────────── */}
       <section
         style={{
-          minHeight: "50vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "80px 24px",
-          textAlign: "center",
           position: "relative",
           zIndex: 1,
+          padding: "100px 24px",
+          maxWidth: "720px",
+          margin: "0 auto",
         }}
       >
-        <p
+        {/* Eyebrow */}
+        <div
           className="reveal"
-          style={{
-            ...revealStyle,
-            fontSize: "clamp(24px, 5vw, 42px)",
-            fontWeight: 600,
-            letterSpacing: "-0.02em",
-            color: "rgba(255,255,255,0.7)",
-            marginBottom: "32px",
-            lineHeight: 1.3,
-          }}
-        >
-          Ready to{" "}
-          <span style={{ color: "#fff", fontWeight: 700 }}>elevate</span>{" "}
-          your vision?
-        </p>
-        <a
-          className="reveal"
-          href="mailto:hello@earnedreach.org"
           style={{
             ...revealStyle,
             display: "inline-flex",
             alignItems: "center",
-            padding: "16px 36px",
+            gap: "8px",
+            padding: "5px 14px",
             borderRadius: "999px",
-            background: "rgba(255,255,255,0.1)",
-            backdropFilter: "blur(12px)",
-            border: "1px solid rgba(255,255,255,0.15)",
-            color: "#fff",
-            fontSize: "16px",
+            border: "1px solid rgba(107,159,255,0.3)",
+            background: "rgba(107,159,255,0.08)",
+            fontSize: "11px",
             fontWeight: 500,
-            textDecoration: "none",
-            transition: "all 0.2s ease",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 24px rgba(0,0,0,0.3)",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: "#9ACBF5",
+            marginBottom: "28px",
+          }}
+        >
+          <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#9ACBF5", display: "inline-block" }} />
+          The Process
+        </div>
+
+        <h2
+          className="reveal"
+          style={{
+            ...revealStyle,
+            fontSize: "clamp(32px, 6vw, 52px)",
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.1,
+            color: "#fff",
+            marginBottom: "64px",
             transitionDelay: "0.1s",
           }}
         >
-          Get Started
+          How it works
+        </h2>
+
+        {/* Steps */}
+        {[
+          {
+            num: "01",
+            title: "We get on a call",
+            body: "No forms, no funnels. We sit down with you, understand your brand, your goals, and what you're actually trying to say. This is where the strategy starts.",
+          },
+          {
+            num: "02",
+            title: "We build the strategy",
+            body: "Based on what we learn, we map out the content system — what to create, how often, what format, and why. Everything has a purpose before a camera turns on.",
+          },
+          {
+            num: "03",
+            title: "We produce and distribute",
+            body: "We handle the shoot, the edit, and the rollout. You show up, we handle the rest — and what goes live actually looks like the standard you hold yourself to.",
+          },
+        ].map((step, i) => (
+          <div
+            key={step.num}
+            className="reveal"
+            style={{
+              ...revealStyle,
+              display: "grid",
+              gridTemplateColumns: "56px 1fr",
+              gap: "24px",
+              marginBottom: i < 2 ? "48px" : "0",
+              transitionDelay: `${0.15 + i * 0.12}s`,
+            }}
+          >
+            {/* Number + line */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0" }}>
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(107,159,255,0.35)",
+                  background: "rgba(107,159,255,0.08)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  color: "#9ACBF5",
+                  letterSpacing: "0.04em",
+                  flexShrink: 0,
+                }}
+              >
+                {step.num}
+              </div>
+              {i < 2 && (
+                <div
+                  style={{
+                    width: "1px",
+                    flex: 1,
+                    minHeight: "40px",
+                    background: "linear-gradient(to bottom, rgba(107,159,255,0.25), transparent)",
+                    marginTop: "8px",
+                  }}
+                />
+              )}
+            </div>
+            {/* Text */}
+            <div style={{ paddingTop: "10px" }}>
+              <h3
+                style={{
+                  fontSize: "20px",
+                  fontWeight: 600,
+                  color: "#fff",
+                  marginBottom: "10px",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                {step.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: "15px",
+                  lineHeight: 1.7,
+                  color: "rgba(255,255,255,0.55)",
+                }}
+              >
+                {step.body}
+              </p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* ── CTA ──────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "80px 24px 100px",
+          textAlign: "center",
+          overflow: "hidden",
+        }}
+      >
+        {/* Glow behind CTA */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "500px",
+            height: "300px",
+            borderRadius: "50%",
+            background: "radial-gradient(ellipse at center, rgba(59,100,255,0.18) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        <p
+          className="reveal"
+          style={{
+            ...revealStyle,
+            fontSize: "clamp(28px, 5vw, 48px)",
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
+            color: "#fff",
+            marginBottom: "12px",
+            lineHeight: 1.15,
+            position: "relative",
+          }}
+        >
+          Ready to build something{" "}
+          <span style={{ color: "#9ACBF5" }}>worth watching?</span>
+        </p>
+        <p
+          className="reveal"
+          style={{
+            ...revealStyle,
+            fontSize: "16px",
+            color: "rgba(255,255,255,0.5)",
+            marginBottom: "40px",
+            transitionDelay: "0.1s",
+            position: "relative",
+          }}
+        >
+          Let's get on a call and figure out what your brand actually needs.
+        </p>
+        <a
+          className="reveal"
+          href="https://tally.so/r/PdgPKP"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            ...revealStyle,
+            display: "inline-flex",
+            alignItems: "center",
+            padding: "18px 44px",
+            borderRadius: "999px",
+            background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)",
+            color: "#fff",
+            fontSize: "17px",
+            fontWeight: 600,
+            textDecoration: "none",
+            transition: "all 0.2s ease",
+            boxShadow: "0 0 40px rgba(59,111,255,0.5), 0 4px 20px rgba(0,0,0,0.3)",
+            transitionDelay: "0.2s",
+            position: "relative",
+            letterSpacing: "-0.01em",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 60px rgba(59,111,255,0.7), 0 4px 20px rgba(0,0,0,0.3)";
+            (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 40px rgba(59,111,255,0.5), 0 4px 20px rgba(0,0,0,0.3)";
+            (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+          }}
+        >
+          Get Started ↗
         </a>
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
       <footer
         style={{
-          padding: "48px 24px 40px",
-          maxWidth: "720px",
-          margin: "0 auto",
           position: "relative",
           zIndex: 1,
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+          padding: "60px 24px 40px",
         }}
       >
-        <div
-          style={{
-            height: "1px",
-            background: "rgba(255,255,255,0.07)",
-            marginBottom: "40px",
-          }}
-        />
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "32px",
-            marginBottom: "40px",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontSize: "13px",
-                fontWeight: 600,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.4)",
-                marginBottom: "16px",
-              }}
-            >
-              Explore
-            </p>
-            {["Home", "About Us", "Services", "Projects"].map((item) => (
-              <button
-                key={item}
-                onClick={() => {
-                  const el = document.getElementById(item.toLowerCase().replace(" ", "-"));
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                style={{
-                  display: "block",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  color: "rgba(255,255,255,0.5)",
-                  fontSize: "15px",
-                  padding: "4px 0",
-                  textAlign: "left",
-                  transition: "color 0.2s",
-                }}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <div>
-            <p
-              style={{
-                fontSize: "13px",
-                fontWeight: 600,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.4)",
-                marginBottom: "16px",
-              }}
-            >
-              Connect
-            </p>
-            {[
-              { label: "Get Started ↗", href: "mailto:hello@earnedreach.org" },
-              { label: "Instagram ↗", href: "https://instagram.com/earnedreach" },
-              { label: "Join our team ↗", href: "mailto:hello@earnedreach.org?subject=Join the team" },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                style={{
-                  display: "block",
-                  color: "rgba(255,255,255,0.5)",
-                  fontSize: "15px",
-                  padding: "4px 0",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.25)" }}>
-            © 2026 EarnedReach. All rights reserved.
-          </p>
-          <p
+        <div style={{ maxWidth: "720px", margin: "0 auto" }}>
+          {/* Top row: brand + tagline */}
+          <div
             style={{
-              fontSize: "13px",
-              color: "rgba(255,255,255,0.2)",
-              fontStyle: "italic",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flexWrap: "wrap",
+              gap: "32px",
+              marginBottom: "48px",
             }}
           >
-            Your story, seen by the right eyes.
-          </p>
+            {/* Brand */}
+            <div>
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  color: "#fff",
+                  marginBottom: "8px",
+                }}
+              >
+                EarnedReach
+              </p>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "rgba(255,255,255,0.4)",
+                  maxWidth: "240px",
+                  lineHeight: 1.6,
+                }}
+              >
+                Your story, seen by the right eyes.
+              </p>
+            </div>
+
+            {/* Links grid */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "40px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.3)",
+                    marginBottom: "16px",
+                  }}
+                >
+                  Explore
+                </p>
+                {["Home", "About Us", "Services", "Projects"].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => {
+                      const el = document.getElementById(item.toLowerCase().replace(" ", "-"));
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    style={{
+                      display: "block",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      color: "rgba(255,255,255,0.45)",
+                      fontSize: "14px",
+                      padding: "5px 0",
+                      textAlign: "left",
+                      transition: "color 0.2s",
+                      letterSpacing: "-0.01em",
+                    }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#fff"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.3)",
+                    marginBottom: "16px",
+                  }}
+                >
+                  Connect
+                </p>
+                {[
+                  { label: "Get Started ↗", href: "https://tally.so/r/PdgPKP", external: true },
+                  { label: "Instagram ↗", href: "https://instagram.com/earnedreach", external: true },
+                  { label: "Join our team ↗", href: "mailto:hello@earnedreach.org?subject=Join the team", external: false },
+                ].map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    style={{
+                      display: "block",
+                      color: "rgba(255,255,255,0.45)",
+                      fontSize: "14px",
+                      padding: "5px 0",
+                      textDecoration: "none",
+                      transition: "color 0.2s",
+                      letterSpacing: "-0.01em",
+                    }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#fff"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)"; }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div
+            style={{
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+              paddingTop: "24px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "8px",
+            }}
+          >
+            <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.2)", letterSpacing: "0.01em" }}>
+              © 2026 EarnedReach. All rights reserved.
+            </p>
+            <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.18)", letterSpacing: "0.02em" }}>
+              hello@earnedreach.org
+            </p>
+          </div>
         </div>
       </footer>
     </div>
