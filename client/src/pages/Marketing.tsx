@@ -835,7 +835,9 @@ export default function Marketing() {
             Get Started ↗
           </a>
           <a
-            href="mailto:hello@earnedreach.org?subject=Join the team"
+            href="https://tally.so/r/44qEXr"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -1450,7 +1452,7 @@ export default function Marketing() {
                 {[
                   { label: "Get Started ↗", href: "https://tally.so/r/PdgPKP", external: true },
                   { label: "Instagram ↗", href: "https://instagram.com/earnedreach", external: true },
-                  { label: "Join our team ↗", href: "mailto:hello@earnedreach.org?subject=Join the team", external: false },
+                  { label: "Join our team ↗", href: "https://tally.so/r/44qEXr", external: true },
                 ].map((link) => (
                   <a
                     key={link.label}
