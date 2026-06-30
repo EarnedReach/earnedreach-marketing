@@ -17,24 +17,24 @@ interface Project {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const SERVICES: Service[] = [
   {
-    title: "Brand Storytelling",
-    body: "Every founder has a story worth telling. We craft the narrative that turns viewers into believers — and believers into buyers.",
-    img: "/illus-storytelling.png",
-  },
-  {
-    title: "Content Systems",
-    body: "Posting without a system is just noise. We build the content engine that keeps you visible, consistent, and converting.",
-    img: "/illus-content.png",
-  },
-  {
     title: "Content Strategy",
-    body: "We map your MOF and BOF content so every piece has a purpose — from building trust to booking calls.",
+    body: "Every piece of content should have a purpose. We build the system behind your content so every post, video, and series is working toward something — trust, authority, and booked calls.",
     img: "/illus-strategy.png",
   },
   {
+    title: "Brand Identity",
+    body: "A viral post means nothing if people forget you in seconds. We make sure your content has a consistent look, tone, and message that turns attention into authority.",
+    img: "/illus-storytelling.png",
+  },
+  {
     title: "Full Production",
-    body: "Shot on the Sony FX3. Edited with intention. Every frame is a decision — because your audience can feel the difference.",
+    body: "From concept to final cut. We handle the creative direction, filming, and editing so you show up with content that actually reflects the quality of what you do.",
     img: "/illus-production.png",
+  },
+  {
+    title: "One Time Projects",
+    body: "Not every brand needs a retainer. Some just need one great piece of work — a brand film, a series, a campaign. We take on selected projects that are genuinely exciting and worth doing right.",
+    img: "/illus-content.png",
   },
 ];
 
