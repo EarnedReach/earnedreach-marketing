@@ -205,6 +205,249 @@ function SwipeCards<T>({
   );
 }
 
+// ─── Projects Section (Nitid-style auto-rotating) ────────────────────────────
+function ProjectsSection() {
+  const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Scroll reveal
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Auto-rotate every 4 seconds
+  const goTo = (idx: number) => {
+    if (animating) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setActive(idx);
+      setAnimating(false);
+    }, 300);
+  };
+
+  useEffect(() => {
+    timerRef.current = setTimeout(() => {
+      goTo((active + 1) % PROJECTS.length);
+    }, 4000);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, animating]);
+
+  const project = PROJECTS[active];
+
+  return (
+    <section
+      id="projects"
+      ref={sectionRef}
+      style={{
+        position: "relative",
+        zIndex: 1,
+        padding: "120px 24px 100px",
+        overflow: "hidden",
+      }}
+    >
+      {/* Ambient glow */}
+      <div
+        style={{
+          position: "absolute",
+          left: "30%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "600px",
+          height: "400px",
+          background: "radial-gradient(ellipse at center, rgba(107,159,255,0.12) 0%, transparent 70%)",
+          filter: "blur(40px)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "43% 1px 57%",
+          minHeight: "480px",
+          alignItems: "center",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(32px)",
+          transition: "opacity 0.7s ease, transform 0.7s ease",
+        }}
+      >
+        {/* LEFT — "Projects" heading */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "40px 40px 40px 0",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "clamp(64px, 9vw, 120px)",
+              fontWeight: 700,
+              letterSpacing: "-0.05em",
+              lineHeight: 1,
+              color: "#6b9fff",
+              textShadow:
+                "0 0 0px #6b9fff, 0 0 20px rgba(107,159,255,0.5), 0 0 50px rgba(107,159,255,0.3)",
+            }}
+          >
+            Projects
+          </h2>
+        </div>
+
+        {/* DIVIDER */}
+        <div
+          style={{
+            width: "1px",
+            alignSelf: "stretch",
+            background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent)",
+          }}
+        />
+
+        {/* RIGHT — rotating project content */}
+        <div
+          style={{
+            padding: "40px 0 40px 48px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            minHeight: "380px",
+          }}
+        >
+          {/* Animated content area */}
+          <div
+            style={{
+              opacity: animating ? 0 : 1,
+              transform: animating ? "translateY(10px)" : "translateY(0)",
+              transition: "opacity 0.3s ease, transform 0.3s ease",
+            }}
+          >
+            {/* Project title */}
+            <h3
+              style={{
+                fontSize: "clamp(20px, 3vw, 36px)",
+                fontWeight: 700,
+                letterSpacing: "-0.04em",
+                color: "#9ACBF5",
+                marginBottom: "14px",
+                lineHeight: 1.15,
+              }}
+            >
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p
+              style={{
+                fontSize: "clamp(13px, 1.4vw, 15px)",
+                lineHeight: 1.65,
+                color: "rgba(211,234,255,0.75)",
+                marginBottom: "24px",
+                maxWidth: "380px",
+              }}
+            >
+              {project.body}
+            </p>
+
+            {/* See full project CTA */}
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                fontSize: "clamp(16px, 2vw, 26px)",
+                fontWeight: 600,
+                color: "#fff",
+                textDecoration: "none",
+                letterSpacing: "-0.02em",
+                marginBottom: "20px",
+                transition: "opacity 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              See full project
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 7h10v10" />
+                <path d="M7 17 17 7" />
+              </svg>
+            </a>
+
+            {/* Gradient divider */}
+            <div
+              style={{
+                height: "1.5px",
+                width: "60%",
+                background: "linear-gradient(to right, rgba(255,255,255,0.4), transparent)",
+                marginBottom: "20px",
+              }}
+            />
+
+            {/* Category label — large type */}
+            <div
+              style={{
+                fontSize: "clamp(44px, 6.5vw, 96px)",
+                fontWeight: 700,
+                letterSpacing: "-0.05em",
+                lineHeight: 1,
+                color: "#9ACBF5",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {project.tag}
+            </div>
+          </div>
+
+          {/* Dot navigation */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              marginTop: "32px",
+            }}
+          >
+            {PROJECTS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); goTo(i); }}
+                style={{
+                  width: i === active ? "24px" : "6px",
+                  height: "6px",
+                  borderRadius: "999px",
+                  border: "none",
+                  cursor: "pointer",
+                  background: i === active ? "#9ACBF5" : "rgba(255,255,255,0.2)",
+                  transition: "all 0.4s ease",
+                  padding: 0,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function Marketing() {
   const [activeNav, setActiveNav] = useState("Home");
@@ -598,116 +841,7 @@ export default function Marketing() {
       </section>
 
       {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
-      <section id="projects" style={{ ...sectionStyle(), zIndex: 1 }}>
-        <h2
-          className="reveal"
-          style={{
-            ...revealStyle,
-            fontSize: "clamp(40px, 8vw, 80px)",
-            fontWeight: 700,
-            letterSpacing: "-0.04em",
-            color: "#6b9fff",
-            marginBottom: "48px",
-            lineHeight: 1.0,
-          }}
-        >
-          Projects
-        </h2>
-
-        <div className="reveal" style={{ ...revealStyle, transitionDelay: "0.1s" }}>
-          <SwipeCards
-            items={PROJECTS}
-            renderCard={(project, i) => (
-              <div
-                key={i}
-                style={{
-                  minWidth: "100%",
-                  flexShrink: 0,
-                  boxSizing: "border-box",
-                  background: "rgba(255,255,255,0.04)",
-                  backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  borderRadius: "20px",
-                  padding: "32px",
-                }}
-              >
-                {/* Tag */}
-                <span
-                  style={{
-                    display: "inline-block",
-                    fontSize: "11px",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color: "rgba(107,159,255,0.8)",
-                    background: "rgba(107,159,255,0.1)",
-                    border: "1px solid rgba(107,159,255,0.2)",
-                    borderRadius: "999px",
-                    padding: "4px 12px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  {project.tag}
-                </span>
-
-                {/* Title */}
-                <h3
-                  style={{
-                    fontSize: "clamp(24px, 5vw, 36px)",
-                    fontWeight: 700,
-                    letterSpacing: "-0.03em",
-                    color: "#fff",
-                    marginBottom: "16px",
-                    lineHeight: 1.15,
-                  }}
-                >
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p
-                  style={{
-                    fontSize: "15px",
-                    lineHeight: 1.75,
-                    color: "rgba(255,255,255,0.55)",
-                    marginBottom: "28px",
-                  }}
-                >
-                  {project.body}
-                </p>
-
-                {/* Divider */}
-                <div
-                  style={{
-                    height: "1px",
-                    background: "rgba(255,255,255,0.07)",
-                    marginBottom: "20px",
-                  }}
-                />
-
-                {/* CTA */}
-                <a
-                  href={project.link}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    fontSize: "14px",
-                    color: "rgba(255,255,255,0.7)",
-                    textDecoration: "none",
-                    fontWeight: 500,
-                    letterSpacing: "0.01em",
-                    transition: "color 0.2s",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
-                >
-                  See full project <span style={{ fontSize: "16px" }}>↗</span>
-                </a>
-              </div>
-            )}
-          />
-        </div>
-      </section>
+      <ProjectsSection />
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section
