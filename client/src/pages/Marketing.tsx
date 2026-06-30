@@ -724,30 +724,26 @@ export default function Marketing() {
           }}
         />
 
-        {/* Eyebrow tag */}
+        {/* Logo */}
         <div
           className="reveal"
           style={{
             ...revealStyle,
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            padding: "6px 16px",
-            borderRadius: "999px",
-            border: "1px solid rgba(107,159,255,0.3)",
-            background: "rgba(107,159,255,0.08)",
-            fontSize: "12px",
-            fontWeight: 500,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "#9ACBF5",
             marginBottom: "32px",
             position: "relative",
             zIndex: 1,
           }}
         >
-          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#9ACBF5", display: "inline-block" }} />
-          Content Studio for Founders
+          <img
+            src="/er-logo.png"
+            alt="EarnedReach"
+            style={{
+              width: "72px",
+              height: "72px",
+              objectFit: "contain",
+              filter: "brightness(0) invert(1)",
+            }}
+          />
         </div>
 
         {/* Main headline */}
@@ -1365,17 +1361,18 @@ export default function Marketing() {
           >
             {/* Brand */}
             <div>
-              <p
+              <img
+                src="/er-logo.png"
+                alt="EarnedReach"
                 style={{
-                  fontSize: "18px",
-                  fontWeight: 700,
-                  letterSpacing: "-0.02em",
-                  color: "#fff",
+                  width: "48px",
+                  height: "48px",
+                  objectFit: "contain",
+                  filter: "brightness(0) invert(1)",
                   marginBottom: "8px",
+                  display: "block",
                 }}
-              >
-                EarnedReach
-              </p>
+              />
               <p
                 style={{
                   fontSize: "14px",
