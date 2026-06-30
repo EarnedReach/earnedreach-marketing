@@ -210,9 +210,9 @@ function ServiceCard({ service }: { service: Service }) {
   return (
     <div
       style={{
-        background: "rgba(255,255,255,0.04)",
-        backdropFilter: "blur(20px)",
-        border: "1px solid rgba(255,255,255,0.07)",
+        background: "linear-gradient(135deg, rgba(59,90,255,0.10) 0%, rgba(10,14,40,0.85) 60%)",
+        backdropFilter: "blur(24px)",
+        border: "1px solid rgba(107,159,255,0.18)",
         borderRadius: "20px",
         overflow: "hidden",
         display: "flex",
@@ -220,8 +220,20 @@ function ServiceCard({ service }: { service: Service }) {
         alignItems: "stretch",
         minHeight: "200px",
         height: "100%",
+        boxShadow: "0 0 0 1px rgba(107,159,255,0.06), 0 8px 40px rgba(59,90,255,0.12), inset 0 1px 0 rgba(255,255,255,0.06)",
+        position: "relative",
       }}
     >
+      {/* Inner blue corner glow */}
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0,
+        width: "180px", height: "180px",
+        background: "radial-gradient(ellipse at top left, rgba(107,159,255,0.12) 0%, transparent 70%)",
+        pointerEvents: "none",
+        zIndex: 0,
+      }} />
+
       {/* Text — left side */}
       <div
         style={{
@@ -230,6 +242,8 @@ function ServiceCard({ service }: { service: Service }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <h3
@@ -262,25 +276,35 @@ function ServiceCard({ service }: { service: Service }) {
           width: "160px",
           flexShrink: 0,
           display: "flex",
-          alignItems: "flex-end",
+          alignItems: "center",
           justifyContent: "center",
           overflow: "hidden",
-          padding: "0",
           position: "relative",
+          zIndex: 1,
         }}
       >
+        {/* Glow behind illustration */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(107,159,255,0.18) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
         <img
           src={service.img}
           alt={service.title}
           style={{
-            width: "100%",
-            height: "180px",
-            objectFit: "cover",
+            width: "85%",
+            height: "160px",
+            objectFit: "contain",
             objectPosition: "center",
             display: "block",
-            maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+            maskImage: "radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%)",
             mixBlendMode: "lighten",
+            filter: "brightness(1.1) contrast(1.05)",
+            position: "relative",
+            zIndex: 1,
           }}
           draggable={false}
         />
@@ -1038,14 +1062,16 @@ export default function Marketing() {
                   flex: "0 0 82vw",
                   maxWidth: "360px",
                   scrollSnapAlign: "start",
-                  background: "rgba(255,255,255,0.04)",
-                  backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: "linear-gradient(160deg, rgba(59,90,255,0.10) 0%, rgba(10,14,40,0.90) 60%)",
+                  backdropFilter: "blur(24px)",
+                  border: "1px solid rgba(107,159,255,0.18)",
                   borderRadius: "20px",
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
                   minHeight: "420px",
+                  boxShadow: "0 0 0 1px rgba(107,159,255,0.06), 0 8px 40px rgba(59,90,255,0.14), inset 0 1px 0 rgba(255,255,255,0.06)",
+                  position: "relative",
                 }}
               >
                 {/* Text — top */}
@@ -1083,19 +1109,30 @@ export default function Marketing() {
                     justifyContent: "center",
                     overflow: "hidden",
                     minHeight: "180px",
+                    position: "relative",
                   }}
                 >
+                  {/* Glow behind illustration */}
+                  <div style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "radial-gradient(ellipse 80% 60% at 50% 70%, rgba(107,159,255,0.22) 0%, transparent 70%)",
+                    pointerEvents: "none",
+                  }} />
                   <img
                     src={service.img}
                     alt={service.title}
                     style={{
-                      width: "80%",
+                      width: "75%",
                       maxHeight: "220px",
                       objectFit: "contain",
                       objectPosition: "bottom center",
-                      maskImage: "radial-gradient(ellipse 85% 85% at 50% 60%, black 40%, transparent 100%)",
-                      WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 50% 60%, black 40%, transparent 100%)",
+                      maskImage: "radial-gradient(ellipse 80% 80% at 50% 55%, black 35%, transparent 100%)",
+                      WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 55%, black 35%, transparent 100%)",
                       mixBlendMode: "lighten",
+                      filter: "brightness(1.15) contrast(1.05)",
+                      position: "relative",
+                      zIndex: 1,
                     }}
                     draggable={false}
                   />
