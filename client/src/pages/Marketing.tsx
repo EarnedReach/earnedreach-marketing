@@ -265,7 +265,8 @@ function ServiceCard({ service }: { service: Service }) {
           alignItems: "flex-end",
           justifyContent: "center",
           overflow: "hidden",
-          padding: "12px 12px 0",
+          padding: "0",
+          position: "relative",
         }}
       >
         <img
@@ -273,10 +274,13 @@ function ServiceCard({ service }: { service: Service }) {
           alt={service.title}
           style={{
             width: "100%",
-            height: "160px",
-            objectFit: "contain",
-            objectPosition: "bottom center",
-            filter: "drop-shadow(0 0 20px rgba(107,159,255,0.35))",
+            height: "180px",
+            objectFit: "cover",
+            objectPosition: "center",
+            display: "block",
+            maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+            mixBlendMode: "lighten",
           }}
           draggable={false}
         />
