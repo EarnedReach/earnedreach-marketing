@@ -692,85 +692,115 @@ export default function Marketing() {
       <PillNav active={activeNav} />
 
       {/* ── HOME ─────────────────────────────────────────────────────────── */}
-      <section id="home" style={{ ...sectionStyle(), position: "relative", zIndex: 1 }}>
-        {/* 3D logo object placeholder — abstract ring */}
+      <section
+        id="home"
+        style={{
+          position: "relative",
+          zIndex: 1,
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "120px 24px 80px",
+          textAlign: "center",
+          overflow: "hidden",
+        }}
+      >
+        {/* Hero radial bloom */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -60%)",
+            width: "700px",
+            height: "700px",
+            borderRadius: "50%",
+            background: "radial-gradient(ellipse at center, rgba(59,100,255,0.22) 0%, rgba(30,60,200,0.10) 40%, transparent 70%)",
+            pointerEvents: "none",
+            zIndex: 0,
+          }}
+        />
+
+        {/* Eyebrow tag */}
         <div
           className="reveal"
           style={{
             ...revealStyle,
-            width: "96px",
-            height: "96px",
-            borderRadius: "50%",
-            border: "2px solid rgba(107,159,255,0.5)",
-            boxShadow: "0 0 40px rgba(107,159,255,0.3), inset 0 0 20px rgba(107,159,255,0.1)",
-            marginBottom: "40px",
-            position: "relative",
-            display: "flex",
+            display: "inline-flex",
             alignItems: "center",
-            justifyContent: "center",
+            gap: "8px",
+            padding: "6px 16px",
+            borderRadius: "999px",
+            border: "1px solid rgba(107,159,255,0.3)",
+            background: "rgba(107,159,255,0.08)",
+            fontSize: "12px",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "#9ACBF5",
+            marginBottom: "32px",
+            position: "relative",
+            zIndex: 1,
           }}
         >
-          <div
-            style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "50%",
-              border: "1.5px solid rgba(107,159,255,0.3)",
-              boxShadow: "0 0 20px rgba(107,159,255,0.2)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              width: "110px",
-              height: "30px",
-              borderRadius: "50%",
-              border: "1.5px solid rgba(107,159,255,0.2)",
-              transform: "rotateX(70deg)",
-            }}
-          />
+          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#9ACBF5", display: "inline-block" }} />
+          Content Studio for Founders
         </div>
 
+        {/* Main headline */}
         <h1
           className="reveal"
           style={{
             ...revealStyle,
-            fontSize: "clamp(42px, 8vw, 72px)",
-            fontWeight: 700,
-            lineHeight: 1.05,
-            letterSpacing: "-0.03em",
-            marginBottom: "24px",
+            fontSize: "clamp(52px, 10vw, 96px)",
+            fontWeight: 800,
+            lineHeight: 1.0,
+            letterSpacing: "-0.04em",
+            marginBottom: "28px",
             color: "#fff",
             transitionDelay: "0.1s",
+            position: "relative",
+            zIndex: 1,
+            textShadow: "0 0 80px rgba(107,159,255,0.35)",
           }}
         >
-          Masters of<br />Storytelling
+          Masters of<br />
+          <span style={{ color: "#9ACBF5" }}>Storytelling</span>
         </h1>
 
+        {/* Subheading */}
         <p
           className="reveal"
           style={{
             ...revealStyle,
-            fontSize: "17px",
-            lineHeight: 1.65,
-            color: "rgba(255,255,255,0.55)",
-            maxWidth: "480px",
-            marginBottom: "40px",
+            fontSize: "clamp(16px, 2vw, 19px)",
+            lineHeight: 1.7,
+            color: "rgba(255,255,255,0.6)",
+            maxWidth: "520px",
+            marginBottom: "48px",
             transitionDelay: "0.2s",
+            position: "relative",
+            zIndex: 1,
           }}
         >
-          Every founder has a story. Every brand has a vision.<br />
+          Every founder has a story. Every brand has a vision.
           We bring both to life and put them in front of the right audience.
         </p>
 
+        {/* CTAs */}
         <div
           className="reveal"
           style={{
             ...revealStyle,
             display: "flex",
-            gap: "12px",
+            gap: "14px",
             flexWrap: "wrap",
+            justifyContent: "center",
             transitionDelay: "0.3s",
+            position: "relative",
+            zIndex: 1,
           }}
         >
           <a
@@ -778,46 +808,76 @@ export default function Marketing() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              padding: "14px 28px",
+              padding: "16px 36px",
               borderRadius: "999px",
-              background: "rgba(255,255,255,0.1)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.15)",
+              background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)",
               color: "#fff",
-              fontSize: "15px",
-              fontWeight: 500,
+              fontSize: "16px",
+              fontWeight: 600,
               textDecoration: "none",
               transition: "all 0.2s ease",
-              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1)",
+              boxShadow: "0 0 32px rgba(59,111,255,0.45), 0 4px 16px rgba(0,0,0,0.3)",
+              letterSpacing: "-0.01em",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.18)";
+              (e.currentTarget as HTMLElement).style.boxShadow = "0 0 48px rgba(59,111,255,0.65), 0 4px 16px rgba(0,0,0,0.3)";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.1)";
+              (e.currentTarget as HTMLElement).style.boxShadow = "0 0 32px rgba(59,111,255,0.45), 0 4px 16px rgba(0,0,0,0.3)";
+              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
             }}
           >
-            Get Started
+            Get Started ↗
           </a>
           <a
             href="mailto:hello@earnedreach.org?subject=Join the team"
             style={{
               display: "inline-flex",
               alignItems: "center",
-              padding: "14px 28px",
+              padding: "16px 32px",
               borderRadius: "999px",
-              background: "rgba(255,255,255,0.05)",
+              background: "rgba(255,255,255,0.06)",
               backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              color: "rgba(255,255,255,0.6)",
-              fontSize: "15px",
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "rgba(255,255,255,0.7)",
+              fontSize: "16px",
               fontWeight: 400,
               textDecoration: "none",
               transition: "all 0.2s ease",
             }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.1)";
+              (e.currentTarget as HTMLElement).style.color = "#fff";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.7)";
+            }}
           >
             Join our team.
           </a>
+        </div>
+
+        {/* Scroll hint */}
+        <div
+          className="reveal"
+          style={{
+            ...revealStyle,
+            position: "absolute",
+            bottom: "36px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "6px",
+            transitionDelay: "0.5s",
+            zIndex: 1,
+          }}
+        >
+          <span style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Scroll</span>
+          <div style={{ width: "1px", height: "32px", background: "linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)" }} />
         </div>
       </section>
 
