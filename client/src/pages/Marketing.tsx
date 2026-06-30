@@ -46,10 +46,10 @@ const PROJECTS: Project[] = [
     link: "https://www.instagram.com/reel/DZ8FfKpMlCA/?igsh=MWgzZ293aTU5ZzVqMg==",
   },
   {
-    title: "The Founder Series",
+    title: "Michael Jordan",
     tag: "YouTube Series",
-    body: "A documentary series following a founder from day one to their first £100k month. Raw, cinematic, and built to keep people watching.",
-    link: "#",
+    body: "A series built to do two things: prove what Michael knows and show who he is. Part education, part access — the kind of content that turns viewers into believers.",
+    link: "https://youtu.be/CvyY6eS4Sdo?si=elzFkZS1rjQaV2zL",
   },
   {
     title: "Michael Jordan",
