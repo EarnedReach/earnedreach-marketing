@@ -957,7 +957,7 @@ export default function Marketing() {
             ))}
           </div>
 
-          {/* Mobile swipe strip */}
+          {/* Mobile swipe strip — tall vertical cards */}
           <div
             className="services-mobile-strip"
             style={{
@@ -976,11 +976,70 @@ export default function Marketing() {
                 key={i}
                 style={{
                   flex: "0 0 82vw",
-                  maxWidth: "340px",
+                  maxWidth: "360px",
                   scrollSnapAlign: "start",
+                  background: "rgba(255,255,255,0.04)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  minHeight: "420px",
                 }}
               >
-                <ServiceCard service={service} />
+                {/* Text — top */}
+                <div style={{ padding: "28px 24px 16px" }}>
+                  <h3
+                    style={{
+                      fontSize: "26px",
+                      fontWeight: 700,
+                      letterSpacing: "-0.03em",
+                      color: "#9ACBF5",
+                      marginBottom: "14px",
+                      lineHeight: 1.15,
+                    }}
+                  >
+                    {service.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      lineHeight: 1.7,
+                      color: "rgba(255,255,255,0.55)",
+                      margin: 0,
+                    }}
+                  >
+                    {service.body}
+                  </p>
+                </div>
+
+                {/* Illustration — bottom, fills remaining space */}
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "center",
+                    overflow: "hidden",
+                    minHeight: "180px",
+                  }}
+                >
+                  <img
+                    src={service.img}
+                    alt={service.title}
+                    style={{
+                      width: "80%",
+                      maxHeight: "220px",
+                      objectFit: "contain",
+                      objectPosition: "bottom center",
+                      maskImage: "radial-gradient(ellipse 85% 85% at 50% 60%, black 40%, transparent 100%)",
+                      WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 50% 60%, black 40%, transparent 100%)",
+                      mixBlendMode: "lighten",
+                    }}
+                    draggable={false}
+                  />
+                </div>
               </div>
             ))}
           </div>
