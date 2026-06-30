@@ -954,7 +954,7 @@ export default function Marketing() {
               marginBottom: "20px",
             }}
           >
-            EarnedReach was founded by two filmmakers who got tired of watching great founders stay invisible. Combining expertise in editing, cinematography, and content strategy, they built a studio that treats every brand like a story worth telling.
+            EarnedReach was founded by David and PJ — two filmmakers who got tired of watching great founders stay invisible. Combining expertise in editing, cinematography, and content strategy, they built a studio that treats every brand like a story worth telling.
           </p>
           <p
             style={{
@@ -963,7 +963,7 @@ export default function Marketing() {
               color: "rgba(255,255,255,0.6)",
             }}
           >
-            They realised that the founders who win online aren't the loudest — they're the ones with the clearest story. So they built a system to find it, film it, and put it in front of the right people.
+            David and PJ realised that the founders who win online aren't the loudest — they're the ones with the clearest story. So they built a system to find it, film it, and put it in front of the right people.
           </p>
 
           {/* Team photo placeholder */}
