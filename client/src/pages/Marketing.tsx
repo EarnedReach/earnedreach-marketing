@@ -741,7 +741,6 @@ export default function Marketing() {
               width: "72px",
               height: "72px",
               objectFit: "contain",
-              filter: "brightness(0) invert(1)",
             }}
           />
         </div>
@@ -1368,7 +1367,6 @@ export default function Marketing() {
                   width: "48px",
                   height: "48px",
                   objectFit: "contain",
-                  filter: "brightness(0) invert(1)",
                   marginBottom: "8px",
                   display: "block",
                 }}
