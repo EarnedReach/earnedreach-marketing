@@ -821,94 +821,127 @@ export default function Marketing() {
         </div>
       </section>
 
-      {/* ── SERVICES ─────────────────────────────────────────────────────── */}
-      <section id="services" style={{ ...sectionStyle(), zIndex: 1 }}>
+      {/* ── SERVICES ────────────────────────────────────────────────── */}
+      <section
+        id="services"
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "100px 24px",
+        }}
+      >
+        {/* Heading */}
         <h2
           className="reveal"
           style={{
             ...revealStyle,
-            fontSize: "clamp(28px, 5vw, 48px)",
+            fontSize: "clamp(28px, 4.5vw, 56px)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
-            color: "#6b9fff",
-            marginBottom: "40px",
-            lineHeight: 1.15,
+            color: "#9ACBF5",
+            marginBottom: "48px",
+            lineHeight: 1.1,
+            textAlign: "center",
+            maxWidth: "900px",
+            margin: "0 auto 48px",
           }}
         >
-          Work directly with<br />the founders of EarnedReach
+          Work directly with the founders of EarnedReach
         </h2>
 
-        <div className="reveal" style={{ ...revealStyle, transitionDelay: "0.1s" }}>
-          <SwipeCards
-            items={SERVICES}
-            renderCard={(service, i) => (
+        {/* Bento grid */}
+        <div
+          className="reveal"
+          style={{
+            ...revealStyle,
+            transitionDelay: "0.1s",
+            maxWidth: "1000px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "16px",
+          }}
+        >
+          {SERVICES.map((service, i) => (
+            <div
+              key={i}
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(255,255,255,0.07)",
+                borderRadius: "20px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "stretch",
+                minHeight: "200px",
+              }}
+            >
+              {/* Text — left side */}
               <div
-                key={i}
                 style={{
-                  minWidth: "100%",
-                  background: "rgba(255,255,255,0.04)",
-                  backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  flexShrink: 0,
-                  boxSizing: "border-box",
+                  flex: 1,
+                  padding: "28px 16px 28px 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
                 }}
               >
-                {/* Illustration at the top, fills the card visually */}
-                <div
+                <h3
                   style={{
-                    height: "220px",
-                    overflow: "hidden",
-                    background: "rgba(0,0,0,0.25)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    fontSize: "clamp(17px, 2vw, 22px)",
+                    fontWeight: 700,
+                    letterSpacing: "-0.02em",
+                    marginBottom: "12px",
+                    color: "#fff",
+                    lineHeight: 1.2,
                   }}
                 >
-                  <img
-                    src={service.img}
-                    alt={service.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center",
-                    }}
-                    draggable={false}
-                  />
-                </div>
-                {/* Text below the illustration */}
-                <div style={{ padding: "28px 28px 32px" }}>
-                  <h3
-                    style={{
-                      fontSize: "22px",
-                      fontWeight: 700,
-                      letterSpacing: "-0.02em",
-                      marginBottom: "10px",
-                      color: "#fff",
-                    }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: "15px",
-                      lineHeight: 1.7,
-                      color: "rgba(255,255,255,0.55)",
-                      margin: 0,
-                    }}
-                  >
-                    {service.body}
-                  </p>
-                </div>
+                  {service.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "clamp(12px, 1.2vw, 14px)",
+                    lineHeight: 1.7,
+                    color: "rgba(255,255,255,0.5)",
+                    margin: 0,
+                  }}
+                >
+                  {service.body}
+                </p>
               </div>
-            )}
-          />
+
+              {/* Illustration — right side */}
+              <div
+                style={{
+                  width: "160px",
+                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "flex-end",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  padding: "12px 12px 0",
+                }}
+              >
+                <img
+                  src={service.img}
+                  alt={service.title}
+                  style={{
+                    width: "100%",
+                    height: "160px",
+                    objectFit: "contain",
+                    objectPosition: "bottom center",
+                    filter: "drop-shadow(0 0 20px rgba(107,159,255,0.35))",
+                  }}
+                  draggable={false}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
+            {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
       <ProjectsSection />
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
