@@ -210,8 +210,17 @@ function ProjectsSection() {
   const [active, setActive] = useState(0);
   const [visible, setVisible] = useState(false);
   const [animating, setAnimating] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Detect mobile
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Scroll reveal
   useEffect(() => {
@@ -219,7 +228,7 @@ function ProjectsSection() {
     if (!el) return;
     const io = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -245,6 +254,114 @@ function ProjectsSection() {
 
   const project = PROJECTS[active];
 
+  // Shared animated content (title, body, CTA, divider, category label)
+  const projectContent = (
+    <div
+      style={{
+        opacity: animating ? 0 : 1,
+        transform: animating ? "translateY(10px)" : "translateY(0)",
+        transition: "opacity 0.3s ease, transform 0.3s ease",
+      }}
+    >
+      <h3
+        style={{
+          fontSize: isMobile ? "26px" : "clamp(20px, 3vw, 36px)",
+          fontWeight: 700,
+          letterSpacing: "-0.04em",
+          color: "#9ACBF5",
+          marginBottom: "14px",
+          lineHeight: 1.15,
+        }}
+      >
+        {project.title}
+      </h3>
+
+      <p
+        style={{
+          fontSize: isMobile ? "14px" : "clamp(13px, 1.4vw, 15px)",
+          lineHeight: 1.65,
+          color: "rgba(211,234,255,0.75)",
+          marginBottom: "24px",
+          maxWidth: isMobile ? "100%" : "380px",
+        }}
+      >
+        {project.body}
+      </p>
+
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "8px",
+          fontSize: isMobile ? "22px" : "clamp(16px, 2vw, 26px)",
+          fontWeight: 600,
+          color: "#fff",
+          textDecoration: "none",
+          letterSpacing: "-0.02em",
+          marginBottom: "20px",
+          transition: "opacity 0.2s",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+      >
+        See full project
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
+
+      <div
+        style={{
+          height: "1.5px",
+          width: isMobile ? "55%" : "60%",
+          background: "linear-gradient(to right, rgba(255,255,255,0.4), transparent)",
+          marginBottom: "20px",
+        }}
+      />
+
+      <div
+        style={{
+          fontSize: isMobile ? "clamp(52px, 14vw, 80px)" : "clamp(44px, 6.5vw, 96px)",
+          fontWeight: 700,
+          letterSpacing: "-0.05em",
+          lineHeight: 1,
+          color: "#9ACBF5",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {project.tag}
+      </div>
+    </div>
+  );
+
+  // Dot nav
+  const dotNav = (
+    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "32px" }}>
+      {PROJECTS.map((_, i) => (
+        <button
+          key={i}
+          onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); goTo(i); }}
+          style={{
+            width: i === active ? "24px" : "6px",
+            height: "6px",
+            borderRadius: "999px",
+            border: "none",
+            cursor: "pointer",
+            background: i === active ? "#9ACBF5" : "rgba(255,255,255,0.2)",
+            transition: "all 0.4s ease",
+            padding: 0,
+          }}
+        />
+      ))}
+    </div>
+  );
+
   return (
     <section
       id="projects"
@@ -252,7 +369,7 @@ function ProjectsSection() {
       style={{
         position: "relative",
         zIndex: 1,
-        padding: "120px 24px 100px",
+        padding: isMobile ? "80px 24px 80px" : "120px 24px 100px",
         overflow: "hidden",
       }}
     >
@@ -260,8 +377,8 @@ function ProjectsSection() {
       <div
         style={{
           position: "absolute",
-          left: "30%",
-          top: "50%",
+          left: "50%",
+          top: "30%",
           transform: "translate(-50%, -50%)",
           width: "600px",
           height: "400px",
@@ -273,176 +390,121 @@ function ProjectsSection() {
 
       <div
         style={{
-          maxWidth: "1100px",
+          maxWidth: isMobile ? "100%" : "1100px",
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "43% 1px 57%",
-          minHeight: "480px",
-          alignItems: "center",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(32px)",
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}
       >
-        {/* LEFT — "Projects" heading */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "40px 40px 40px 0",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "clamp(64px, 9vw, 120px)",
-              fontWeight: 700,
-              letterSpacing: "-0.05em",
-              lineHeight: 1,
-              color: "#6b9fff",
-              textShadow:
-                "0 0 0px #6b9fff, 0 0 20px rgba(107,159,255,0.5), 0 0 50px rgba(107,159,255,0.3)",
-            }}
-          >
-            Projects
-          </h2>
-        </div>
+        {isMobile ? (
+          /* ── MOBILE: stacked layout ── */
+          <>
+            {/* "Projects" heading centred */}
+            <div style={{ textAlign: "center", marginBottom: "48px", position: "relative" }}>
+              {/* glow behind heading */}
+              <div style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "300px",
+                height: "150px",
+                background: "radial-gradient(ellipse at center, rgba(154,203,245,0.25) 0%, transparent 70%)",
+                filter: "blur(30px)",
+                pointerEvents: "none",
+              }} />
+              <h2
+                style={{
+                  fontSize: "clamp(72px, 18vw, 100px)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.05em",
+                  lineHeight: 1,
+                  color: "#6b9fff",
+                  textShadow: "0 0 20px rgba(107,159,255,0.5), 0 0 50px rgba(107,159,255,0.3)",
+                  position: "relative",
+                }}
+              >
+                Projects
+              </h2>
+            </div>
 
-        {/* DIVIDER */}
-        <div
-          style={{
-            width: "1px",
-            alignSelf: "stretch",
-            background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent)",
-          }}
-        />
-
-        {/* RIGHT — rotating project content */}
-        <div
-          style={{
-            padding: "40px 0 40px 48px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minHeight: "380px",
-          }}
-        >
-          {/* Animated content area */}
+            {/* Project content */}
+            <div style={{ paddingBottom: "8px" }}>
+              {projectContent}
+              {dotNav}
+            </div>
+          </>
+        ) : (
+          /* ── DESKTOP: two-column layout ── */
           <div
             style={{
-              opacity: animating ? 0 : 1,
-              transform: animating ? "translateY(10px)" : "translateY(0)",
-              transition: "opacity 0.3s ease, transform 0.3s ease",
+              display: "grid",
+              gridTemplateColumns: "43% 1px 57%",
+              minHeight: "480px",
+              alignItems: "center",
             }}
           >
-            {/* Project title */}
-            <h3
-              style={{
-                fontSize: "clamp(20px, 3vw, 36px)",
-                fontWeight: 700,
-                letterSpacing: "-0.04em",
-                color: "#9ACBF5",
-                marginBottom: "14px",
-                lineHeight: 1.15,
-              }}
-            >
-              {project.title}
-            </h3>
-
-            {/* Description */}
-            <p
-              style={{
-                fontSize: "clamp(13px, 1.4vw, 15px)",
-                lineHeight: 1.65,
-                color: "rgba(211,234,255,0.75)",
-                marginBottom: "24px",
-                maxWidth: "380px",
-              }}
-            >
-              {project.body}
-            </p>
-
-            {/* See full project CTA */}
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                fontSize: "clamp(16px, 2vw, 26px)",
-                fontWeight: 600,
-                color: "#fff",
-                textDecoration: "none",
-                letterSpacing: "-0.02em",
-                marginBottom: "20px",
-                transition: "opacity 0.2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              See full project
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 7h10v10" />
-                <path d="M7 17 17 7" />
-              </svg>
-            </a>
-
-            {/* Gradient divider */}
+            {/* LEFT — "Projects" heading */}
             <div
               style={{
-                height: "1.5px",
-                width: "60%",
-                background: "linear-gradient(to right, rgba(255,255,255,0.4), transparent)",
-                marginBottom: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "40px 40px 40px 0",
+                position: "relative",
+              }}
+            >
+              <div style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "500px",
+                height: "300px",
+                background: "radial-gradient(ellipse at center, rgba(154,203,245,0.18) 0%, transparent 70%)",
+                filter: "blur(40px)",
+                pointerEvents: "none",
+              }} />
+              <h2
+                style={{
+                  fontSize: "clamp(64px, 9vw, 120px)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.05em",
+                  lineHeight: 1,
+                  color: "#6b9fff",
+                  textShadow: "0 0 0px #6b9fff, 0 0 20px rgba(107,159,255,0.5), 0 0 50px rgba(107,159,255,0.3)",
+                  position: "relative",
+                }}
+              >
+                Projects
+              </h2>
+            </div>
+
+            {/* Vertical divider */}
+            <div
+              style={{
+                width: "1px",
+                alignSelf: "stretch",
+                background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent)",
               }}
             />
 
-            {/* Category label — large type */}
+            {/* RIGHT — rotating content */}
             <div
               style={{
-                fontSize: "clamp(44px, 6.5vw, 96px)",
-                fontWeight: 700,
-                letterSpacing: "-0.05em",
-                lineHeight: 1,
-                color: "#9ACBF5",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
+                padding: "40px 0 40px 48px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                minHeight: "380px",
               }}
             >
-              {project.tag}
+              {projectContent}
+              {dotNav}
             </div>
           </div>
-
-          {/* Dot navigation */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              marginTop: "32px",
-            }}
-          >
-            {PROJECTS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); goTo(i); }}
-                style={{
-                  width: i === active ? "24px" : "6px",
-                  height: "6px",
-                  borderRadius: "999px",
-                  border: "none",
-                  cursor: "pointer",
-                  background: i === active ? "#9ACBF5" : "rgba(255,255,255,0.2)",
-                  transition: "all 0.4s ease",
-                  padding: 0,
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );
