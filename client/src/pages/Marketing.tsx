@@ -804,7 +804,9 @@ export default function Marketing() {
           }}
         >
           <a
-            href="mailto:hello@earnedreach.org"
+            href="https://tally.so/r/PdgPKP"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               alignItems: "center",
