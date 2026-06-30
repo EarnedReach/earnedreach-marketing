@@ -40,10 +40,10 @@ const SERVICES: Service[] = [
 
 const PROJECTS: Project[] = [
   {
-    title: "The Origin Story",
+    title: "Elijah Fleming",
     tag: "Brand Film",
-    body: "A single 90-second film that told a founder's story better than two years of posting ever had. Still running as a paid ad today.",
-    link: "#",
+    body: "We got under the skin of Elijah's brand — who he is, what he stands for, and why it matters. The result: a cinematic film that doesn't just show a fitness journey, it makes you want to start your own.",
+    link: "https://www.instagram.com/reel/DZ8FfKpMlCA/?igsh=MWgzZ293aTU5ZzVqMg==",
   },
   {
     title: "The Founder Series",
@@ -325,7 +325,11 @@ function ProjectsSection() {
 
       <div
         style={{
-          fontSize: isMobile ? "clamp(52px, 14vw, 80px)" : "clamp(44px, 6.5vw, 96px)",
+          fontSize: isMobile
+            ? project.tag.length > 10
+              ? "clamp(36px, 9vw, 52px)"
+              : "clamp(52px, 14vw, 72px)"
+            : "clamp(44px, 6.5vw, 96px)",
           fontWeight: 700,
           letterSpacing: "-0.05em",
           lineHeight: 1,
