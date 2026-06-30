@@ -40,21 +40,21 @@ const SERVICES: Service[] = [
 
 const PROJECTS: Project[] = [
   {
-    title: "The Founder Series",
+    title: "The Origin Story",
     tag: "Brand Film",
-    body: "A six-part documentary series following a SaaS founder from zero to their first £100k month. Raw, cinematic, and built to convert.",
+    body: "A single 90-second film that told a founder's story better than two years of posting ever had. Still running as a paid ad today.",
+    link: "#",
+  },
+  {
+    title: "The Founder Series",
+    tag: "YouTube Series",
+    body: "A documentary series following a founder from day one to their first £100k month. Raw, cinematic, and built to keep people watching.",
     link: "#",
   },
   {
     title: "MOF Content Sprint",
-    tag: "Content System",
-    body: "We rebuilt a coaching brand's entire content funnel in 30 days. The result: 3x saves, 2x DMs, and a fully booked calendar.",
-    link: "#",
-  },
-  {
-    title: "The Origin Story",
-    tag: "Brand Film",
-    body: "A single 90-second film that told a founder's story better than two years of posting ever had. Still running as a paid ad today.",
+    tag: "SF Growth",
+    body: "We rebuilt a coaching brand's entire short-form content system in 30 days. The result: 3x saves, 2x DMs, and a fully booked calendar.",
     link: "#",
   },
 ];
