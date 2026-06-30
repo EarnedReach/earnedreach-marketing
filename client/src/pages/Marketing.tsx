@@ -28,7 +28,7 @@ const SERVICES: Service[] = [
   },
   {
     title: "Full Production",
-    body: "Shot on the Sony FX3. Edited with intention. We handle everything from pre-production to the final cut — so what ends up online actually looks like the standard you hold yourself to.",
+    body: "We handle everything from pre-production to the final cut — so what ends up online actually looks like the standard you hold yourself to.",
     img: "/illus-production.png",
   },
   {
