@@ -275,7 +275,7 @@ export default function Marketing() {
         <div style={{ position: "absolute", bottom: "28px", left: 0, right: 0, zIndex: 3, display: "flex", justifyContent: "space-between", padding: "0 40px", fontSize: "10px", fontFamily: "monospace", color: "rgba(255,255,255,0.22)", letterSpacing: "0.08em" }}>
           <span>● REC · 4K 24FPS</span>
           <Timecode />
-          <span>SONY A7IV · f/1.8</span>
+          <span>SONY FX3 · f/1.8</span>
         </div>
       </section>
 
@@ -394,19 +394,23 @@ export default function Marketing() {
           <Reveal>
             <div style={{ position: "relative" }}>
               <div style={{ position: "absolute", inset: "-30px", background: "radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 70%)", borderRadius: "32px", pointerEvents: "none" }} />
-              <img src="/founder-portrait.jpg" alt="David — Founder, EarnedReach" style={{ width: "100%", borderRadius: "20px", display: "block", position: "relative", zIndex: 1, border: "1px solid rgba(255,255,255,0.07)", boxShadow: "0 32px 80px rgba(0,0,0,0.65)" }} />
+              {/* Placeholder visual — replace with real team photo */}
+              <div style={{ width: "100%", aspectRatio: "4/5", borderRadius: "20px", background: "linear-gradient(135deg,rgba(59,130,246,0.12) 0%,rgba(255,255,255,0.03) 100%)", border: "1px solid rgba(255,255,255,0.07)", boxShadow: "0 32px 80px rgba(0,0,0,0.65)", display: "flex", flexDirection: "column" as const, alignItems: "center", justifyContent: "center", gap: "12px", position: "relative", zIndex: 1 }}>
+                <div style={{ width: "80px", height: "80px", borderRadius: "50%", background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "32px" }}>🎬</div>
+                <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em", textTransform: "uppercase" as const }}>Team Photo Coming Soon</span>
+              </div>
               <div style={{ position: "absolute", bottom: "24px", left: "24px", right: "24px", zIndex: 2, background: "rgba(2,4,8,0.88)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: "14px", padding: "16px 20px", boxShadow: "0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07)" }}>
-                <div style={{ fontSize: "14px", fontWeight: 500, marginBottom: "4px" }}>David — Founder, EarnedReach</div>
-                <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.38)" }}>Filmmaker · Storyteller · Content Strategist</div>
+                <div style={{ fontSize: "14px", fontWeight: 500, marginBottom: "4px" }}>David & Co-Founder — EarnedReach</div>
+                <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.38)" }}>Filmmakers · Storytellers · Content Strategists</div>
               </div>
             </div>
           </Reveal>
           <Reveal delay={180}>
             <div>
               <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "rgba(147,197,253,0.5)", marginBottom: "20px" }}>About</p>
-              <h2 style={{ fontSize: "clamp(26px,4vw,42px)", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.2, marginBottom: "24px" }}>Work directly with the founder of EarnedReach.</h2>
-              <p style={{ fontSize: "16px", lineHeight: 1.85, color: "rgba(255,255,255,0.45)", marginBottom: "20px" }}>EarnedReach was built on a single belief: that the founders who win online are not the ones who post the most — they're the ones whose story is impossible to ignore.</p>
-              <p style={{ fontSize: "16px", lineHeight: 1.85, color: "rgba(255,255,255,0.45)", marginBottom: "40px" }}>We combine cinematic production with strategic messaging to build content systems that speak directly to your ideal client — and convert them.</p>
+              <h2 style={{ fontSize: "clamp(26px,4vw,42px)", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.2, marginBottom: "24px" }}>Work directly with the two founders of EarnedReach.</h2>
+              <p style={{ fontSize: "16px", lineHeight: 1.85, color: "rgba(255,255,255,0.45)", marginBottom: "20px" }}>EarnedReach was built by two founders on a single belief: that the people who win online are not the ones who post the most — they're the ones whose story is impossible to ignore.</p>
+              <p style={{ fontSize: "16px", lineHeight: 1.85, color: "rgba(255,255,255,0.45)", marginBottom: "40px" }}>Together we combine cinematic production with strategic messaging to build content systems that speak directly to your ideal client — and convert them without a single cold outreach.</p>
               <button onClick={() => go("contact")} style={{ padding: "13px 28px", borderRadius: "100px", background: "linear-gradient(135deg,rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.07) 100%)", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", fontSize: "14px", fontWeight: 500, cursor: "pointer", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)", transition: "all 0.3s ease" }}
                 onMouseEnter={e => { const el = e.currentTarget; el.style.background = "linear-gradient(135deg,rgba(255,255,255,0.28) 0%,rgba(255,255,255,0.12) 100%)"; el.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { const el = e.currentTarget; el.style.background = "linear-gradient(135deg,rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.07) 100%)"; el.style.transform = "translateY(0)"; }}>
