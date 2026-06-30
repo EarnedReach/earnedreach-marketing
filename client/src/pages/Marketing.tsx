@@ -329,14 +329,14 @@ function ProjectsSection() {
             ? project.tag.length > 10
               ? "clamp(36px, 9vw, 52px)"
               : "clamp(52px, 14vw, 72px)"
-            : "clamp(44px, 6.5vw, 96px)",
+            : "clamp(60px, 8vw, 120px)",
           fontWeight: 700,
           letterSpacing: "-0.05em",
           lineHeight: 1,
           color: "#9ACBF5",
           whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
+          // intentionally overflows the column on desktop, clipped at section level
+          overflow: "visible",
         }}
       >
         {project.tag}
@@ -374,7 +374,7 @@ function ProjectsSection() {
         position: "relative",
         zIndex: 1,
         padding: isMobile ? "80px 24px 80px" : "120px 24px 100px",
-        overflow: "hidden",
+        overflow: isMobile ? "hidden" : "visible",
       }}
     >
       {/* Ambient glow */}
