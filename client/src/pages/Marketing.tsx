@@ -539,41 +539,20 @@ export default function Marketing() {
                   backdropFilter: "blur(20px)",
                   border: "1px solid rgba(255,255,255,0.07)",
                   borderRadius: "20px",
-                  padding: "32px",
+                  overflow: "hidden",
                   flexShrink: 0,
                   boxSizing: "border-box",
                 }}
               >
-                <h3
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: 700,
-                    letterSpacing: "-0.02em",
-                    marginBottom: "12px",
-                    color: "#fff",
-                  }}
-                >
-                  {service.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "15px",
-                    lineHeight: 1.7,
-                    color: "rgba(255,255,255,0.55)",
-                    marginBottom: "32px",
-                  }}
-                >
-                  {service.body}
-                </p>
+                {/* Illustration at the top, fills the card visually */}
                 <div
                   style={{
-                    borderRadius: "14px",
+                    height: "220px",
                     overflow: "hidden",
-                    height: "260px",
+                    background: "rgba(0,0,0,0.25)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    background: "rgba(0,0,0,0.2)",
                   }}
                 >
                   <img
@@ -587,6 +566,30 @@ export default function Marketing() {
                     }}
                     draggable={false}
                   />
+                </div>
+                {/* Text below the illustration */}
+                <div style={{ padding: "28px 28px 32px" }}>
+                  <h3
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: 700,
+                      letterSpacing: "-0.02em",
+                      marginBottom: "10px",
+                      color: "#fff",
+                    }}
+                  >
+                    {service.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "15px",
+                      lineHeight: 1.7,
+                      color: "rgba(255,255,255,0.55)",
+                      margin: 0,
+                    }}
+                  >
+                    {service.body}
+                  </p>
                 </div>
               </div>
             )}
@@ -621,66 +624,85 @@ export default function Marketing() {
                   minWidth: "100%",
                   flexShrink: 0,
                   boxSizing: "border-box",
-                  paddingBottom: "8px",
+                  background: "rgba(255,255,255,0.04)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  borderRadius: "20px",
+                  padding: "32px",
                 }}
               >
-                <p
+                {/* Tag */}
+                <span
                   style={{
-                    fontSize: "12px",
+                    display: "inline-block",
+                    fontSize: "11px",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.3)",
-                    marginBottom: "8px",
+                    color: "rgba(107,159,255,0.8)",
+                    background: "rgba(107,159,255,0.1)",
+                    border: "1px solid rgba(107,159,255,0.2)",
+                    borderRadius: "999px",
+                    padding: "4px 12px",
+                    marginBottom: "20px",
                   }}
                 >
                   {project.tag}
-                </p>
+                </span>
+
+                {/* Title */}
                 <h3
                   style={{
-                    fontSize: "clamp(28px, 6vw, 48px)",
+                    fontSize: "clamp(24px, 5vw, 36px)",
                     fontWeight: 700,
                     letterSpacing: "-0.03em",
                     color: "#fff",
                     marginBottom: "16px",
-                    lineHeight: 1.1,
+                    lineHeight: 1.15,
                   }}
                 >
                   {project.title}
                 </h3>
+
+                {/* Description */}
                 <p
                   style={{
                     fontSize: "15px",
-                    lineHeight: 1.7,
+                    lineHeight: 1.75,
                     color: "rgba(255,255,255,0.55)",
-                    marginBottom: "20px",
-                    maxWidth: "520px",
+                    marginBottom: "28px",
                   }}
                 >
                   {project.body}
                 </p>
+
+                {/* Divider */}
+                <div
+                  style={{
+                    height: "1px",
+                    background: "rgba(255,255,255,0.07)",
+                    marginBottom: "20px",
+                  }}
+                />
+
+                {/* CTA */}
                 <a
                   href={project.link}
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "6px",
-                    fontSize: "15px",
-                    color: "#fff",
+                    fontSize: "14px",
+                    color: "rgba(255,255,255,0.7)",
                     textDecoration: "none",
                     fontWeight: 500,
-                    borderBottom: "1px solid rgba(255,255,255,0.2)",
-                    paddingBottom: "2px",
+                    letterSpacing: "0.01em",
+                    transition: "color 0.2s",
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
                 >
-                  See full project <span style={{ fontSize: "18px" }}>↗</span>
+                  See full project <span style={{ fontSize: "16px" }}>↗</span>
                 </a>
-                <div
-                  style={{
-                    marginTop: "24px",
-                    height: "1px",
-                    background: "rgba(255,255,255,0.08)",
-                  }}
-                />
               </div>
             )}
           />
