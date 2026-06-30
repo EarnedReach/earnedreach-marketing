@@ -123,3 +123,24 @@
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
 }
+
+/* ── Services section responsive layout ── */
+.services-mobile-strip {
+  display: none !important;
+}
+.services-desktop-grid {
+  display: grid !important;
+}
+
+@media (max-width: 767px) {
+  .services-mobile-strip {
+    display: flex !important;
+    padding-left: 24px;
+  }
+  .services-mobile-strip::-webkit-scrollbar {
+    display: none;
+  }
+  .services-desktop-grid {
+    display: none !important;
+  }
+}

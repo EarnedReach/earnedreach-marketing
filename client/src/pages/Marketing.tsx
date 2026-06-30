@@ -205,6 +205,86 @@ function SwipeCards<T>({
   );
 }
 
+// ─── Service Card ─────────────────────────────────────────────────────────────────────────────────
+function ServiceCard({ service }: { service: Service }) {
+  return (
+    <div
+      style={{
+        background: "rgba(255,255,255,0.04)",
+        backdropFilter: "blur(20px)",
+        border: "1px solid rgba(255,255,255,0.07)",
+        borderRadius: "20px",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "stretch",
+        minHeight: "200px",
+        height: "100%",
+      }}
+    >
+      {/* Text — left side */}
+      <div
+        style={{
+          flex: 1,
+          padding: "28px 16px 28px 28px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+        }}
+      >
+        <h3
+          style={{
+            fontSize: "clamp(17px, 2vw, 22px)",
+            fontWeight: 700,
+            letterSpacing: "-0.02em",
+            marginBottom: "12px",
+            color: "#fff",
+            lineHeight: 1.2,
+          }}
+        >
+          {service.title}
+        </h3>
+        <p
+          style={{
+            fontSize: "clamp(12px, 1.2vw, 14px)",
+            lineHeight: 1.7,
+            color: "rgba(255,255,255,0.5)",
+            margin: 0,
+          }}
+        >
+          {service.body}
+        </p>
+      </div>
+
+      {/* Illustration — right side */}
+      <div
+        style={{
+          width: "160px",
+          flexShrink: 0,
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "center",
+          overflow: "hidden",
+          padding: "12px 12px 0",
+        }}
+      >
+        <img
+          src={service.img}
+          alt={service.title}
+          style={{
+            width: "100%",
+            height: "160px",
+            objectFit: "contain",
+            objectPosition: "bottom center",
+            filter: "drop-shadow(0 0 20px rgba(107,159,255,0.35))",
+          }}
+          draggable={false}
+        />
+      </div>
+    </div>
+  );
+}
+
 // ─── Projects Section (Nitid-style auto-rotating) ────────────────────────────
 function ProjectsSection() {
   const [active, setActive] = useState(0);
@@ -827,7 +907,7 @@ export default function Marketing() {
         style={{
           position: "relative",
           zIndex: 1,
-          padding: "100px 24px",
+          padding: "100px 24px 100px",
         }}
       >
         {/* Heading */}
@@ -849,95 +929,57 @@ export default function Marketing() {
           Work directly with the founders of EarnedReach
         </h2>
 
-        {/* Bento grid */}
+        {/* Desktop: bento grid | Mobile: horizontal swipe */}
         <div
           className="reveal"
           style={{
             ...revealStyle,
             transitionDelay: "0.1s",
-            maxWidth: "1000px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "16px",
           }}
         >
-          {SERVICES.map((service, i) => (
-            <div
-              key={i}
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: "20px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "stretch",
-                minHeight: "200px",
-              }}
-            >
-              {/* Text — left side */}
-              <div
-                style={{
-                  flex: 1,
-                  padding: "28px 16px 28px 28px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-start",
-                }}
-              >
-                <h3
-                  style={{
-                    fontSize: "clamp(17px, 2vw, 22px)",
-                    fontWeight: 700,
-                    letterSpacing: "-0.02em",
-                    marginBottom: "12px",
-                    color: "#fff",
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {service.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "clamp(12px, 1.2vw, 14px)",
-                    lineHeight: 1.7,
-                    color: "rgba(255,255,255,0.5)",
-                    margin: 0,
-                  }}
-                >
-                  {service.body}
-                </p>
-              </div>
+          {/* Desktop grid */}
+          <div
+            style={{
+              maxWidth: "1000px",
+              margin: "0 auto",
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "16px",
+            }}
+            className="services-desktop-grid"
+          >
+            {SERVICES.map((service, i) => (
+              <ServiceCard key={i} service={service} />
+            ))}
+          </div>
 
-              {/* Illustration — right side */}
+          {/* Mobile swipe strip */}
+          <div
+            className="services-mobile-strip"
+            style={{
+              display: "flex",
+              overflowX: "auto",
+              gap: "14px",
+              paddingBottom: "12px",
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            {SERVICES.map((service, i) => (
               <div
+                key={i}
                 style={{
-                  width: "160px",
-                  flexShrink: 0,
-                  display: "flex",
-                  alignItems: "flex-end",
-                  justifyContent: "center",
-                  overflow: "hidden",
-                  padding: "12px 12px 0",
+                  flex: "0 0 82vw",
+                  maxWidth: "340px",
+                  scrollSnapAlign: "start",
                 }}
               >
-                <img
-                  src={service.img}
-                  alt={service.title}
-                  style={{
-                    width: "100%",
-                    height: "160px",
-                    objectFit: "contain",
-                    objectPosition: "bottom center",
-                    filter: "drop-shadow(0 0 20px rgba(107,159,255,0.35))",
-                  }}
-                  draggable={false}
-                />
+                <ServiceCard service={service} />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
