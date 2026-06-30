@@ -18,22 +18,22 @@ interface Project {
 const SERVICES: Service[] = [
   {
     title: "Content Strategy",
-    body: "Every piece of content should have a purpose. We build the system behind your content so every post, video, and series is working toward something — trust, authority, and booked calls.",
+    body: "Most founders post and hope. We don't do that. We map out exactly what you need to say, when to say it, and why — so your content builds momentum instead of just filling a feed.",
     img: "/illus-strategy.png",
   },
   {
     title: "Brand Identity",
-    body: "A viral post means nothing if people forget you in seconds. We make sure your content has a consistent look, tone, and message that turns attention into authority.",
+    body: "People don't remember content. They remember how it made them feel. We shape the visual language and tone of your brand so that every piece you put out is instantly recognisable as yours.",
     img: "/illus-storytelling.png",
   },
   {
     title: "Full Production",
-    body: "From concept to final cut. We handle the creative direction, filming, and editing so you show up with content that actually reflects the quality of what you do.",
+    body: "Shot on the Sony FX3. Edited with intention. We handle everything from pre-production to the final cut — so what ends up online actually looks like the standard you hold yourself to.",
     img: "/illus-production.png",
   },
   {
     title: "One Time Projects",
-    body: "Not every brand needs a retainer. Some just need one great piece of work — a brand film, a series, a campaign. We take on selected projects that are genuinely exciting and worth doing right.",
+    body: "Sometimes you just need one thing done properly. A brand film. A launch video. A content series. We take on a small number of standalone projects each quarter — the ones worth doing well.",
     img: "/illus-content.png",
   },
 ];
