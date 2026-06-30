@@ -52,10 +52,10 @@ const PROJECTS: Project[] = [
     link: "#",
   },
   {
-    title: "MOF Content Sprint",
+    title: "Michael Jordan",
     tag: "SF Growth",
-    body: "We rebuilt a coaching brand's entire short-form content system in 30 days. The result: 3x saves, 2x DMs, and a fully booked calendar.",
-    link: "#",
+    body: "We repurposed Michael's long-form YouTube content into weeks of short-form — more reach, zero extra effort. The result: a consistent presence that builds trust, credibility, and likeness at scale.",
+    link: "https://www.instagram.com/reel/DRu95ezDix6/?igsh=YWl4c3B4bDYzdWh2",
   },
 ];
 
