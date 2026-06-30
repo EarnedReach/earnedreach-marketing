@@ -329,7 +329,9 @@ function ProjectsSection() {
             ? project.tag.length > 10
               ? "clamp(36px, 9vw, 52px)"
               : "clamp(52px, 14vw, 72px)"
-            : "clamp(60px, 8vw, 120px)",
+            : project.tag.length > 10
+              ? "clamp(40px, 5vw, 72px)"
+              : "clamp(60px, 8vw, 120px)",
           fontWeight: 700,
           letterSpacing: "-0.05em",
           lineHeight: 1,
