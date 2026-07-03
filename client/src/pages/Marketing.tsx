@@ -965,27 +965,6 @@ export default function Marketing() {
           >
             David and PJ realised that the founders who win online aren't the loudest — they're the ones with the clearest story. So they built a system to find it, film it, and put it in front of the right people.
           </p>
-
-          {/* Team photo placeholder */}
-          <div
-            style={{
-              marginTop: "32px",
-              borderRadius: "14px",
-              overflow: "hidden",
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.06)",
-              height: "220px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "rgba(255,255,255,0.2)",
-              fontSize: "13px",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-            }}
-          >
-            Team Photo Coming Soon
-          </div>
         </div>
       </section>
 
