@@ -1461,7 +1461,7 @@ export default function Marketing() {
                 </p>
                 {[
                   { label: "Get Started ↗", href: "https://tally.so/r/PdgPKP", external: true },
-                  { label: "Instagram ↗", href: "https://instagram.com/earnedreach", external: true },
+                  { label: "Instagram ↗", href: "https://www.instagram.com/EarnedReach", external: true },
                   { label: "Join our team ↗", href: "https://tally.so/r/44qEXr", external: true },
                 ].map((link) => (
                   <a
