@@ -107,6 +107,7 @@ function PillNav({ active }: { active: string }) {
                 : "transparent",
               transition: "all 0.2s ease",
               letterSpacing: "0.01em",
+              whiteSpace: "nowrap" as const,
             }}
           >
             {item}
