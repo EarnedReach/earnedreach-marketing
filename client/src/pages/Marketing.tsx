@@ -907,68 +907,64 @@ export default function Marketing() {
 
       {/* ── ABOUT US ─────────────────────────────────────────────────────── */}
       <section id="about-us" style={{ ...sectionStyle(), zIndex: 1 }}>
+        <h2
+          className="reveal"
+          style={{
+            ...revealStyle,
+            fontSize: "clamp(32px, 6vw, 56px)",
+            fontWeight: 700,
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em",
+            color: "#6b9fff",
+            marginBottom: "40px",
+          }}
+        >
+          Where attention meets<br />intention. Your story,<br />seen by the right eyes.
+        </h2>
+
+        {/* Founders card */}
         <div
           className="reveal"
           style={{
             ...revealStyle,
-            display: "flex",
-            flexDirection: "row" as const,
-            gap: "60px",
-            alignItems: "flex-start",
+            background: "rgba(255,255,255,0.04)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            borderRadius: "20px",
+            padding: "36px",
+            transitionDelay: "0.15s",
           }}
         >
-          {/* Left — heading */}
-          <div style={{ flex: "0 0 auto", maxWidth: "340px" }}>
-            <h2
-              style={{
-                fontSize: "clamp(28px, 4vw, 48px)",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                letterSpacing: "-0.03em",
-                color: "#6b9fff",
-                margin: 0,
-              }}
-            >
-              Where attention meets intention. Your story, seen by the right eyes.
-            </h2>
-          </div>
-
-          {/* Right — founders text */}
-          <div style={{ flex: "1 1 0", minWidth: 0 }}>
-            <h3
-              style={{
-                fontSize: "20px",
-                fontWeight: 700,
-                letterSpacing: "-0.02em",
-                marginBottom: "16px",
-                color: "#fff",
-                marginTop: 0,
-              }}
-            >
-              The Founders
-            </h3>
-            <p
-              style={{
-                fontSize: "16px",
-                lineHeight: 1.7,
-                color: "rgba(255,255,255,0.6)",
-                marginBottom: "20px",
-                marginTop: 0,
-              }}
-            >
-              EarnedReach was founded by David and PJ — two filmmakers who got tired of watching great founders stay invisible. Combining expertise in editing, cinematography, and content strategy, they built a studio that treats every brand like a story worth telling.
-            </p>
-            <p
-              style={{
-                fontSize: "16px",
-                lineHeight: 1.7,
-                color: "rgba(255,255,255,0.6)",
-                margin: 0,
-              }}
-            >
-              David and PJ realised that the founders who win online aren't the loudest — they're the ones with the clearest story. So they built a system to find it, film it, and put it in front of the right people.
-            </p>
-          </div>
+          <h3
+            style={{
+              fontSize: "28px",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              marginBottom: "16px",
+              color: "#fff",
+            }}
+          >
+            The Founders
+          </h3>
+          <p
+            style={{
+              fontSize: "16px",
+              lineHeight: 1.7,
+              color: "rgba(255,255,255,0.6)",
+              marginBottom: "20px",
+            }}
+          >
+            EarnedReach was founded by David and PJ — two filmmakers who got tired of watching great founders stay invisible. Combining expertise in editing, cinematography, and content strategy, they built a studio that treats every brand like a story worth telling.
+          </p>
+          <p
+            style={{
+              fontSize: "16px",
+              lineHeight: 1.7,
+              color: "rgba(255,255,255,0.6)",
+            }}
+          >
+            David and PJ realised that the founders who win online aren't the loudest — they're the ones with the clearest story. So they built a system to find it, film it, and put it in front of the right people.
+          </p>
         </div>
       </section>
 
