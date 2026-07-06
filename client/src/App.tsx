@@ -8,6 +8,7 @@ import Marketing from "./pages/Marketing";
 import Journey from "./pages/Journey";
 import Philosophy from "./pages/Philosophy";
 import Apply from "./pages/Apply";
+import Dashboard from "./pages/Dashboard";
 
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Route path={"/journey"} component={Journey} />
       <Route path={"/philosophy"} component={Philosophy} />
       <Route path={"/apply"} component={Apply} />
+      <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
