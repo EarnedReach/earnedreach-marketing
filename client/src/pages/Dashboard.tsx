@@ -95,7 +95,18 @@ function useIsMobile() {
   return m;
 }
 function useLocalState<T>(key: string, seed: T): [T, React.Dispatch<React.SetStateAction<T>>] {
-  const [s, set] = useState<T>(() => { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : seed; } catch { return seed; } });
+  const [s, set] = useState<T>(() => {
+    try {
+      const v = localStorage.getItem(key);
+      if (!v) return seed;
+      const parsed = JSON.parse(v);
+      // Migrate: ensure every client has a log array
+      if (key === "er_clients" && Array.isArray(parsed)) {
+        return parsed.map((c: Client) => ({ log: [], ...c })) as unknown as T;
+      }
+      return parsed;
+    } catch { return seed; }
+  });
   useEffect(() => { localStorage.setItem(key, JSON.stringify(s)); }, [key, s]);
   return [s, set];
 }
