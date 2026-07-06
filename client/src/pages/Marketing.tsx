@@ -883,7 +883,7 @@ export default function Marketing() {
             Join our team.
           </a>
           <a
-            href="https://earnedreach-portal.manus.space"
+            href="https://earnedreach-portal.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -1494,7 +1494,7 @@ export default function Marketing() {
                   { label: "Get Started ↗", href: "https://tally.so/r/PdgPKP", external: true },
                   { label: "Instagram ↗", href: "https://www.instagram.com/EarnedReach", external: true },
                   { label: "Join our team ↗", href: "https://tally.so/r/44qEXr", external: true },
-                  { label: "With us? →", href: "https://earnedreach-portal.manus.space", external: true },
+                  { label: "With us? →", href: "https://earnedreach-portal.vercel.app", external: true },
                 ].map((link) => (
                   <a
                     key={link.label}
