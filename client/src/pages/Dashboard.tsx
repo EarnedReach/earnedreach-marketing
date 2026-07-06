@@ -206,7 +206,7 @@ function GhostBtn({ onClick, children, danger }: { onClick: () => void; children
       color: danger ? PALETTE.red : PALETTE.muted,
       fontSize: "12px", cursor: "pointer", fontWeight: 500,
       transition: "border-color 0.15s, color 0.15s",
-    }}>{children}</GhostBtn>
+    }}>{children}</button>
   );
 }
 
