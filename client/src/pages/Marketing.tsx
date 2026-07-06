@@ -629,6 +629,27 @@ function ProjectsSection() {
 export default function Marketing() {
   const [activeNav, setActiveNav] = useState("Home");
   const sectionsRef = useRef<{ [key: string]: HTMLElement | null }>({});
+
+  // Rotating hero subtitle
+  const SUBTITLES = [
+    "Every founder has a story. Every brand has a vision. We bring both to life and put them in front of the right audience.",
+    "Most founders post and hope. We build content that actually moves people — and puts you in front of the right eyes.",
+    "Your story is already there. We find it, film it, and make sure the right people can't look away.",
+    "Great content doesn't happen by accident. It's built with intention — and we've made it our only job.",
+  ];
+  const [subtitleIndex, setSubtitleIndex] = useState(0);
+  const [subtitleVisible, setSubtitleVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSubtitleVisible(false);
+      setTimeout(() => {
+        setSubtitleIndex((i) => (i + 1) % SUBTITLES.length);
+        setSubtitleVisible(true);
+      }, 400);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
   // Track active section for pill nav
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -806,8 +827,16 @@ export default function Marketing() {
             zIndex: 1,
           }}
         >
-          Every founder has a story. Every brand has a vision.
-          We bring both to life and put them in front of the right audience.
+          <span
+            style={{
+              display: "block",
+              opacity: subtitleVisible ? 1 : 0,
+              transform: subtitleVisible ? "translateY(0)" : "translateY(8px)",
+              transition: "opacity 0.4s ease, transform 0.4s ease",
+            }}
+          >
+            {SUBTITLES[subtitleIndex]}
+          </span>
         </p>
 
         {/* CTAs */}
