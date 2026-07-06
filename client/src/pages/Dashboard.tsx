@@ -1,18 +1,34 @@
 import { useState, useEffect, useRef } from "react";
 
+// ─── Types ────────────────────────────────────────────────────────────────────
 type ClientStatus = "Prospect" | "Active" | "Delivered" | "On Hold";
 type TaskPriority = "High" | "Medium" | "Low";
 type TaskStatus = "To Do" | "In Progress" | "Done";
 type ContentStatus = "Raw Footage" | "In Edit" | "Review" | "Delivered";
+type EnquiryStatus = "New" | "Contacted" | "Qualified" | "Closed";
 
-interface Client { id: string; name: string; service: string; status: ClientStatus; startDate: string; value: string; notes: string; }
-interface Task { id: string; title: string; client: string; priority: TaskPriority; status: TaskStatus; dueDate: string; assignee: "David" | "PJ" | "Both"; }
-interface ContentItem { id: string; title: string; client: string; type: string; status: ContentStatus; dueDate: string; notes: string; }
-interface Enquiry { id: string; name: string; email: string; phone: string; social: string; project: string; date: string; status: "New" | "Contacted" | "Qualified" | "Closed"; }
+interface Client {
+  id: string; name: string; service: string; status: ClientStatus;
+  startDate: string; value: string; notes: string;
+  log: { id: string; text: string; ts: string }[];
+}
+interface Task {
+  id: string; title: string; client: string; priority: TaskPriority;
+  status: TaskStatus; dueDate: string; assignee: "David" | "PJ" | "Both";
+}
+interface ContentItem {
+  id: string; title: string; client: string; type: string;
+  status: ContentStatus; dueDate: string; notes: string;
+}
+interface Enquiry {
+  id: string; name: string; email: string; phone: string; social: string;
+  project: string; date: string; status: EnquiryStatus; tallyId?: string;
+}
 
+// ─── Seeds ────────────────────────────────────────────────────────────────────
 const SEED_CLIENTS: Client[] = [
-  { id: "1", name: "Elijah Fleming", service: "Brand Film", status: "Delivered", startDate: "2025-05-01", value: "£2,500", notes: "Fitness brand film. Delivered to Instagram." },
-  { id: "2", name: "Michael Jordan", service: "YouTube Series + SF Growth", status: "Active", startDate: "2025-04-15", value: "£1,800/mo", notes: "Ongoing retainer. YouTube series + SF repurposing." },
+  { id: "1", name: "Elijah Fleming", service: "Brand Film", status: "Delivered", startDate: "2025-05-01", value: "£2,500", notes: "Fitness brand film. Delivered to Instagram.", log: [] },
+  { id: "2", name: "Michael Jordan", service: "YouTube Series + SF Growth", status: "Active", startDate: "2025-04-15", value: "£1,800/mo", notes: "Ongoing retainer. YouTube series + SF repurposing.", log: [] },
 ];
 const SEED_TASKS: Task[] = [
   { id: "1", title: "Edit Michael Jordan EP3", client: "Michael Jordan", priority: "High", status: "In Progress", dueDate: "2025-07-10", assignee: "PJ" },
@@ -25,10 +41,15 @@ const SEED_CONTENT: ContentItem[] = [
   { id: "2", title: "MJ EP2 — SF Clips (x6)", client: "Michael Jordan", type: "Short Form", status: "Raw Footage", dueDate: "2025-07-08", notes: "Clips to be cut from EP2 timeline." },
   { id: "3", title: "Elijah Brand Film — Final", client: "Elijah Fleming", type: "Brand Film", status: "Delivered", dueDate: "2025-06-20", notes: "Delivered. Live on Instagram." },
 ];
-const SEED_ENQUIRIES: Enquiry[] = [
-  { id: "1", name: "Example Lead", email: "lead@example.com", phone: "+44 7700 000000", social: "@examplelead", project: "Looking for a brand film for my fitness coaching brand.", date: "2025-07-06", status: "New" },
-];
+const SEED_ENQUIRIES: Enquiry[] = [];
 
+// ─── Tally config ─────────────────────────────────────────────────────────────
+const TALLY_KEY = "tly-KYMq88OTmI0tYcS2iBKXwcARisCCNlCs";
+const TALLY_FORM_ID = "PdgPKP";
+// Question IDs from the Get Started form
+const Q = { firstName: "GLg6lo", lastName: "OLgaG8", phone: "VVdGJv", email: "PlgpOb", social: "ELgKWN", project: "rVp5Pv" };
+
+// ─── Colours ──────────────────────────────────────────────────────────────────
 const SC: Record<string, string> = {
   Prospect: "#6b9fff", Active: "#4ade80", Delivered: "#a78bfa", "On Hold": "#f59e0b",
   "To Do": "#6b9fff", "In Progress": "#f59e0b", Done: "#4ade80",
@@ -37,6 +58,23 @@ const SC: Record<string, string> = {
 };
 const PC: Record<string, string> = { High: "#f87171", Medium: "#f59e0b", Low: "#4ade80" };
 
+// ─── Cycle maps ───────────────────────────────────────────────────────────────
+const TASK_CYCLE: TaskStatus[] = ["To Do", "In Progress", "Done"];
+const CONTENT_CYCLE: ContentStatus[] = ["Raw Footage", "In Edit", "Review", "Delivered"];
+const ENQ_CYCLE: EnquiryStatus[] = ["New", "Contacted", "Qualified", "Closed"];
+
+function cycleNext<T>(arr: T[], current: T): T {
+  const i = arr.indexOf(current);
+  return arr[(i + 1) % arr.length];
+}
+
+// ─── Overdue check ────────────────────────────────────────────────────────────
+function isOverdue(dueDate: string, done: boolean): boolean {
+  if (done || !dueDate) return false;
+  return new Date(dueDate) < new Date(new Date().toDateString());
+}
+
+// ─── Hooks ────────────────────────────────────────────────────────────────────
 function useIsMobile() {
   const [m, setM] = useState(() => window.innerWidth < 640);
   useEffect(() => { const h = () => setM(window.innerWidth < 640); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, []);
@@ -49,20 +87,42 @@ function useLocalState<T>(key: string, seed: T): [T, React.Dispatch<React.SetSta
   return [s, set];
 }
 
-function Badge({ label, colour }: { label: string; colour: string }) {
-  return <span style={{ display: "inline-block", padding: "2px 9px", borderRadius: "999px", fontSize: "11px", fontWeight: 600, background: colour + "22", color: colour, border: `1px solid ${colour}44`, whiteSpace: "nowrap" }}>{label}</span>;
+// ─── UI primitives ────────────────────────────────────────────────────────────
+function Badge({ label, colour, onClick }: { label: string; colour: string; onClick?: () => void }) {
+  return (
+    <span
+      onClick={onClick}
+      title={onClick ? "Click to cycle status" : undefined}
+      style={{
+        display: "inline-block", padding: "2px 9px", borderRadius: "999px", fontSize: "11px",
+        fontWeight: 600, background: colour + "22", color: colour, border: `1px solid ${colour}44`,
+        whiteSpace: "nowrap", cursor: onClick ? "pointer" : "default",
+        userSelect: "none",
+      }}
+    >{label}{onClick ? " ↻" : ""}</span>
+  );
 }
 
-function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
-  return <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px", ...style }}>{children}</div>;
+function Card({ children, style, overdue }: { children: React.ReactNode; style?: React.CSSProperties; overdue?: boolean }) {
+  return (
+    <div style={{
+      background: overdue ? "rgba(248,113,113,0.06)" : "rgba(255,255,255,0.04)",
+      border: overdue ? "1px solid rgba(248,113,113,0.25)" : "1px solid rgba(255,255,255,0.08)",
+      borderRadius: "14px", padding: "16px", ...style,
+    }}>{children}</div>
+  );
 }
 
 function Sec({ children }: { children: React.ReactNode }) {
   return <h2 style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: "12px", marginTop: 0 }}>{children}</h2>;
 }
 
-function PBtn({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
-  return <button onClick={onClick} style={{ padding: "8px 16px", borderRadius: "9px", border: "none", background: "linear-gradient(135deg,#3b5bff,#6b9fff)", color: "#fff", fontSize: "13px", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{children}</button>;
+function PBtn({ onClick, children, loading }: { onClick: () => void; children: React.ReactNode; loading?: boolean }) {
+  return (
+    <button onClick={onClick} disabled={loading} style={{ padding: "8px 16px", borderRadius: "9px", border: "none", background: loading ? "rgba(107,159,255,0.4)" : "linear-gradient(135deg,#3b5bff,#6b9fff)", color: "#fff", fontSize: "13px", fontWeight: 600, cursor: loading ? "default" : "pointer", whiteSpace: "nowrap" }}>
+      {loading ? "Syncing…" : children}
+    </button>
+  );
 }
 
 function GBtn({ onClick, children, danger }: { onClick: () => void; children: React.ReactNode; danger?: boolean }) {
@@ -76,13 +136,14 @@ const div5: React.CSSProperties = { borderBottom: "1px solid rgba(255,255,255,0.
 
 function uid() { return Math.random().toString(36).slice(2, 10); }
 
+// ─── Tab types ────────────────────────────────────────────────────────────────
 type Tab = "overview" | "clients" | "tasks" | "content" | "enquiries";
 const TABS: { id: Tab; label: string }[] = [
   { id: "overview", label: "Overview" }, { id: "clients", label: "Clients" },
   { id: "tasks", label: "Tasks" }, { id: "content", label: "Content" }, { id: "enquiries", label: "Enquiries" },
 ];
 
-// ── Password Gate ──
+// ─── Password Gate ────────────────────────────────────────────────────────────
 function Gate({ onUnlock }: { onUnlock: () => void }) {
   const [v, setV] = useState(""); const [err, setErr] = useState(false);
   const go = () => { if (v === "earnedreach2025") { sessionStorage.setItem("er_dash_auth", "1"); onUnlock(); } else { setErr(true); setTimeout(() => setErr(false), 1200); } };
@@ -101,7 +162,7 @@ function Gate({ onUnlock }: { onUnlock: () => void }) {
   );
 }
 
-// ── Modal ──
+// ─── Modal ────────────────────────────────────────────────────────────────────
 function Modal({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
   return (
     <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", zIndex: 200, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
@@ -113,9 +174,9 @@ function Modal({ children, onClose }: { children: React.ReactNode; onClose: () =
   );
 }
 
-// ── Forms ──
-function ClientForm({ initial, onSave, onClose, }: { initial?: Client; onSave: (c: Client) => void; onClose: () => void }) {
-  const [f, setF] = useState<Client>(initial || { id: uid(), name: "", service: "", status: "Prospect", startDate: "", value: "", notes: "" });
+// ─── Forms ────────────────────────────────────────────────────────────────────
+function ClientForm({ initial, onSave, onClose }: { initial?: Client; onSave: (c: Client) => void; onClose: () => void }) {
+  const [f, setF] = useState<Client>(initial || { id: uid(), name: "", service: "", status: "Prospect", startDate: "", value: "", notes: "", log: [] });
   const u = (k: keyof Client) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setF(p => ({ ...p, [k]: e.target.value }));
   return <div>
     <h3 style={{ fontSize: "16px", fontWeight: 700, margin: "0 0 16px" }}>{initial ? "Edit Client" : "Add Client"}</h3>
@@ -179,7 +240,43 @@ function EnquiryForm({ initial, onSave, onClose }: { initial?: Enquiry; onSave: 
   </div>;
 }
 
-// ── Main ──
+// ─── Client Notes Log ─────────────────────────────────────────────────────────
+function ClientLog({ client, onUpdate, onClose }: { client: Client; onUpdate: (c: Client) => void; onClose: () => void }) {
+  const [note, setNote] = useState("");
+  const addNote = () => {
+    if (!note.trim()) return;
+    const entry = { id: uid(), text: note.trim(), ts: new Date().toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) };
+    onUpdate({ ...client, log: [entry, ...client.log] });
+    setNote("");
+  };
+  return (
+    <div>
+      <h3 style={{ fontSize: "16px", fontWeight: 700, margin: "0 0 4px" }}>{client.name}</h3>
+      <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", margin: "0 0 18px" }}>Activity log</p>
+      <textarea
+        value={note} onChange={e => setNote(e.target.value)}
+        onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); addNote(); } }}
+        placeholder="Add a note… (Enter to save)"
+        style={{ ...iStyle, minHeight: "72px", resize: "vertical", marginBottom: "8px" }}
+      />
+      <button style={sBtn} onClick={addNote}>Add Note</button>
+      <div style={{ marginTop: "18px" }}>
+        {client.log.length === 0
+          ? <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "13px" }}>No notes yet</p>
+          : client.log.map(entry => (
+            <div key={entry.id} style={{ ...div5, display: "flex", justifyContent: "space-between", gap: "10px" }}>
+              <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.8)", lineHeight: 1.5, flex: 1 }}>{entry.text}</div>
+              <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", flexShrink: 0, marginTop: "2px" }}>{entry.ts}</div>
+            </div>
+          ))
+        }
+      </div>
+      <button style={{ ...sBtn, background: "transparent", border: "1px solid rgba(255,255,255,0.1)", marginTop: "12px" }} onClick={onClose}>Close</button>
+    </div>
+  );
+}
+
+// ─── Main Dashboard ───────────────────────────────────────────────────────────
 export default function Dashboard() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem("er_dash_auth") === "1");
   const [tab, setTab] = useState<Tab>("overview");
@@ -190,8 +287,18 @@ export default function Dashboard() {
   const [tasks, setTasks] = useLocalState<Task[]>("er_tasks", SEED_TASKS);
   const [content, setContent] = useLocalState<ContentItem[]>("er_content", SEED_CONTENT);
   const [enquiries, setEnquiries] = useLocalState<Enquiry[]>("er_enquiries", SEED_ENQUIRIES);
+  const [syncedIds, setSyncedIds] = useLocalState<string[]>("er_tally_synced", []);
 
-  type MS = { type: "client"; data?: Client } | { type: "task"; data?: Task } | { type: "content"; data?: ContentItem } | { type: "enquiry"; data?: Enquiry } | null;
+  const [syncing, setSyncing] = useState(false);
+  const [syncMsg, setSyncMsg] = useState("");
+
+  type MS =
+    | { type: "client"; data?: Client }
+    | { type: "task"; data?: Task }
+    | { type: "content"; data?: ContentItem }
+    | { type: "enquiry"; data?: Enquiry }
+    | { type: "log"; data: Client }
+    | null;
   const [modal, setModal] = useState<MS>(null);
 
   useEffect(() => {
@@ -201,11 +308,48 @@ export default function Dashboard() {
 
   if (!authed) return <Gate onUnlock={() => setAuthed(true)} />;
 
+  // ── Tally Sync ──
+  const syncTally = async () => {
+    setSyncing(true);
+    setSyncMsg("");
+    try {
+      const res = await fetch(`https://api.tally.so/forms/${TALLY_FORM_ID}/submissions?limit=100`, {
+        headers: { Authorization: `Bearer ${TALLY_KEY}` },
+      });
+      const data = await res.json();
+      const subs: { id: string; submittedAt: string; responses: { questionId: string; answer: string }[] }[] = data.submissions || [];
+      const newOnes = subs.filter((s) => !syncedIds.includes(s.id));
+      if (newOnes.length === 0) { setSyncMsg("Already up to date"); setSyncing(false); return; }
+
+      const toAdd: Enquiry[] = newOnes.map((s) => {
+        const get = (qId: string) => s.responses.find((r) => r.questionId === qId)?.answer || "";
+        return {
+          id: uid(),
+          tallyId: s.id,
+          name: `${get(Q.firstName)} ${get(Q.lastName)}`.trim(),
+          email: get(Q.email),
+          phone: get(Q.phone),
+          social: get(Q.social),
+          project: get(Q.project),
+          date: s.submittedAt.split("T")[0],
+          status: "New",
+        };
+      });
+
+      setEnquiries((prev) => [...toAdd, ...prev]);
+      setSyncedIds((prev) => [...prev, ...newOnes.map((s) => s.id)]);
+      setSyncMsg(`${toAdd.length} new enquir${toAdd.length === 1 ? "y" : "ies"} synced`);
+    } catch {
+      setSyncMsg("Sync failed — check connection");
+    }
+    setSyncing(false);
+    setTimeout(() => setSyncMsg(""), 4000);
+  };
+
   const aC = clients.filter(c => c.status === "Active").length;
   const pT = tasks.filter(t => t.status !== "Done").length;
   const iC = content.filter(c => c.status !== "Delivered").length;
   const nE = enquiries.filter(e => e.status === "New").length;
-
   const pad = isMobile ? "18px 16px" : "24px 32px";
 
   return (
@@ -220,13 +364,11 @@ export default function Dashboard() {
           </div>
           <a href="/" style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", textDecoration: "none" }}>← Site</a>
         </div>
-        {/* Tabs — horizontally scrollable */}
         <div ref={navRef} style={{ display: "flex", gap: "2px", overflowX: "auto", scrollbarWidth: "none", padding: isMobile ? "8px 12px 0" : "8px 28px 0", WebkitOverflowScrolling: "touch" }}>
           {TABS.map(t => (
             <button key={t.id} data-active={tab === t.id} onClick={() => setTab(t.id)} style={{
               padding: "7px 14px", borderRadius: "999px 999px 0 0", border: "none", cursor: "pointer", fontSize: "13px",
-              fontWeight: tab === t.id ? 600 : 400,
-              color: tab === t.id ? "#fff" : "rgba(255,255,255,0.4)",
+              fontWeight: tab === t.id ? 600 : 400, color: tab === t.id ? "#fff" : "rgba(255,255,255,0.4)",
               background: tab === t.id ? "rgba(255,255,255,0.08)" : "transparent",
               borderBottom: tab === t.id ? "2px solid #6b9fff" : "2px solid transparent",
               flexShrink: 0, transition: "all 0.15s",
@@ -238,13 +380,12 @@ export default function Dashboard() {
       {/* Content */}
       <div style={{ padding: pad, maxWidth: "1100px", margin: "0 auto" }}>
 
-        {/* OVERVIEW */}
+        {/* ── OVERVIEW ── */}
         {tab === "overview" && <>
           <div style={{ marginBottom: "20px" }}>
             <h1 style={{ fontSize: isMobile ? "19px" : "22px", fontWeight: 700, margin: "0 0 3px" }}>Overview</h1>
             <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "12px", margin: 0 }}>{new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
           </div>
-          {/* Stats 2×2 */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "18px" }}>
             {[["Active Clients", String(aC), "#4ade80"], ["Outstanding Tasks", String(pT), "#f59e0b"], ["Content In Progress", String(iC), "#6b9fff"], ["New Enquiries", String(nE), "#a78bfa"]].map(([l, v, c]) => (
               <div key={l} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "13px", padding: "14px 16px" }}>
@@ -253,29 +394,29 @@ export default function Dashboard() {
               </div>
             ))}
           </div>
-          {/* Panels — stacked on mobile, 2-col on desktop */}
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
-            {/* Outstanding tasks */}
             <Card>
               <Sec>Outstanding Tasks</Sec>
               {tasks.filter(t => t.status !== "Done").length === 0
                 ? <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "13px", margin: 0 }}>All clear ✓</p>
-                : tasks.filter(t => t.status !== "Done").slice(0, 5).map((task, i, a) => (
-                  <div key={task.id} style={{ ...div5, ...(i === a.length - 1 ? { borderBottom: "none", paddingBottom: 0, marginBottom: 0 } : {}) }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
-                      <div style={{ minWidth: 0 }}>
-                        <div style={{ fontSize: "13px", fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{task.title}</div>
-                        <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", marginTop: "2px" }}>{task.client} · {task.dueDate}</div>
-                      </div>
-                      <div style={{ display: "flex", gap: "4px", flexShrink: 0 }}>
-                        <Badge label={task.priority} colour={PC[task.priority]} />
-                        <Badge label={task.assignee} colour="#6b9fff" />
+                : tasks.filter(t => t.status !== "Done").slice(0, 5).map((task, i, a) => {
+                  const od = isOverdue(task.dueDate, false);
+                  return (
+                    <div key={task.id} style={{ ...div5, ...(i === a.length - 1 ? { borderBottom: "none", paddingBottom: 0, marginBottom: 0 } : {}) }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
+                        <div style={{ minWidth: 0 }}>
+                          <div style={{ fontSize: "13px", fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: od ? "#f87171" : "#fff" }}>{od ? "⚠ " : ""}{task.title}</div>
+                          <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", marginTop: "2px" }}>{task.client} · {task.dueDate}</div>
+                        </div>
+                        <div style={{ display: "flex", gap: "4px", flexShrink: 0 }}>
+                          <Badge label={task.priority} colour={PC[task.priority]} />
+                          <Badge label={task.assignee} colour="#6b9fff" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
             </Card>
-            {/* Content in progress */}
             <Card>
               <Sec>Content In Progress</Sec>
               {content.filter(c => c.status !== "Delivered").length === 0
@@ -292,7 +433,6 @@ export default function Dashboard() {
                   </div>
                 ))}
             </Card>
-            {/* Active clients */}
             <Card>
               <Sec>Active Clients</Sec>
               {clients.filter(c => c.status === "Active").map((client, i, a) => (
@@ -307,7 +447,6 @@ export default function Dashboard() {
                 </div>
               ))}
             </Card>
-            {/* New enquiries */}
             <Card>
               <Sec>New Enquiries</Sec>
               {enquiries.filter(e => e.status === "New").length === 0
@@ -326,7 +465,7 @@ export default function Dashboard() {
           </div>
         </>}
 
-        {/* CLIENTS */}
+        {/* ── CLIENTS ── */}
         {tab === "clients" && <>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
             <h1 style={{ fontSize: isMobile ? "19px" : "22px", fontWeight: 700, margin: 0 }}>Clients</h1>
@@ -346,8 +485,14 @@ export default function Dashboard() {
                   <div style={{ fontSize: "14px", fontWeight: 700, color: "#4ade80", flexShrink: 0 }}>{c.value}</div>
                 </div>
                 {c.notes && <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", marginBottom: "10px" }}>{c.notes}</div>}
-                <div style={{ display: "flex", gap: "6px" }}>
+                {c.log.length > 0 && (
+                  <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)", marginBottom: "10px", borderLeft: "2px solid rgba(107,159,255,0.3)", paddingLeft: "10px" }}>
+                    {c.log[0].text} <span style={{ color: "rgba(255,255,255,0.2)" }}>· {c.log[0].ts}</span>
+                  </div>
+                )}
+                <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
                   <GBtn onClick={() => setModal({ type: "client", data: c })}>Edit</GBtn>
+                  <GBtn onClick={() => setModal({ type: "log", data: c })}>📝 Log ({c.log.length})</GBtn>
                   <GBtn danger onClick={() => setClients(p => p.filter(x => x.id !== c.id))}>Remove</GBtn>
                 </div>
               </Card>
@@ -355,7 +500,7 @@ export default function Dashboard() {
           </div>
         </>}
 
-        {/* TASKS */}
+        {/* ── TASKS ── */}
         {tab === "tasks" && <>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
             <h1 style={{ fontSize: isMobile ? "19px" : "22px", fontWeight: 700, margin: 0 }}>Outstanding Work</h1>
@@ -371,69 +516,95 @@ export default function Dashboard() {
                   <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>{filtered.length}</span>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {filtered.map(t => (
-                    <Card key={t.id} style={{ padding: "13px 14px" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px", marginBottom: "8px" }}>
-                        <div style={{ minWidth: 0 }}>
-                          <div style={{ fontSize: "13px", fontWeight: 500, marginBottom: "2px" }}>{t.title}</div>
-                          <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)" }}>{t.client} · {t.dueDate} · {t.assignee}</div>
+                  {filtered.map(t => {
+                    const od = isOverdue(t.dueDate, t.status === "Done");
+                    return (
+                      <Card key={t.id} style={{ padding: "13px 14px" }} overdue={od}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px", marginBottom: "8px" }}>
+                          <div style={{ minWidth: 0 }}>
+                            <div style={{ fontSize: "13px", fontWeight: 500, marginBottom: "2px", color: od ? "#f87171" : "#fff" }}>{od ? "⚠ " : ""}{t.title}</div>
+                            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)" }}>{t.client} · {t.dueDate} · {t.assignee}</div>
+                          </div>
+                          <div style={{ display: "flex", gap: "4px", flexShrink: 0 }}>
+                            <Badge label={t.priority} colour={PC[t.priority]} />
+                            <Badge
+                              label={t.status}
+                              colour={SC[t.status]}
+                              onClick={() => setTasks(p => p.map(x => x.id === t.id ? { ...x, status: cycleNext(TASK_CYCLE, x.status) } : x))}
+                            />
+                          </div>
                         </div>
-                        <Badge label={t.priority} colour={PC[t.priority]} />
-                      </div>
-                      <div style={{ display: "flex", gap: "6px" }}>
-                        <GBtn onClick={() => setModal({ type: "task", data: t })}>Edit</GBtn>
-                        <GBtn danger onClick={() => setTasks(p => p.filter(x => x.id !== t.id))}>Remove</GBtn>
-                      </div>
-                    </Card>
-                  ))}
+                        <div style={{ display: "flex", gap: "6px" }}>
+                          <GBtn onClick={() => setModal({ type: "task", data: t })}>Edit</GBtn>
+                          <GBtn danger onClick={() => setTasks(p => p.filter(x => x.id !== t.id))}>Remove</GBtn>
+                        </div>
+                      </Card>
+                    );
+                  })}
                 </div>
               </div>
             );
           })}
         </>}
 
-        {/* CONTENT */}
+        {/* ── CONTENT ── */}
         {tab === "content" && <>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
             <h1 style={{ fontSize: isMobile ? "19px" : "22px", fontWeight: 700, margin: 0 }}>Content Queue</h1>
             <PBtn onClick={() => setModal({ type: "content" })}>+ Add</PBtn>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {content.map(item => (
-              <Card key={item.id}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px", marginBottom: "6px" }}>
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "3px" }}>
-                      <span style={{ fontSize: "14px", fontWeight: 600 }}>{item.title}</span>
-                      <Badge label={item.status} colour={SC[item.status] || "#6b9fff"} />
+            {content.map(item => {
+              const od = isOverdue(item.dueDate, item.status === "Delivered");
+              return (
+                <Card key={item.id} overdue={od}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px", marginBottom: "6px" }}>
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "3px" }}>
+                        <span style={{ fontSize: "14px", fontWeight: 600, color: od ? "#f87171" : "#fff" }}>{od ? "⚠ " : ""}{item.title}</span>
+                        <Badge
+                          label={item.status}
+                          colour={SC[item.status] || "#6b9fff"}
+                          onClick={() => setContent(p => p.map(x => x.id === item.id ? { ...x, status: cycleNext(CONTENT_CYCLE, x.status) } : x))}
+                        />
+                      </div>
+                      <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>{item.client} · {item.type} · {item.dueDate}</div>
                     </div>
-                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>{item.client} · {item.type} · {item.dueDate}</div>
                   </div>
-                </div>
-                {item.notes && <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", marginBottom: "10px" }}>{item.notes}</div>}
-                <div style={{ display: "flex", gap: "6px" }}>
-                  <GBtn onClick={() => setModal({ type: "content", data: item })}>Edit</GBtn>
-                  <GBtn danger onClick={() => setContent(p => p.filter(x => x.id !== item.id))}>Remove</GBtn>
-                </div>
-              </Card>
-            ))}
+                  {item.notes && <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", marginBottom: "10px" }}>{item.notes}</div>}
+                  <div style={{ display: "flex", gap: "6px" }}>
+                    <GBtn onClick={() => setModal({ type: "content", data: item })}>Edit</GBtn>
+                    <GBtn danger onClick={() => setContent(p => p.filter(x => x.id !== item.id))}>Remove</GBtn>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </>}
 
-        {/* ENQUIRIES */}
+        {/* ── ENQUIRIES ── */}
         {tab === "enquiries" && <>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
             <h1 style={{ fontSize: isMobile ? "19px" : "22px", fontWeight: 700, margin: 0 }}>Enquiries</h1>
-            <PBtn onClick={() => setModal({ type: "enquiry" })}>+ Add</PBtn>
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+              <PBtn onClick={syncTally} loading={syncing}>↻ Sync Tally</PBtn>
+              <PBtn onClick={() => setModal({ type: "enquiry" })}>+ Add</PBtn>
+            </div>
           </div>
+          {syncMsg && <div style={{ fontSize: "12px", color: syncMsg.includes("failed") ? "#f87171" : "#4ade80", marginBottom: "14px" }}>{syncMsg}</div>}
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {enquiries.length === 0 && <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "13px" }}>No enquiries yet. Hit Sync Tally to pull in form submissions.</p>}
             {enquiries.map(enq => (
               <Card key={enq.id}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px", marginBottom: "6px" }}>
                   <div style={{ minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "3px" }}>
                       <span style={{ fontSize: "14px", fontWeight: 600 }}>{enq.name}</span>
-                      <Badge label={enq.status} colour={SC[enq.status]} />
+                      <Badge
+                        label={enq.status}
+                        colour={SC[enq.status]}
+                        onClick={() => setEnquiries(p => p.map(x => x.id === enq.id ? { ...x, status: cycleNext(ENQ_CYCLE, x.status) } : x))}
+                      />
                     </div>
                     <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginBottom: "2px" }}>{enq.email}{enq.phone ? ` · ${enq.phone}` : ""}</div>
                     {enq.social && <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>{enq.social}</div>}
@@ -458,6 +629,7 @@ export default function Dashboard() {
           {modal.type === "task" && <TaskForm initial={modal.data} clients={clients} onSave={t => { setTasks(p => modal.data ? p.map(x => x.id === t.id ? t : x) : [...p, t]); setModal(null); }} onClose={() => setModal(null)} />}
           {modal.type === "content" && <ContentForm initial={modal.data} clients={clients} onSave={c => { setContent(p => modal.data ? p.map(x => x.id === c.id ? c : x) : [...p, c]); setModal(null); }} onClose={() => setModal(null)} />}
           {modal.type === "enquiry" && <EnquiryForm initial={modal.data} onSave={e => { setEnquiries(p => modal.data ? p.map(x => x.id === e.id ? e : x) : [...p, e]); setModal(null); }} onClose={() => setModal(null)} />}
+          {modal.type === "log" && <ClientLog client={modal.data} onUpdate={c => { setClients(p => p.map(x => x.id === c.id ? c : x)); setModal({ type: "log", data: c }); }} onClose={() => setModal(null)} />}
         </Modal>
       )}
     </div>
