@@ -913,26 +913,7 @@ export default function Marketing() {
           </a>
         </div>
 
-        {/* Scroll hint */}
-        <div
-          className="reveal"
-          style={{
-            ...revealStyle,
-            position: "absolute",
-            bottom: "36px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "6px",
-            transitionDelay: "0.5s",
-            zIndex: 1,
-          }}
-        >
-          <span style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Scroll</span>
-          <div style={{ width: "1px", height: "32px", background: "linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)" }} />
-        </div>
+
       </section>
 
       {/* ── ABOUT US ─────────────────────────────────────────────────────── */}
