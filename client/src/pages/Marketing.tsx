@@ -816,43 +816,77 @@ export default function Marketing() {
           style={{
             ...revealStyle,
             display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             gap: "14px",
-            flexWrap: "wrap",
-            justifyContent: "center",
             transitionDelay: "0.3s",
             position: "relative",
             zIndex: 1,
           }}
         >
-          <a
-            href="https://tally.so/r/PdgPKP"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              padding: "16px 36px",
-              borderRadius: "999px",
-              background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)",
-              color: "#fff",
-              fontSize: "16px",
-              fontWeight: 600,
-              textDecoration: "none",
-              transition: "all 0.2s ease",
-              boxShadow: "0 0 32px rgba(59,111,255,0.45), 0 4px 16px rgba(0,0,0,0.3)",
-              letterSpacing: "-0.01em",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.boxShadow = "0 0 48px rgba(59,111,255,0.65), 0 4px 16px rgba(0,0,0,0.3)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.boxShadow = "0 0 32px rgba(59,111,255,0.45), 0 4px 16px rgba(0,0,0,0.3)";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-            }}
-          >
-            Get Started ↗
-          </a>
+          {/* Row 1: Get Started (primary) + With us? (faded secondary) */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
+            <a
+              href="https://tally.so/r/PdgPKP"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                padding: "16px 36px",
+                borderRadius: "999px",
+                background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)",
+                color: "#fff",
+                fontSize: "16px",
+                fontWeight: 600,
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+                boxShadow: "0 0 32px rgba(59,111,255,0.45), 0 4px 16px rgba(0,0,0,0.3)",
+                letterSpacing: "-0.01em",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 48px rgba(59,111,255,0.65), 0 4px 16px rgba(0,0,0,0.3)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 32px rgba(59,111,255,0.45), 0 4px 16px rgba(0,0,0,0.3)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+              }}
+            >
+              Get Started
+            </a>
+            <a
+              href="https://earnedreach-portal.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                padding: "16px 28px",
+                borderRadius: "999px",
+                background: "rgba(255,255,255,0.05)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                color: "rgba(255,255,255,0.45)",
+                fontSize: "15px",
+                fontWeight: 400,
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+                letterSpacing: "-0.01em",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.75)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.09)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
+              }}
+            >
+              With us?
+            </a>
+          </div>
+          {/* Row 2: Join our team — smallest, most faded */}
           <a
             href="https://tally.so/r/44qEXr"
             target="_blank"
@@ -860,57 +894,22 @@ export default function Marketing() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              padding: "16px 32px",
-              borderRadius: "999px",
-              background: "rgba(255,255,255,0.06)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              color: "rgba(255,255,255,0.7)",
-              fontSize: "16px",
+              gap: "4px",
+              color: "rgba(255,255,255,0.28)",
+              fontSize: "13px",
               fontWeight: 400,
               textDecoration: "none",
-              transition: "all 0.2s ease",
+              transition: "color 0.2s ease",
+              letterSpacing: "0.01em",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.1)";
-              (e.currentTarget as HTMLElement).style.color = "#fff";
+              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
-              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.7)";
+              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.28)";
             }}
           >
             Join our team.
-          </a>
-          <a
-            href="https://earnedreach-portal.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              padding: "16px 32px",
-              borderRadius: "999px",
-              background: "rgba(255,255,255,0.04)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              color: "rgba(255,255,255,0.5)",
-              fontSize: "14px",
-              fontWeight: 400,
-              textDecoration: "none",
-              transition: "all 0.2s ease",
-              letterSpacing: "-0.01em",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
-              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.8)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
-              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)";
-            }}
-          >
-            With us? →
           </a>
         </div>
 
