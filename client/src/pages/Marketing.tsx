@@ -882,6 +882,34 @@ export default function Marketing() {
           >
             Join our team.
           </a>
+          <a
+            href="/portal"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "16px 32px",
+              borderRadius: "999px",
+              background: "rgba(255,255,255,0.04)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "rgba(255,255,255,0.5)",
+              fontSize: "14px",
+              fontWeight: 400,
+              textDecoration: "none",
+              transition: "all 0.2s ease",
+              letterSpacing: "-0.01em",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
+              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.8)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)";
+            }}
+          >
+            With us? →
+          </a>
         </div>
 
         {/* Scroll hint */}
@@ -1464,6 +1492,7 @@ export default function Marketing() {
                   { label: "Get Started ↗", href: "https://tally.so/r/PdgPKP", external: true },
                   { label: "Instagram ↗", href: "https://www.instagram.com/EarnedReach", external: true },
                   { label: "Join our team ↗", href: "https://tally.so/r/44qEXr", external: true },
+                  { label: "With us? →", href: "/portal", external: false },
                 ].map((link) => (
                   <a
                     key={link.label}
