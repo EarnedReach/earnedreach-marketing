@@ -100,6 +100,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.110.0
         version: 2.110.0
+      '@vercel/node':
+        specifier: ^5.8.22
+        version: 5.8.22(rollup@4.52.4)
       axios:
         specifier: ^1.12.0
         version: 1.12.2
@@ -2318,6 +2321,9 @@ packages:
   '@vercel/build-utils@13.30.0':
     resolution: {integrity: sha512-fLIa8cpELsSoWbcxshaqegwlTCfKnbgsDmA6uIb+oA797xvSmYkPu5a781aRYCRdghgyOZF7NCSVgtZjHjunnQ==}
 
+  '@vercel/build-utils@13.32.2':
+    resolution: {integrity: sha512-XgATgMjt2NHF6HHo1wii6f43qlWjaFx3o+9L7aOUPLQgqwgYp2BGwuuBjg8U6sNgut1QsmFBMvNqTAUBvack9Q==}
+
   '@vercel/cervel@0.1.22':
     resolution: {integrity: sha512-YbL2AosH3FaBLJZu4GYdVMkFv+5cbWwwSrRBTGN52odynQUudTUQfbc7rCzPyNQLdk2QC4w2IDYRD+nqgojhVg==}
     hasBin: true
@@ -2382,6 +2388,9 @@ packages:
 
   '@vercel/node@5.8.17':
     resolution: {integrity: sha512-n2DVzblqS43LTs4BV1iLfx8tjjrTegcSsyDgRzn70h6tQePYWjl+h0bU3X1stpITZtaYJSZYwVevuX1BJNZHHg==}
+
+  '@vercel/node@5.8.22':
+    resolution: {integrity: sha512-WfciIhDVh9RwFmvrWp7FAdYCBPV94bZvIo4JbaHqZbvBJ2Bmnv/Pgj1fTjjLKfnKTbLJy+8HN1FXB8KYDnwGZQ==}
 
   '@vercel/oidc@3.2.0':
     resolution: {integrity: sha512-UycprH3T6n3jH0k44NHMa7pnFHGu/N05MjojYr+Mc6I7obkoLIJujSWwin1pCvdy/eOxrI/l3uDLQsmcrOb4ug==}
@@ -6846,6 +6855,12 @@ snapshots:
       cjs-module-lexer: 1.2.3
       es-module-lexer: 1.5.0
 
+  '@vercel/build-utils@13.32.2':
+    dependencies:
+      '@vercel/python-analysis': 0.11.1
+      cjs-module-lexer: 1.2.3
+      es-module-lexer: 1.5.0
+
   '@vercel/cervel@0.1.22(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(rollup@4.52.4)':
     dependencies:
       '@vercel/backends': 0.8.14(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(rollup@4.52.4)
@@ -7026,6 +7041,35 @@ snapshots:
       '@edge-runtime/vm': 3.2.0
       '@types/node': 20.11.0
       '@vercel/build-utils': 13.30.0
+      '@vercel/error-utils': 2.2.0
+      '@vercel/nft': 1.10.0(rollup@4.52.4)
+      '@vercel/static-config': 3.4.0
+      async-listen: 3.0.0
+      cjs-module-lexer: 1.2.3
+      edge-runtime: 2.5.9
+      es-module-lexer: 1.4.1
+      esbuild: 0.27.0
+      etag: 1.8.1
+      mime-types: 2.1.35
+      node-fetch: 2.6.9
+      path-to-regexp: 6.1.0
+      path-to-regexp-updated: path-to-regexp@6.3.0
+      ts-morph: 12.0.0
+      tsx: 4.21.0
+      typescript: 5.9.3
+      undici: 5.28.4
+    transitivePeerDependencies:
+      - encoding
+      - rollup
+      - supports-color
+
+  '@vercel/node@5.8.22(rollup@4.52.4)':
+    dependencies:
+      '@edge-runtime/node-utils': 2.3.0
+      '@edge-runtime/primitives': 4.1.0
+      '@edge-runtime/vm': 3.2.0
+      '@types/node': 20.11.0
+      '@vercel/build-utils': 13.32.2
       '@vercel/error-utils': 2.2.0
       '@vercel/nft': 1.10.0(rollup@4.52.4)
       '@vercel/static-config': 3.4.0
