@@ -264,6 +264,113 @@ function ClientLog({ client, onUpdate, onClose }: { client: Client; onUpdate: (c
   </div>;
 }
 
+// ─── Strategy Generator ─────────────────────────────────────────────────────
+const STRATEGY_FIELDS = [
+  { key: "industry", label: "Industry / Niche", placeholder: "e.g. Padel sports club, West Midlands" },
+  { key: "targetAudience", label: "Target Audience", placeholder: "e.g. 25-45 active adults in Birmingham area" },
+  { key: "currentFollowers", label: "Current Social Following", placeholder: "e.g. 232 followers on Instagram" },
+  { key: "mainGoal", label: "Primary Goal", placeholder: "e.g. Grow Instagram, drive court bookings" },
+  { key: "tone", label: "Desired Tone / Style", placeholder: "e.g. Energetic, cinematic, community-first" },
+  { key: "competitors", label: "Competitors or Brands They Admire", placeholder: "e.g. Padel Zoco, local tennis clubs" },
+  { key: "upcomingEvents", label: "Upcoming Events or Launches", placeholder: "e.g. Summer tournament in August" },
+  { key: "contentConstraints", label: "Content Constraints", placeholder: "e.g. No staff on camera, limited budget" },
+  { key: "usp", label: "Unique Selling Point", placeholder: "e.g. Only padel club in Dudley with 4 courts" },
+  { key: "monthlyBudget", label: "Monthly Content Budget", placeholder: "e.g. £700/month" },
+] as const;
+
+type StrategyField = typeof STRATEGY_FIELDS[number]["key"];
+type StrategyInputs = Partial<Record<StrategyField, string>>;
+
+function StrategyGenerator({ client, onClose }: { client: Client; onClose: () => void }) {
+  const [inputs, setInputs] = useState<StrategyInputs>({});
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const generate = async () => {
+    setLoading(true); setError(null); setResult(null);
+    try {
+      const res = await fetch("/api/strategy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ clientName: client.name, ...inputs }),
+      });
+      const data = await res.json() as { strategy?: string; error?: string };
+      if (!res.ok || data.error) { setError(data.error || "Generation failed"); }
+      else { setResult(data.strategy || ""); }
+    } catch {
+      setError("Network error — please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (result) navigator.clipboard.writeText(result);
+  };
+
+  // Simple markdown renderer (bold, headings, lists)
+  const renderMarkdown = (md: string) => {
+    const lines = md.split("\n");
+    return lines.map((line, i) => {
+      if (line.startsWith("### ")) return <h4 key={i} style={{ fontSize: "14px", fontWeight: 700, color: PALETTE.accent, margin: "18px 0 6px", letterSpacing: "-0.01em" }}>{line.slice(4)}</h4>;
+      if (line.startsWith("## ")) return <h3 key={i} style={{ fontSize: "16px", fontWeight: 700, color: PALETTE.text, margin: "22px 0 8px", letterSpacing: "-0.02em" }}>{line.slice(3)}</h3>;
+      if (line.startsWith("# ")) return <h2 key={i} style={{ fontSize: "18px", fontWeight: 700, color: PALETTE.text, margin: "0 0 16px", letterSpacing: "-0.02em" }}>{line.slice(2)}</h2>;
+      if (line.startsWith("- ") || line.startsWith("* ")) return <div key={i} style={{ fontSize: "13px", color: PALETTE.text, lineHeight: 1.6, paddingLeft: "16px", marginBottom: "4px", position: "relative" }}><span style={{ position: "absolute", left: 0, color: PALETTE.accent }}>·</span>{line.slice(2)}</div>;
+      if (line.startsWith("|")) return <div key={i} style={{ fontSize: "12px", color: PALETTE.muted, fontFamily: "monospace", lineHeight: 1.8, borderBottom: `1px solid ${PALETTE.border}`, padding: "4px 0" }}>{line}</div>;
+      if (line.trim() === "" || line.startsWith("---")) return <div key={i} style={{ height: "8px" }} />;
+      // Handle **bold**
+      const parts = line.split(/(\*\*[^*]+\*\*)/g);
+      return <p key={i} style={{ fontSize: "13px", color: PALETTE.muted, lineHeight: 1.7, margin: "0 0 6px" }}>{parts.map((p, j) => p.startsWith("**") ? <strong key={j} style={{ color: PALETTE.text, fontWeight: 600 }}>{p.slice(2, -2)}</strong> : p)}</p>;
+    });
+  };
+
+  return (
+    <div style={{ maxHeight: "80vh", overflowY: "auto", paddingRight: "4px" }}>
+      <h3 style={{ fontSize: "17px", fontWeight: 700, margin: "0 0 4px", color: PALETTE.text }}>Content Strategy</h3>
+      <p style={{ fontSize: "12px", color: PALETTE.muted, margin: "0 0 20px" }}>{client.name} — AI-generated brief</p>
+
+      {!result && (
+        <>
+          {STRATEGY_FIELDS.map(f => (
+            <div key={f.key}>
+              <label style={lStyle}>{f.label}</label>
+              <input
+                style={iStyle}
+                placeholder={f.placeholder}
+                value={inputs[f.key] || ""}
+                onChange={e => setInputs(prev => ({ ...prev, [f.key]: e.target.value }))}
+              />
+            </div>
+          ))}
+          {error && <p style={{ color: PALETTE.red, fontSize: "13px", marginBottom: "12px", padding: "10px", background: "rgba(248,113,113,0.08)", borderRadius: "8px", border: `1px solid rgba(248,113,113,0.2)` }}>{error}</p>}
+          <button
+            style={{ ...sBtn, opacity: loading ? 0.7 : 1 }}
+            onClick={generate}
+            disabled={loading}
+          >
+            {loading ? "Generating strategy…" : "✦ Generate Strategy"}
+          </button>
+        </>
+      )}
+
+      {result && (
+        <>
+          <div style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${PALETTE.border}`, borderRadius: "12px", padding: "20px", marginBottom: "16px" }}>
+            {renderMarkdown(result)}
+          </div>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button style={{ ...sBtn, flex: 1, marginTop: 0 }} onClick={copyToClipboard}>Copy to Clipboard</button>
+            <button style={{ ...sBtn, flex: 1, marginTop: 0, background: "transparent", border: `1px solid ${PALETTE.border}`, boxShadow: "none", color: PALETTE.muted }} onClick={() => setResult(null)}>Regenerate</button>
+          </div>
+        </>
+      )}
+
+      <button style={{ ...sBtn, background: "transparent", border: `1px solid ${PALETTE.border}`, boxShadow: "none", marginTop: "14px", color: PALETTE.muted }} onClick={onClose}>Close</button>
+    </div>
+  );
+}
+
 // ─── Tab types ────────────────────────────────────────────────────────────────
 type Tab = "overview" | "clients" | "tasks" | "content" | "enquiries";
 const TABS: { id: Tab; label: string; icon: string }[] = [
@@ -295,6 +402,7 @@ export default function Dashboard() {
     | { type: "content"; data?: ContentItem }
     | { type: "enquiry"; data?: Enquiry }
     | { type: "log"; data: Client }
+    | { type: "strategy"; data: Client }
     | null;
   const [modal, setModal] = useState<MS>(null);
 
@@ -524,6 +632,7 @@ export default function Dashboard() {
                   <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
                     <GhostBtn onClick={() => setModal({ type: "client", data: c })}>Edit</GhostBtn>
                     <GhostBtn onClick={() => setModal({ type: "log", data: c })}>Log {c.log.length > 0 ? `(${c.log.length})` : ""}</GhostBtn>
+                    <GhostBtn onClick={() => setModal({ type: "strategy", data: c })}>✦ Strategy</GhostBtn>
                     <GhostBtn danger onClick={() => deleteClient(c.id)}>Remove</GhostBtn>
                   </div>
                 </Glass>
@@ -641,6 +750,7 @@ export default function Dashboard() {
           {modal.type === "content" && <ContentForm initial={modal.data} clients={clients} onSave={saveContent} onClose={() => setModal(null)} />}
           {modal.type === "enquiry" && <EnquiryForm initial={modal.data} onSave={saveEnquiry} onClose={() => setModal(null)} />}
           {modal.type === "log" && <ClientLog client={modal.data} onUpdate={updateClientLog} onClose={() => setModal(null)} />}
+          {modal.type === "strategy" && <StrategyGenerator client={modal.data} onClose={() => setModal(null)} />}
         </Modal>
       )}
     </div>
