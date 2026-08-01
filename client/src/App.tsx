@@ -15,8 +15,8 @@ import Dashboard from "./pages/Dashboard";
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Preview} />
-      <Route path={"/home"} component={Marketing} />
+      <Route path={"/"} component={Marketing} />
+      <Route path={"/preview"} component={Preview} />
       <Route path={"/journey"} component={Journey} />
       <Route path={"/philosophy"} component={Philosophy} />
       <Route path={"/apply"} component={Apply} />
