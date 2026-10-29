@@ -1206,8 +1206,33 @@ export default function Marketing() {
             </a>
           ))}
         </div>
+
+        <h3 className="reveal" style={{ ...revealStyle, fontSize: "clamp(24px, 4vw, 34px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", margin: "64px 0 12px" }}>
+          Same topic. Packaged differently.
+        </h3>
+        <p className="reveal" style={{ ...revealStyle, fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "28px", maxWidth: "620px" }}>
+          Quam made a video on self-sabotage before working with us. We chose the topic again, edited it and repackaged it: a title that speaks to the viewer, and one word on the thumbnail you can read in a feed.
+        </p>
+        <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "20px" }}>
+          {[
+            ["cOL7PcCTLeY", "Before", "stop self sabotaging", "1.6K"],
+            ["j6bBG2VwGbk", "With EarnedReach", "you're ruining your life (and you know it)", "17K"],
+          ].map(([id, label, title, views], i) => (
+            <a key={id} className="reveal" href={`https://www.youtube.com/watch?v=${id}`} target="_blank" rel="noopener noreferrer" style={{ ...revealStyle, transitionDelay: `${i * 0.1}s`, display: "block", textDecoration: "none", background: "rgba(255,255,255,0.04)", border: `1px solid ${i ? "rgba(107,159,255,0.35)" : "rgba(255,255,255,0.07)"}`, borderRadius: "16px", overflow: "hidden" }}>
+              <img src={`/work/${id}.jpg`} alt={title} loading="lazy" style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", display: "block" }} />
+              <div style={{ padding: "16px 18px 18px" }}>
+                <div style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: i ? "#9ACBF5" : "rgba(255,255,255,0.45)", marginBottom: "8px" }}>{label}</div>
+                <div style={{ fontSize: "28px", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff" }}>{views} <span style={{ fontSize: "13px", fontWeight: 500, color: "rgba(255,255,255,0.5)", letterSpacing: 0 }}>views</span></div>
+                <p style={{ fontSize: "14px", lineHeight: 1.5, color: "rgba(255,255,255,0.7)", margin: "6px 0 0" }}>{title}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <p className="reveal" style={{ ...revealStyle, fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.75)", marginTop: "28px", maxWidth: "620px" }}>
+          Across the channel, his typical long-form video went from about 1,600 views before working with us to 17,000 with us.
+        </p>
         <p className="reveal" style={{ ...revealStyle, fontSize: "13px", color: "rgba(255,255,255,0.4)", marginTop: "12px" }}>
-          Public YouTube view counts on 29 October 2026. Shared with Quam's permission.
+          Public YouTube view counts on 29 October 2026: his five long-form videos from May to September against our three from October. A small sample, and his older videos have had longer to collect views. Shared with Quam's permission.
         </p>
       </section>
 
