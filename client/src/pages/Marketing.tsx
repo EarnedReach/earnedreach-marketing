@@ -17,24 +17,24 @@ interface Project {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const SERVICES: Service[] = [
   {
-    title: "Content Strategy",
-    body: "Most founders post and hope. We don't do that. We map out exactly what you need to say, when to say it, and why — so your content builds momentum instead of just filling a feed.",
-    img: "/illus-strategy.png",
-  },
-  {
-    title: "Brand Identity",
-    body: "People don't remember content. They remember how it made them feel. We shape the visual language and tone of your brand so that every piece you put out is instantly recognisable as yours.",
-    img: "/illus-storytelling.png",
-  },
-  {
-    title: "Full Production",
-    body: "We handle everything from pre-production to the final cut — so what ends up online actually looks like the standard you hold yourself to.",
+    title: "Content Production",
+    body: "Filming days for short-form and business content, the edit, captions, and posting on every platform. Talking points before each shoot, so you never stare at the camera wondering what to say.",
     img: "/illus-production.png",
   },
   {
-    title: "One Time Projects",
-    body: "Sometimes you just need one thing done properly. A brand film. A launch video. A content series. We take on a small number of standalone projects each quarter — the ones worth doing well.",
+    title: "Packaging",
+    body: "A hook, title and cover for every piece, chosen from what's already beating the usual views in your niche. Not guesswork.",
+    img: "/illus-storytelling.png",
+  },
+  {
+    title: "One Video, Every Channel",
+    body: "Every video becomes clips, LinkedIn posts in your voice, a newsletter and more. All from the same filming day.",
     img: "/illus-content.png",
+  },
+  {
+    title: "Reach Into Enquiries",
+    body: "Your bio, link page and booking link set up properly, pinned posts that sell, and keyword DMs. So attention has somewhere to go.",
+    img: "/illus-strategy.png",
   },
 ];
 
@@ -632,10 +632,10 @@ export default function Marketing() {
 
   // Rotating hero subtitle
   const SUBTITLES = [
-    "Every founder has a story. Every brand has a vision. We bring both to life and put them in front of the right audience.",
-    "Most founders post and hope. We build content that actually moves people — and puts you in front of the right eyes.",
-    "Your story is already there. We find it, film it, and make sure the right people can't look away.",
-    "Great content doesn't happen by accident. It's built with intention — and we've made it our only job.",
+    "We film, edit, package and post your content, then show you what it brought in.",
+    "You turn up to film. We handle the rest, and you never approve an edit.",
+    "Most founders post and hope. We study every piece, and the next one is better for it.",
+    "No ad spend. Ever. Every view is earned. Your story, seen by the right eyes.",
   ];
   const [subtitleIndex, setSubtitleIndex] = useState(0);
   const [subtitleVisible, setSubtitleVisible] = useState(true);
@@ -808,8 +808,8 @@ export default function Marketing() {
             textShadow: "0 0 80px rgba(107,159,255,0.35)",
           }}
         >
-          Masters of<br />
-          <span style={{ color: "#9ACBF5" }}>Storytelling</span>
+          Reach, earned.<br />
+          <span style={{ color: "#9ACBF5" }}>Never bought.</span>
         </h1>
 
         {/* Subheading */}
@@ -984,7 +984,7 @@ export default function Marketing() {
               color: "#fff",
             }}
           >
-            The Founders
+            The Founder
           </h3>
           <p
             style={{
@@ -994,7 +994,7 @@ export default function Marketing() {
               marginBottom: "20px",
             }}
           >
-            EarnedReach was founded by David and PJ — two filmmakers who got tired of watching great founders stay invisible. Combining expertise in editing, cinematography, and content strategy, they built a studio that treats every brand like a story worth telling.
+            EarnedReach is run by David, a filmmaker who got tired of watching great founders stay invisible. It started as a film studio, and the cinematic eye stayed. What changed is the system around it: an AI-assisted edit pipeline that David reviews piece by piece, so you get volume without losing quality, and without spending your week approving edits.
           </p>
           <p
             style={{
@@ -1003,8 +1003,22 @@ export default function Marketing() {
               color: "rgba(255,255,255,0.6)",
             }}
           >
-            David and PJ realised that the founders who win online aren't the loudest — they're the ones with the clearest story. So they built a system to find it, film it, and put it in front of the right people.
+            The founders who win online aren't the loudest. They're the ones with the clearest story, told often.
           </p>
+        </div>
+
+        {/* Core values */}
+        <div className="reveal" style={{ ...revealStyle, marginTop: "16px", display: "grid", gap: "16px", transitionDelay: "0.25s" }}>
+          {[
+            ["We understand visual storytelling.", "Volume never means content that doesn't look or feel like you."],
+            ["Not every piece is meant to sell.", "Some content gets you into rooms money can't buy: the invite, the collab, the intro, the respect of your peers. We value that, and we track it alongside enquiries."],
+            ["We optimise everything.", "Every piece is studied (the hook, where people stayed, where they left, and why), and the next one is better for it."],
+          ].map(([title, body]) => (
+            <div key={title} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", padding: "24px 28px" }}>
+              <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#9ACBF5", marginBottom: "8px", letterSpacing: "-0.02em" }}>{title}</h3>
+              <p style={{ fontSize: "15px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", margin: 0 }}>{body}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -1033,7 +1047,7 @@ export default function Marketing() {
             margin: "0 auto 48px",
           }}
         >
-          Work directly with the founders of EarnedReach
+          What a client gets
         </h2>
 
         {/* Desktop: bento grid | Mobile: horizontal swipe */}
@@ -1160,6 +1174,9 @@ export default function Marketing() {
             ))}
           </div>
         </div>
+        <p className="reveal" style={{ ...revealStyle, textAlign: "center", marginTop: "40px", fontSize: "16px", color: "rgba(255,255,255,0.6)" }}>
+          Plus a monthly breakdown of what worked and why. <span style={{ color: "#9ACBF5" }}>No ad spend. Ever.</span> Every view is earned.
+        </p>
       </section>
 
             {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
@@ -1219,18 +1236,18 @@ export default function Marketing() {
         {[
           {
             num: "01",
-            title: "We get on a call",
-            body: "No forms, no funnels. We sit down with you, understand your brand, your goals, and what you're actually trying to say. This is where the strategy starts.",
+            title: "One onboarding call",
+            body: "We learn your business, your audience and what you're trying to say, and map the topics. It's the only meeting you need to prepare for.",
           },
           {
             num: "02",
-            title: "We build the strategy",
-            body: "Based on what we learn, we map out the content system — what to create, how often, what format, and why. Everything has a purpose before a camera turns on.",
+            title: "You film, we do the rest",
+            body: "Turn up on filming days. Editing, packaging, posting and repurposing all happen without you. No edits to approve.",
           },
           {
             num: "03",
-            title: "We produce and distribute",
-            body: "We handle the shoot, the edit, and the rollout. You show up, we handle the rest — and what goes live actually looks like the standard you hold yourself to.",
+            title: "The breakdown lands every month",
+            body: "What went out, what worked and why, who it reached, the doors it opened, and what changes next month. The content gets sharper every month.",
           },
         ].map((step, i) => (
           <div
@@ -1305,6 +1322,54 @@ export default function Marketing() {
         ))}
       </section>
 
+      {/* ── WHO IT'S FOR / FOUNDING CLIENTS / FAQ ───────────────────────── */}
+      <section id="who-its-for" style={{ position: "relative", zIndex: 1, padding: "100px 24px", maxWidth: "720px", margin: "0 auto" }}>
+        <h2 className="reveal" style={{ ...revealStyle, fontSize: "clamp(32px, 6vw, 52px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", marginBottom: "40px" }}>
+          Two kinds of founder
+        </h2>
+        {[
+          ["You need to be seen and trusted.", "Leads already come in, but when a prospect looks you up, they find nothing, or something that doesn't match you.", "When a prospect Googles you, would your content help close them?"],
+          ["You need content that brings in enquiries.", "You sell high-ticket, so one extra client a month changes the year, and you have a sales call ready for them.", "Would one extra client a month pay for this?"],
+        ].map(([title, body, test], i) => (
+          <div key={title} className="reveal" style={{ ...revealStyle, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", padding: "28px", marginBottom: "16px", transitionDelay: `${0.1 + i * 0.1}s` }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 600, color: "#9ACBF5", marginBottom: "10px", letterSpacing: "-0.02em" }}>{title}</h3>
+            <p style={{ fontSize: "15px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "12px" }}>{body}</p>
+            <p style={{ fontSize: "15px", lineHeight: 1.7, color: "#fff", fontStyle: "italic", margin: 0 }}>Ask yourself: {test}</p>
+          </div>
+        ))}
+        <p className="reveal" style={{ ...revealStyle, fontSize: "14px", lineHeight: 1.7, color: "rgba(255,255,255,0.45)", marginTop: "8px" }}>
+          Not a fit: brands that run on paid ads, founders who want to approve every edit, and anyone after guaranteed follower numbers.
+        </p>
+
+        <div className="reveal" style={{ ...revealStyle, marginTop: "80px", background: "linear-gradient(135deg, rgba(59,90,255,0.14) 0%, rgba(10,14,40,0.85) 70%)", border: "1px solid rgba(107,159,255,0.25)", borderRadius: "20px", padding: "36px" }}>
+          <h2 style={{ fontSize: "clamp(26px, 4vw, 36px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", marginBottom: "14px" }}>
+            3 founding client spots
+          </h2>
+          <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "24px" }}>
+            We're taking on three founding clients. In return, you agree to a case study and a short testimonial video once the results are in. Minimum three months, because that's how long a real trend takes to show.
+          </p>
+          <a href="https://tally.so/r/PdgPKP" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", padding: "14px 30px", borderRadius: "999px", background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)", color: "#fff", fontSize: "15px", fontWeight: 600, textDecoration: "none" }}>
+            Apply for a spot ↗
+          </a>
+        </div>
+
+        <h2 className="reveal" style={{ ...revealStyle, fontSize: "clamp(28px, 5vw, 44px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", margin: "80px 0 32px" }}>
+          Questions
+        </h2>
+        {[
+          ["Do I approve every edit?", "No. You stay out of the process. David reviews every piece before it goes out."],
+          ["Do you run ads?", "Never. Reach earned, not bought."],
+          ["What do I actually have to do?", "One onboarding call, then turn up on filming days."],
+          ["How much does it cost?", "It depends on what you need. We'll talk it through on the call."],
+          ["Can you guarantee followers or views?", "No, and be wary of anyone who does. We show you exactly what each piece did, every month."],
+        ].map(([q, a]) => (
+          <details key={q} className="reveal" style={{ ...revealStyle, borderTop: "1px solid rgba(255,255,255,0.08)", padding: "20px 0" }}>
+            <summary style={{ fontSize: "17px", fontWeight: 600, color: "#fff", cursor: "pointer" }}>{q}</summary>
+            <p style={{ fontSize: "15px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", margin: "12px 0 0" }}>{a}</p>
+          </details>
+        ))}
+      </section>
+
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section
         style={{
@@ -1342,8 +1407,8 @@ export default function Marketing() {
             position: "relative",
           }}
         >
-          Ready to build something{" "}
-          <span style={{ color: "#9ACBF5" }}>worth watching?</span>
+          Ready to be seen by{" "}
+          <span style={{ color: "#9ACBF5" }}>the right people?</span>
         </p>
         <p
           className="reveal"
@@ -1356,7 +1421,7 @@ export default function Marketing() {
             position: "relative",
           }}
         >
-          Let's get on a call and figure out what your brand actually needs.
+          Book a call and we'll work out whether EarnedReach fits.
         </p>
         <a
           className="reveal"
@@ -1389,7 +1454,7 @@ export default function Marketing() {
             (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
           }}
         >
-          Get Started ↗
+          Book a call ↗
         </a>
       </section>
 
