@@ -1158,35 +1158,9 @@ export default function Marketing() {
         </p>
       </section>
 
-      {/* ── SAMPLE PACKAGE + FREE AUDIT ─────────────────────────────────── */}
-      <section id="sample" style={{ position: "relative", zIndex: 1, padding: "100px 24px", maxWidth: "720px", margin: "0 auto" }}>
-        <h2 className="reveal" style={{ ...revealStyle, fontSize: "clamp(32px, 6vw, 52px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", marginBottom: "16px" }}>
-          What we hand over before a video goes out
-        </h2>
-        <p className="reveal" style={{ ...revealStyle, fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px" }}>
-          A sample package for one of our client Quam's videos. It went out without packaging and did half his usual views. This is what we'd hand over before posting it.
-        </p>
-        <div className="reveal sample-grid" style={{ ...revealStyle, display: "grid", gridTemplateColumns: "minmax(0, 200px) 1fr", gap: "28px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", padding: "28px", transitionDelay: "0.1s" }}>
-          <img src="/sample-cover.jpg" alt="Sample cover: 100K VS 200K" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
-          <div style={{ display: "grid", gap: "18px", alignContent: "start" }}>
-            {[
-              ["Title", "I play dumb on purpose. It makes me more money"],
-              ["Hook (first 3 seconds)", "Open on his own line from 0:39: \"The difference between a 100k and a 200k month could be down to the fact that you didn't listen.\" The original opened on a slow wind-up."],
-              ["Why", "His biggest video makes the same argument, that being the smart one costs you, and did 73× his usual views. His winners open with a blunt claim, not scene-setting."],
-              ["Flag", "No cuts in two minutes, and one point repeated for 30 seconds. Tightening that would help more than any title."],
-            ].map(([label, text]) => (
-              <div key={label}>
-                <div style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9ACBF5", marginBottom: "6px" }}>{label}</div>
-                <p style={{ fontSize: "15px", lineHeight: 1.6, color: "rgba(255,255,255,0.75)", margin: 0 }}>{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <p className="reveal" style={{ ...revealStyle, fontSize: "13px", color: "rgba(255,255,255,0.4)", marginTop: "12px" }}>
-          A sample of our method, not a result.
-        </p>
-
-        <div className="reveal" style={{ ...revealStyle, marginTop: "64px", textAlign: "center", border: "1px solid rgba(107,159,255,0.25)", background: "rgba(107,159,255,0.06)", borderRadius: "20px", padding: "40px 28px" }}>
+      {/* ── FREE AUDIT ─────────────────────────────────── */}
+      <section id="audit" style={{ position: "relative", zIndex: 1, padding: "100px 24px", maxWidth: "720px", margin: "0 auto" }}>
+        <div className="reveal" style={{ ...revealStyle, textAlign: "center", border: "1px solid rgba(107,159,255,0.25)", background: "rgba(107,159,255,0.06)", borderRadius: "20px", padding: "40px 28px" }}>
           <h3 style={{ fontSize: "clamp(24px, 4vw, 34px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", marginBottom: "14px" }}>
             Get a free audit
           </h3>
