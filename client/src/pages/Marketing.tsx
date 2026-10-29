@@ -936,34 +936,11 @@ export default function Marketing() {
               fontSize: "16px",
               lineHeight: 1.7,
               color: "rgba(255,255,255,0.6)",
-              marginBottom: "20px",
+              margin: 0,
             }}
           >
-            EarnedReach is run by David, a filmmaker who got tired of watching great founders stay invisible. It started as a film studio, and the cinematic eye stayed. What changed is the speed. AI takes care of the slow, repetitive parts of the edit, so your content turns around fast. Every cut, caption and post is still made, checked and signed off by David. You get volume without losing quality, and you never spend your week approving edits.
+            EarnedReach is run by David, a filmmaker. The cinematic eye came from the film-studio days. AI now handles the slow parts of the edit, so your content turns around fast. David still checks and signs off every piece, so you never approve an edit.
           </p>
-          <p
-            style={{
-              fontSize: "16px",
-              lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)",
-            }}
-          >
-            The founders who win online aren't the loudest. They're the ones with the clearest story, told often.
-          </p>
-        </div>
-
-        {/* Core values */}
-        <div className="reveal" style={{ ...revealStyle, marginTop: "16px", display: "grid", gap: "16px", transitionDelay: "0.25s" }}>
-          {[
-            ["We understand visual storytelling.", "Volume never means content that doesn't look or feel like you."],
-            ["Not every piece is meant to sell.", "Some content gets you into rooms money can't buy: the invite, the collab, the intro, the respect of your peers. We value that, and we track it alongside enquiries."],
-            ["We optimise everything.", "Every piece is studied (the hook, where people stayed, where they left, and why), and the next one is better for it."],
-          ].map(([title, body]) => (
-            <div key={title} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", padding: "24px 28px" }}>
-              <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#9ACBF5", marginBottom: "8px", letterSpacing: "-0.02em" }}>{title}</h3>
-              <p style={{ fontSize: "15px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", margin: 0 }}>{body}</p>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -1177,14 +1154,14 @@ export default function Marketing() {
           Across the channel, his typical long-form video went from about 1,600 views before working with us to 17,000 with us.
         </p>
         <p className="reveal" style={{ ...revealStyle, fontSize: "13px", color: "rgba(255,255,255,0.4)", marginTop: "12px" }}>
-          Public YouTube view counts on 29 October 2026: his five long-form videos from May to September against our three from October. A small sample, and his older videos have had longer to collect views. Shared with Quam's permission.
+          Public YouTube view counts on 29 October 2026: his five long-form videos from May to September against our three from October. A small sample, and his older videos have had longer to collect views.
         </p>
       </section>
 
       {/* ── SAMPLE PACKAGE + FREE AUDIT ─────────────────────────────────── */}
       <section id="sample" style={{ position: "relative", zIndex: 1, padding: "100px 24px", maxWidth: "720px", margin: "0 auto" }}>
         <h2 className="reveal" style={{ ...revealStyle, fontSize: "clamp(32px, 6vw, 52px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", marginBottom: "16px" }}>
-          What "optimise everything" looks like
+          What we hand over before a video goes out
         </h2>
         <p className="reveal" style={{ ...revealStyle, fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px" }}>
           A sample package for one of our client Quam's videos. It went out without packaging and did half his usual views. This is what we'd hand over before posting it.
@@ -1206,7 +1183,7 @@ export default function Marketing() {
           </div>
         </div>
         <p className="reveal" style={{ ...revealStyle, fontSize: "13px", color: "rgba(255,255,255,0.4)", marginTop: "12px" }}>
-          Shared with Quam's permission. A sample of our method, not a result.
+          A sample of our method, not a result.
         </p>
 
         <div className="reveal" style={{ ...revealStyle, marginTop: "64px", textAlign: "center", border: "1px solid rgba(107,159,255,0.25)", background: "rgba(107,159,255,0.06)", borderRadius: "20px", padding: "40px 28px" }}>
@@ -1368,7 +1345,7 @@ export default function Marketing() {
           Two kinds of founder
         </h2>
         {[
-          ["You need to be seen and trusted.", "Leads already come in, but when a prospect looks you up, they find nothing, or something that doesn't match you.", "When a prospect looks you up, on Instagram, YouTube, LinkedIn or Google, would what they find help close them?"],
+          ["You need to be seen and trusted.", "Leads already come in, but when a prospect looks you up, they find nothing, or something that doesn't match you. And some content isn't meant to sell: it gets you the invite, the collab, the intro.", "When a prospect looks you up, on Instagram, YouTube, LinkedIn or Google, would what they find help close them?"],
           ["You need content that brings in clients.", "Views aren't the goal; enquiries are. Each client is worth a lot to you, so one new client a month from your content makes a real difference. And when they reach out, you're ready to take the call.", "If your content brought in one extra client a month, would that change your year?"],
         ].map(([title, body, test], i) => (
           <div key={title} className="reveal" style={{ ...revealStyle, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", padding: "28px", marginBottom: "16px", transitionDelay: `${0.1 + i * 0.1}s` }}>
