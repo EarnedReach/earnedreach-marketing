@@ -796,7 +796,7 @@ export default function Marketing() {
           className="reveal"
           style={{
             ...revealStyle,
-            fontSize: "clamp(52px, 10vw, 96px)",
+            fontSize: "clamp(40px, 7vw, 72px)",
             fontWeight: 800,
             lineHeight: 1.0,
             letterSpacing: "-0.04em",
@@ -994,7 +994,7 @@ export default function Marketing() {
               marginBottom: "20px",
             }}
           >
-            EarnedReach is run by David, a filmmaker who got tired of watching great founders stay invisible. It started as a film studio, and the cinematic eye stayed. What changed is the system around it: an AI-assisted edit pipeline that David reviews piece by piece, so you get volume without losing quality, and without spending your week approving edits.
+            EarnedReach is run by David, a filmmaker who got tired of watching great founders stay invisible. It started as a film studio, and the cinematic eye stayed. What changed is the speed. AI takes care of the slow, repetitive parts of the edit, so your content turns around fast. Every cut, caption and post is still made, checked and signed off by David. You get volume without losing quality, and you never spend your week approving edits.
           </p>
           <p
             style={{
@@ -1328,8 +1328,8 @@ export default function Marketing() {
           Two kinds of founder
         </h2>
         {[
-          ["You need to be seen and trusted.", "Leads already come in, but when a prospect looks you up, they find nothing, or something that doesn't match you.", "When a prospect Googles you, would your content help close them?"],
-          ["You need content that brings in enquiries.", "You sell high-ticket, so one extra client a month changes the year, and you have a sales call ready for them.", "Would one extra client a month pay for this?"],
+          ["You need to be seen and trusted.", "Leads already come in, but when a prospect looks you up, they find nothing, or something that doesn't match you.", "When a prospect looks you up, on Instagram, YouTube, LinkedIn or Google, would what they find help close them?"],
+          ["You need content that brings in clients.", "Views aren't the goal; enquiries are. Each client is worth a lot to you, so one new client a month from your content makes a real difference. And when they reach out, you're ready to take the call.", "If your content brought in one extra client a month, would that change your year?"],
         ].map(([title, body, test], i) => (
           <div key={title} className="reveal" style={{ ...revealStyle, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "20px", padding: "28px", marginBottom: "16px", transitionDelay: `${0.1 + i * 0.1}s` }}>
             <h3 style={{ fontSize: "20px", fontWeight: 600, color: "#9ACBF5", marginBottom: "10px", letterSpacing: "-0.02em" }}>{title}</h3>
