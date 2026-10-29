@@ -1188,7 +1188,7 @@ export default function Marketing() {
           Made with Quam Balogun
         </h2>
         <p className="reveal" style={{ ...revealStyle, fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px", maxWidth: "620px" }}>
-          Three long-form videos we made for Quam's YouTube channel in October. Over 400,000 views between them, none of it paid for.
+          Three long-form videos for Quam's YouTube channel in October. We chose the topics, edited them and packaged them. Over 400,000 views between them, none of it paid for.
         </p>
         <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "20px" }}>
           {[
@@ -1201,6 +1201,7 @@ export default function Marketing() {
               <div style={{ padding: "16px 18px 18px" }}>
                 <div style={{ fontSize: "28px", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff" }}>{views} <span style={{ fontSize: "13px", fontWeight: 500, color: "rgba(255,255,255,0.5)", letterSpacing: 0 }}>views</span></div>
                 <p style={{ fontSize: "14px", lineHeight: 1.5, color: "rgba(255,255,255,0.7)", margin: "6px 0 0" }}>{title}</p>
+                <div style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9ACBF5", marginTop: "12px" }}>Topic · Edit · Packaging</div>
               </div>
             </a>
           ))}
