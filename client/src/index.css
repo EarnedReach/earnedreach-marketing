@@ -143,4 +143,11 @@
   .services-desktop-grid {
     display: none !important;
   }
+  .sample-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .sample-grid img {
+    max-width: 220px;
+    margin: 0 auto;
+  }
 }
