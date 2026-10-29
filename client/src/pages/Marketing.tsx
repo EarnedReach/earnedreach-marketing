@@ -853,7 +853,7 @@ export default function Marketing() {
             zIndex: 1,
           }}
         >
-          {/* Row 1: Get Started (primary) + With us? (faded secondary) */}
+          {/* Get Started */}
           <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
             <a
               href="https://tally.so/r/PdgPKP"
@@ -884,62 +884,7 @@ export default function Marketing() {
             >
               Get Started
             </a>
-            <a
-              href="https://earnedreach-portal.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                padding: "16px 28px",
-                borderRadius: "999px",
-                background: "rgba(255,255,255,0.05)",
-                backdropFilter: "blur(12px)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.45)",
-                fontSize: "15px",
-                fontWeight: 400,
-                textDecoration: "none",
-                transition: "all 0.2s ease",
-                letterSpacing: "-0.01em",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.75)";
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.09)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)";
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
-              }}
-            >
-              With us?
-            </a>
           </div>
-          {/* Row 2: Join our team — smallest, most faded */}
-          <a
-            href="https://tally.so/r/44qEXr"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "4px",
-              color: "rgba(255,255,255,0.28)",
-              fontSize: "13px",
-              fontWeight: 400,
-              textDecoration: "none",
-              transition: "color 0.2s ease",
-              letterSpacing: "0.01em",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.28)";
-            }}
-          >
-            Join our team.
-          </a>
         </div>
 
 
@@ -1266,12 +1211,12 @@ export default function Marketing() {
 
         <div className="reveal" style={{ ...revealStyle, marginTop: "64px", textAlign: "center", border: "1px solid rgba(107,159,255,0.25)", background: "rgba(107,159,255,0.06)", borderRadius: "20px", padding: "40px 28px" }}>
           <h3 style={{ fontSize: "clamp(24px, 4vw, 34px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", marginBottom: "14px" }}>
-            Get a free packaging audit
+            Get a free audit
           </h3>
           <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", maxWidth: "520px", margin: "0 auto 28px" }}>
-            Send us your YouTube or TikTok. Within two working days you get back which of your videos beat your usual views, the opening lines that did it, and three rewritten titles and hooks for your next video. No call needed.
+            Send us your channel and we'll show you what's working and what to change. No call needed.
           </p>
-          <a href="mailto:hello@earnedreach.org?subject=Free%20packaging%20audit&body=My%20channel%3A%20" style={{ display: "inline-flex", padding: "14px 30px", borderRadius: "999px", background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)", color: "#fff", fontSize: "15px", fontWeight: 600, textDecoration: "none" }}>
+          <a href="mailto:hello@earnedreach.org?subject=Free%20audit&body=My%20channel%3A%20" style={{ display: "inline-flex", padding: "14px 30px", borderRadius: "999px", background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)", color: "#fff", fontSize: "15px", fontWeight: 600, textDecoration: "none" }}>
             Request my audit ↗
           </a>
         </div>
@@ -1438,10 +1383,10 @@ export default function Marketing() {
 
         <div className="reveal" style={{ ...revealStyle, marginTop: "80px", background: "linear-gradient(135deg, rgba(59,90,255,0.14) 0%, rgba(10,14,40,0.85) 70%)", border: "1px solid rgba(107,159,255,0.25)", borderRadius: "20px", padding: "36px" }}>
           <h2 style={{ fontSize: "clamp(26px, 4vw, 36px)", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff", marginBottom: "14px" }}>
-            3 founding client spots
+            2 founding client spots left
           </h2>
           <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "24px" }}>
-            We're taking on three founding clients. In return, you agree to a case study and a short testimonial video once the results are in. Minimum three months, because that's how long a real trend takes to show.
+            We're taking on three founding clients, and one spot is taken. In return, you agree to a case study and a short testimonial video once the results are in. Minimum three months, because that's how long a real trend takes to show.
           </p>
           <a href="https://tally.so/r/PdgPKP" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", padding: "14px 30px", borderRadius: "999px", background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)", color: "#fff", fontSize: "15px", fontWeight: 600, textDecoration: "none" }}>
             Apply for a spot ↗
@@ -1662,8 +1607,6 @@ export default function Marketing() {
                 {[
                   { label: "Get Started ↗", href: "https://tally.so/r/PdgPKP", external: true },
                   { label: "Instagram ↗", href: "https://www.instagram.com/EarnedReach", external: true },
-                  { label: "Join our team ↗", href: "https://tally.so/r/44qEXr", external: true },
-                  { label: "With us? →", href: "https://earnedreach-portal.vercel.app", external: true },
                 ].map((link) => (
                   <a
                     key={link.label}
