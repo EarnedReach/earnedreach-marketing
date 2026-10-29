@@ -143,6 +143,9 @@
   .services-desktop-grid {
     display: none !important;
   }
+  .work-grid {
+    grid-template-columns: 1fr !important;
+  }
   .sample-grid {
     grid-template-columns: 1fr !important;
   }

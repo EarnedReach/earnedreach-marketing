@@ -1182,6 +1182,34 @@ export default function Marketing() {
             {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
       <ProjectsSection />
 
+      {/* ── CLIENT WORK (public view counts) ────────────────────────────── */}
+      <section id="work" style={{ position: "relative", zIndex: 1, padding: "100px 24px 0", maxWidth: "1000px", margin: "0 auto" }}>
+        <h2 className="reveal" style={{ ...revealStyle, fontSize: "clamp(32px, 6vw, 52px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", marginBottom: "16px" }}>
+          Made with Quam Balogun
+        </h2>
+        <p className="reveal" style={{ ...revealStyle, fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px", maxWidth: "620px" }}>
+          Three long-form videos we made for Quam's YouTube channel in October. Over 400,000 views between them, none of it paid for.
+        </p>
+        <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "20px" }}>
+          {[
+            ["yW1cTG3wzCQ", "you're broke because you're too smart", "387K"],
+            ["j6bBG2VwGbk", "you're ruining your life (and you know it)", "17K"],
+            ["aXqGzPi9wNA", "you're working hard on the wrong thing", "8.8K"],
+          ].map(([id, title, views], i) => (
+            <a key={id} className="reveal" href={`https://www.youtube.com/watch?v=${id}`} target="_blank" rel="noopener noreferrer" style={{ ...revealStyle, transitionDelay: `${i * 0.1}s`, display: "block", textDecoration: "none", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "16px", overflow: "hidden" }}>
+              <img src={`/work/${id}.jpg`} alt={title} loading="lazy" style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", display: "block" }} />
+              <div style={{ padding: "16px 18px 18px" }}>
+                <div style={{ fontSize: "28px", fontWeight: 700, letterSpacing: "-0.03em", color: "#fff" }}>{views} <span style={{ fontSize: "13px", fontWeight: 500, color: "rgba(255,255,255,0.5)", letterSpacing: 0 }}>views</span></div>
+                <p style={{ fontSize: "14px", lineHeight: 1.5, color: "rgba(255,255,255,0.7)", margin: "6px 0 0" }}>{title}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <p className="reveal" style={{ ...revealStyle, fontSize: "13px", color: "rgba(255,255,255,0.4)", marginTop: "12px" }}>
+          Public YouTube view counts on 29 October 2026. Shared with Quam's permission.
+        </p>
+      </section>
+
       {/* ── SAMPLE PACKAGE + FREE AUDIT ─────────────────────────────────── */}
       <section id="sample" style={{ position: "relative", zIndex: 1, padding: "100px 24px", maxWidth: "720px", margin: "0 auto" }}>
         <h2 className="reveal" style={{ ...revealStyle, fontSize: "clamp(32px, 6vw, 52px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", marginBottom: "16px" }}>
