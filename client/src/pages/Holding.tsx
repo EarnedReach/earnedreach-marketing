@@ -9,7 +9,7 @@ export default function Holding() {
         <span style={{ color: "#9ACBF5" }}>Never bought.</span>
       </h1>
       <p style={{ position: "relative", fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", maxWidth: "520px", marginBottom: "36px" }}>
-        We're rebuilding the site. Content, edits and packaging for founders who want every video to earn its views. Back soon.
+        We're building something worth watching. Back soon.
       </p>
       <a href="mailto:hello@earnedreach.org" style={{ position: "relative", display: "inline-flex", padding: "14px 30px", borderRadius: "999px", background: "linear-gradient(135deg, #3b6fff 0%, #2250e0 100%)", color: "#fff", fontSize: "15px", fontWeight: 600, textDecoration: "none" }}>
         Email us
