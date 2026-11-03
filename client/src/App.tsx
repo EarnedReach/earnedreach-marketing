@@ -10,11 +10,14 @@ import Journey from "./pages/Journey";
 import Philosophy from "./pages/Philosophy";
 import Apply from "./pages/Apply";
 import Dashboard from "./pages/Dashboard";
+import Holding from "./pages/Holding";
 
 
 function Router() {
   return (
     <Switch>
+      {/* Site closed: every path shows the holding page */}
+      <Route component={Holding} />
       <Route path={"/"} component={Marketing} />
       <Route path={"/preview"} component={Preview} />
       <Route path={"/journey"} component={Journey} />
